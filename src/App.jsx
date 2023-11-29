@@ -1,11 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Navbar from './components/home section/Navbar';
+import { Helmet } from 'react-helmet';
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <></>
+    <>
+	 <Helmet>
+        <title>Emirates | A clone site</title>
+      </Helmet>
+	<Navbar/>
+	</>
   )
 }
 
