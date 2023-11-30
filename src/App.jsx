@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import Navbar from './components/home section/Navbar';
+import Navbar from './components/Navbar';
 import { Helmet } from 'react-helmet';
 
 
@@ -11,7 +11,7 @@ function App() {
     <>
 	 <Helmet>
         <title>Emirates | A clone site</title>
-      </Helmet>
+    </Helmet>
 	<Navbar/>
 	</>
   )
