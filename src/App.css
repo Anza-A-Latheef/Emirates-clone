@@ -2,3 +2,7 @@
     font-family: Emirates-Medium;
     src:url("../src/assets/fonts/Emirates Medium.ttf")
 }
+@font-face {
+    font-family: Heroic-Medium;
+    src: url("../src/assets/fonts/heroic-condensed-medium.woff2");
+}

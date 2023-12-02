@@ -12,7 +12,7 @@ const Navbar = () => {
 		<Wrapper>
 			<LeftBox>
 				<Logo>
-					<LogoImage src ="src\assets\images\emirates-logo-badge.svg"/>
+					<LogoImage src ="src\assets\images\emirates-logo-badge.svg" alt="Emirates Logo"/>
 				</Logo>
 				<NavElements>
 					<Nav_ul>
@@ -34,6 +34,8 @@ const Navbar = () => {
 	</HeaderContainer>
   )
 }
+
+//styling area
 
 const HeaderContainer = styled.div`
 	background:#333333;
