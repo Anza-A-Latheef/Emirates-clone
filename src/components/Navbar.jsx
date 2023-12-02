@@ -69,7 +69,7 @@ const Logo = styled.div`
 	z-index: 11;
 	padding-bottom: 5px;
 	box-sizing: border-box;
-	`;
+`;
 
 const LogoImage=styled.img`
 	width:100%;
