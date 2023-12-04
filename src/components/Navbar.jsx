@@ -37,7 +37,7 @@ const Navbar = () => {
 
 //styling area
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.section`
 	background:#333333;
 	width:100%;
 	display:flex;

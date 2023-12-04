@@ -8,8 +8,6 @@
     src: url("../src/assets/fonts/heroic-condensed-medium.woff2");
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Dhurjati&family=Roboto:wght@300&display=swap');
-
 @font-face {
     font-family: Dhurjati;
     src: url('../src/assets/fonts/Dhurjati-Regular.ttf');

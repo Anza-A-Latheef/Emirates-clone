@@ -69,7 +69,7 @@ export default function Services() {
 
 //styling
 
-const ServicesContainer=styled.div`
+const ServicesContainer=styled.section`
     padding:0px 125px;
     `;
 

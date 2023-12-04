@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import img from "../../assets/images/offer.avif";
 
-
 export default function Offer() {
   return (
     <OfferContainer>
@@ -18,10 +17,9 @@ export default function Offer() {
 
 //styling area
 
-const OfferContainer=styled.div`
+const OfferContainer=styled.section`
     background-image: url(${img});
     width: 100%;
-    height:70vh;
     background-position: top;
     background-size: cover;
 `;

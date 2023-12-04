@@ -29,7 +29,7 @@ const Wrapper=styled.div`
     position: relative;
     height: 232px;
 `;
-const TabContainer=styled.div`
+const TabContainer=styled.section`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 5px;
     width: 81.5%;

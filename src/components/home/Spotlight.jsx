@@ -29,7 +29,7 @@ export default Spotlight
 
 //Styling area 
 
-const SpotlightContainer=styled.div`
+const SpotlightContainer=styled.section`
     background-image: url(${img});
     width: 100%;
     height:70vh;

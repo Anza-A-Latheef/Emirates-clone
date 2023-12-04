@@ -28,7 +28,7 @@ export default Bestprice
 
 //styling area
 
-const BestpriceContainer=styled.div`
+const BestpriceContainer=styled.section`
     padding:50px 125px;
     display: flex;
     flex-direction: column;
