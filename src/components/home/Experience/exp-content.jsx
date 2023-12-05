@@ -165,10 +165,10 @@ const GridTitle=styled.h6`
     line-height: 2.15;
 `;
 
-const DubaiHead=styled.div`
+const DubaiHead=styled.h2`
  	font-family: 'Emirates-Medium';
     color: #333333;
-    font-size: 55px;
+    font-size: 50px;
     line-height: 5.75rem;
 
 	&::after{
@@ -187,7 +187,7 @@ const ExpLink=styled(Link)`
 	color: #666666;
 `;
 
-const CabinHead=styled.div`
+const CabinHead=styled.h3`
 	font-family: 'Emirates-Medium';
     color: #333333;
     font-size: 25px;

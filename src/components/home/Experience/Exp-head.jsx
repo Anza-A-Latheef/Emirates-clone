@@ -27,8 +27,6 @@ export default Experience
 const ExpContainer=styled.section`
     background-image: url(${img});
     width: 100%;
-    background-position: top;
-    background-size:cover;
 `;
 
 const Wrapper=styled.div`

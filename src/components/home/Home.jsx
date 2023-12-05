@@ -7,6 +7,8 @@ import Services from './Services';
 import Bestprice from './Bestprice/Bestprice';
 import Offer from './Offer';
 import Experience from './Experience/Exp-head';
+import About from './About';
+import Footer from '../footer/Footer';
 
 
 const Home = () => {
@@ -19,6 +21,8 @@ const Home = () => {
         <Bestprice/>
         <Offer/>
         <Experience/>
+        <About/>
+        <Footer/>
     </HomeContainer>
   )
 }
