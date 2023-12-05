@@ -8,17 +8,17 @@ const Bestprice = () => {
   return (
     <BestpriceContainer>
         <BestpriceHead>
-            <PriceHead>Featured destinations from <PriceLocation>Delhi  <ArrowIcon><TfiAngleDown /></ArrowIcon></PriceLocation></PriceHead>
+            <PriceHead>Featured destinations from <PriceLocation>India</PriceLocation></PriceHead>
             <BestpriceImage src="src\assets\images\best-price-in.svg" alt="Bestprice Logo" />
         </BestpriceHead>
             <Pricecard/>
         <BestpriceBottom>
             <BpTop>
-                <Left_a>Explore more destinations<RightIcon> <TfiAngleRight /></RightIcon></Left_a>
-                <ShowMore>See more fares</ShowMore>
+                {/* <Left_a>Explore more destinations<RightIcon> <TfiAngleRight /></RightIcon></Left_a> */}
+                <ShowMore>More destinations</ShowMore>
                 <Right_a>Be inspired by our route map <RightIcon> <TfiAngleRight /></RightIcon></Right_a>
             </BpTop>
-            <Terms>*Terms and conditions apply</Terms>
+            {/* <Terms>*Terms and conditions apply</Terms> */}
         </BestpriceBottom>
     </BestpriceContainer>
   )
@@ -54,12 +54,7 @@ const PriceLocation=styled(Link)`
     color: black;
     font-weight: bold;
     cursor: pointer;
-    text-decoration: 1px underline;
-`;
-
-const ArrowIcon=styled.span`
-    font-size: 10px;
-    color: #d71921;
+    /* text-decoration: 1px underline; */
 `;
 
 const BestpriceImage=styled.img`
@@ -68,6 +63,7 @@ const BestpriceImage=styled.img`
     position: absolute;
     right: 0;
     top: -10px;
+    display: none;
 `;
 
 const BestpriceBottom=styled.div`
@@ -75,26 +71,30 @@ const BestpriceBottom=styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
+    position: relative;
 `;
 
 const BpTop=styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 62%;
+    width: 45%;
+    position: absolute;
+    left:39%;
     margin-bottom: 10px;
 `;
 
-const Left_a=styled(Link)`
-    font-family: Helvetica;
-    text-decoration: underline;
-    font-size: 14px;
+// const Left_a=styled(Link)`
+//     font-family: Helvetica;
+//     text-decoration: underline;
+//     font-size: 14px;
 
-    &:hover{
-        text-decoration: none;
-        cursor: pointer;
-    }
-`;
+//     &:hover{
+//         text-decoration: none;
+//         cursor: pointer;
+//     }
+// `;
 
 const ShowMore=styled.button`
     font-family: Helvetica;
@@ -102,9 +102,9 @@ const ShowMore=styled.button`
     font-weight: bold;
     background-color: white;
     color: black;
-    padding: 8px 60px;
+    padding: 10px 50px;
     border :1px black solid;
-    border-radius: 4px;
+    border-radius: 3px;
 
     &:hover{
         box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
@@ -115,6 +115,7 @@ const Right_a=styled(Link)`
     font-family: Helvetica;
     text-decoration: underline;
     font-size: 14px;
+    left: 45%;
 
     &:hover{
         text-decoration: none;

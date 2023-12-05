@@ -1,0 +1,21 @@
+
+[{
+   "image": "Place1",
+   "country":"Spain",
+   "place":"Barcelona"
+},
+{
+   "image": "Place2",
+   "country":"United Arab Emirates",
+   "place":"Dubai"
+},
+{
+   "image": "Place3",
+   "country":"Italy",
+   "place":"Rome"
+},
+{
+   "image": "Place4",
+   "country":"United Kingdom",
+   "place":"London"
+}]
