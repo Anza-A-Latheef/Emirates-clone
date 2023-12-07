@@ -2,20 +2,20 @@
 [{
    "image": "Place1",
    "country":"Spain",
-   "place":"Barcelona"
+   "placeName":"Barcelona"
 },
 {
    "image": "Place2",
    "country":"United Arab Emirates",
-   "place":"Dubai"
+   "placeName":"Dubai"
 },
 {
    "image": "Place3",
    "country":"Italy",
-   "place":"Rome"
+   "placeName":"Rome"
 },
 {
    "image": "Place4",
    "country":"United Kingdom",
-   "place":"London"
+   "placeName":"London"
 }]

@@ -1,66 +1,34 @@
-import React from 'react';
+import React, { useState ,useEffect } from 'react';
 import { Link } from 'react-scroll';
+import placeData from '../../../assets/places.json';
 import styled from 'styled-components';
 
 const Pricecard = () => {
+    const [PlaceDetails,setPlaceDetails]=useState([]);
+    useEffect(() => {
+        setPlaceDetails(placeData,PlaceDetails);
+    }, []);
+
+
     return (
         <PricecardContainer>
-            <PriceCard>
+            {PlaceDetails.map((place,index) => (
+                <PriceCard>
                 <CardTop>
                     <DestinationImage>
-                        <Destination src="src\assets\images\Place1.avif" alt="" />
+                        <Destination src={`src/assets/images/${place.image}.avif`} alt="Place image" />
                     </DestinationImage>
                 </CardTop>
                 <CardBottom>
                     <CardTitle>
-                        <DestinationCountry>spain</DestinationCountry>
-                        <DestinationPlace>Barcelona</DestinationPlace>
+                        <DestinationCountry>{place.country}</DestinationCountry>
+                        <DestinationPlace>{place.placeName}</DestinationPlace>
                         <Discover>Discover for yourself</Discover>
                     </CardTitle>
                 </CardBottom>
             </PriceCard>
-            <PriceCard>
-                <CardTop>
-                    <DestinationImage>
-                        <Destination src="src\assets\images\Place1.avif" alt="" />
-                    </DestinationImage>
-                </CardTop>
-                <CardBottom>
-                    <CardTitle>
-                        <DestinationCountry>spain</DestinationCountry>
-                        <DestinationPlace>Barcelona</DestinationPlace>
-                        <Discover>Discover for yourself</Discover>
-                    </CardTitle>
-                </CardBottom>
-            </PriceCard>
-            <PriceCard>
-                <CardTop>
-                    <DestinationImage>
-                        <Destination src="src\assets\images\Place1.avif" alt="" />
-                    </DestinationImage>
-                </CardTop>
-                <CardBottom>
-                    <CardTitle>
-                        <DestinationCountry>spain</DestinationCountry>
-                        <DestinationPlace>Barcelona</DestinationPlace>
-                        <Discover>Discover for yourself</Discover>
-                    </CardTitle>
-                </CardBottom>
-            </PriceCard>
-            <PriceCard>
-                <CardTop>
-                    <DestinationImage>
-                        <Destination src="src\assets\images\Place1.avif" alt="" />
-                    </DestinationImage>
-                </CardTop>
-                <CardBottom>
-                    <CardTitle>
-                        <DestinationCountry>spain</DestinationCountry>
-                        <DestinationPlace>Barcelona</DestinationPlace>
-                        <Discover>Discover for yourself</Discover>
-                    </CardTitle>
-                </CardBottom>
-            </PriceCard>
+            ))
+        }
         </PricecardContainer>
   )
 }
@@ -107,7 +75,7 @@ const CardBottom=styled.div`
     padding:10px 0px;
 `;
 
-const CardTitle=styled.h6`
+const CardTitle=styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

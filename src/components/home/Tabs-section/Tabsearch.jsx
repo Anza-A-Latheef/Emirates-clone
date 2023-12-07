@@ -9,10 +9,18 @@ export default function Tabsearch() {
     <TabsearchContainer>
         <TabsearchTop>
             <TabsearchSelect>
-                <Select_ul>
-                    <Select_li><Select_a>Flight</Select_a></Select_li>
-                    <Select_li><Select_a>Flight + Hotel</Select_a></Select_li>
-                </Select_ul>
+                <SelectFieldset>
+                    <SelectContainer role="tablist">
+                        <RadioButton className='SwitchButton switchButton--checkmark'>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight"  name="ToggleRadio" aria-checked="true" role="tab" aria-controls='search-flight' checked="checked"/>
+                            <SearchLabel for="route" className='radioButton-label' >Flight</SearchLabel>
+                        </RadioButton>
+                        <RadioButton>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight+hotel"  name="ToggleRadio" aria-checked="false" role="tab" aria-controls='search-flight+hotel' />
+                            <SearchLabel for="flight+hotel" className='radioButton-label' >Flight + Hotel</SearchLabel>
+                        </RadioButton>
+                    </SelectContainer> 
+                </SelectFieldset>
             </TabsearchSelect>
             <AdvancedSearch>Advanced search: multi-city, promo codes, partner airlines <MdKeyboardArrowRight /></AdvancedSearch>
         </TabsearchTop>
@@ -30,52 +38,67 @@ export default function Tabsearch() {
 //styling area
 
 const TabsearchContainer=styled.div`
-    padding: 15px 20px;
+    padding: 17px 20px;
     width:100%;
     display: flex;
     flex-direction: column;
 `;
 
 const TabsearchTop=styled.div`
-    display: block;
-`;
+    display: block
+    `;
 
 const TabsearchSelect=styled.div`
-    display: flex;
+
 `;
 
-const Select_ul=styled.ul`
-    display: flex;
-    border-radius: 5px;
-
-    &:first-child{
-    border: solid #666666;
-    border-width: 0px 0px 0px 1px;
-
-    }
+const SelectFieldset=styled.fieldset`
+    display: block;
+    border: 0;
+    padding: 0;
 `;
 
-const Select_li=styled.li`
-    border: solid #666666;
-    border-width: 1px 1px 1px 0px;
-    padding: 5px 40px;
+const SelectContainer=styled.div`
+    display: flex;
+    border: 1px solid #666;
+    /* padding: 10px; */
+    border-radius: 3px;
+    width: fit-content;
+    
+    `;
+    
+    const RadioButton=styled.div`
+    display:flex;
     cursor: pointer;
-
+    padding: 0px 32px;  
+    height: 30px;
+    align-items: center;
+    
     &:hover{
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: inset 0.4rem 0.4rem 0 0 #f6f6f6;
     }
+
+    &:last-child{
+        border-left: 1px solid #666;
+    }
+    `;
+
+const SearchInput =styled.input`
+cursor: pointer;
 `;
 
-const Select_a=styled(Link)`
-    font-size: 15px;
-    color:#333333;
+const SearchLabel=styled.label`
+    font-family: Helvetica;
+    font-size: 14px;
 `;
+
 
 const AdvancedSearch=styled(Link)`
+   font-family: helvetica;
     margin: 20px 0px;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #d71921;
     float: right;
     text-decoration: underline;

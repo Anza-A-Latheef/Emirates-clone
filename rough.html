@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    .TabsearchSelect {
+        margin-top: 1rem;
+    }
+    .SelectFieldset {
+        border: 0;
+        padding: 0;
+    }
+    .visually-hidden {
+        position: absolute;
+    }
+    .RadioButton {
+        display: inline-block;
+        position: relative;
+    }
+    .RadioButton.switchButton {
+        padding: 0.3rem 3rem 0.7rem;
+        z-index: 0;
+    }
+    .RadioButton.switchButton:first-child {
+        margin-right: -2px;
+    }
+    .RadioButton.switchButton--checkmark {
+        padding-left: 45px;
+    }
+
+    .radio-buttonInput {
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        left: 0;
+    }
+    
+    .RadioButton.switchButton input[checked]+label {
+        font-weight: 700;
+    }
+
+    .RadioButton.switchButton label:before {
+        position: absolute;
+        background: none;
+        left: -1px;
+        top: -0.2rem;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .radio-buttonInput+label {
+        font-family: Helvetica;
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        color: #333;
+        cursor: pointer;
+    }
+
+    .RadioButton.switchButton--checkmark input[checked]+label:before {
+        background-position: 20px;
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNiA0LjIwMSAxMy40ODYgMS42IDYuNDUzIDkuMzE2IDIuNjMzIDUuNTYgMCA4LjE2MSAzLjgyIDExLjggNi40NTMgMTQuNGwyLjUxNS0yLjYwMUwxNiA0LjJaIiBmaWxsPSIjRDcxOTIxIi8+PC9zdmc+);
+    }
+    .RadioButton.switchButton input[checked]+label:before {
+        background-color: #f7f7f7;
+        box-shadow: inset 3px 3px 0 2px #f0f0f0;
+        z-index: -1;
+    }
+    .radio-buttonInput+label:before {
+        content: " ";
+        border: 0.1rem solid #666;
+    }
+    
+    </style>
+    </head>
+    <body>
+    <div class="TabsearchSelect">
+        <fieldset class="SelectFieldset">
+            <legend class="visually-hidden">Flight or flight + hotel</legend>
+            <div role="tablist" class="SelectContainer"> 
+                <div class="RadioButton switchButton switchButton--checkmark">
+                    <input type="radio" class="radio-buttonInput activate-flight" name="TabsearchSelect-radio" id="flight" aria-checked="true" role="tab" aria-controls="search-flight-control" checked="checked">
+                    <label for="flight" class="radioButton-label">Flight</label>  
+                </div> 
+                <div class="RadioButton switchButton switchButton--checkmark">
+                    <input type="radio" class="radio-buttonInput activate-flight+hotel" name="TabsearchSelect-radio" id="flight+hotel" aria-checked="false" role="tab" aria-controls="search-holiday-control">
+                    <label for="flight+hotel" class="radioButton-label">Flight + hotel</label>  
+                </div> 
+            </div>
+        </fieldset>
+    </div>
+    </body>
+</html>
