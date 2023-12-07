@@ -10,7 +10,7 @@ const Tabhead = () => {
   return (
     <TabheadContainer>
         <Tabhead_ul>
-            <Tabhead_li><Tabhead_a><GiCommercialAirplane /> Search Flights</Tabhead_a></Tabhead_li>
+            <Tabhead_li><Tabhead_a className='active-tabs'><GiCommercialAirplane /> Search Flights</Tabhead_a></Tabhead_li>
             <Tabhead_li><Tabhead_a><BsFillTagFill /> Manage booking / Check in</Tabhead_a></Tabhead_li>
             <Tabhead_li><Tabhead_a><GiPlaneWing /> What's on your flight</Tabhead_a></Tabhead_li>
             <Tabhead_li><Tabhead_a><FaClock /> Flight status</Tabhead_a></Tabhead_li>

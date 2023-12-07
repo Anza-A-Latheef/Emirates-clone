@@ -81,10 +81,6 @@ const Services_ul=styled.ul`
     border: solid  #bdbbbb;
     border-width: 1px 0px 1px 1px;
     
-    &:first-child{
-        /* border: solid #bdbbbb; */
-        /* border-width: 0px 0px 0px 0px; */
-    }
 `;
 
 const Services_li=styled.li`

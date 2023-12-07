@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+import {Link} from 'react-router-dom';
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 
 export default function Tabsearch() {
   return (
-    <TabsearchContainer>
+    <TabsearchContainer className='active-content'>
         <TabsearchTop>
             <TabsearchSelect>
                 <SelectFieldset>
@@ -75,16 +75,21 @@ const SelectContainer=styled.div`
     align-items: center;
     
     &:hover{
-        box-shadow: inset 0.4rem 0.4rem 0 0 #f6f6f6;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        
     }
-
-    &:last-child{
-        border-left: 1px solid #666;
+    
+    &:first-child{
+        box-shadow: inset 0.4rem 0.4rem 0 0 #f6f6f6;
+        border-right: 1px solid #666;
+        background-color: #f7f7f7;;
     }
     `;
 
 const SearchInput =styled.input`
-cursor: pointer;
+    cursor: pointer;
+    opacity: 0;
+
 `;
 
 const SearchLabel=styled.label`

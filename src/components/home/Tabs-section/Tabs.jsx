@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Tabhead from "../Tabs-section/Tabhead";
 import Tabsearch from '../Tabs-section/Tabsearch';
-// import Tabbooking from '../Tabs-section/Tabbooking';
-// import Tabaminities from '../Tabs-section/Tabaminities';
+import Tabbooking from '../Tabs-section/Tabbooking';
+import Tabaminities from '../Tabs-section/Tabaminities';
 import Tabstatus from '../Tabs-section/Tabstatus';
 
 const Tabs = () => {
@@ -12,8 +12,8 @@ const Tabs = () => {
       <TabContainer>
         <Tabhead/>
         <Tabsearch/>
-        {/* <Tabbooking/> */}
-        {/* <Tabaminities/> */}
+        <Tabbooking/>
+        <Tabaminities/>
         <Tabstatus/>
       </TabContainer>
     </Wrapper>
