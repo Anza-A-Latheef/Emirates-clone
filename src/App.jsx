@@ -11,7 +11,7 @@ function App() {
             <title>Emirates | A clone site</title>
         </Helmet>
         <Home/>
-	</>
+	  </>
   )
 }
 

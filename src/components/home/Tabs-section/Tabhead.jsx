@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import { GiCommercialAirplane } from "react-icons/gi";
 import { BsFillTagFill } from "react-icons/bs";
 import { GiPlaneWing } from "react-icons/gi";
@@ -10,10 +10,10 @@ const Tabhead = () => {
   return (
     <TabheadContainer>
         <Tabhead_ul>
-            <Tabhead_li><Tabhead_a className='active-tabs'><GiCommercialAirplane /> Search Flights</Tabhead_a></Tabhead_li>
-            <Tabhead_li><Tabhead_a><BsFillTagFill /> Manage booking / Check in</Tabhead_a></Tabhead_li>
-            <Tabhead_li><Tabhead_a><GiPlaneWing /> What's on your flight</Tabhead_a></Tabhead_li>
-            <Tabhead_li><Tabhead_a><FaClock /> Flight status</Tabhead_a></Tabhead_li>
+            <Tabhead_li><Link to="search-tab"><Tabhead_a><GiCommercialAirplane /> Search Flights</Tabhead_a></Link></Tabhead_li>
+            <Tabhead_li><Link to="booking-tab"><Tabhead_a><BsFillTagFill /> Manage booking / Check in</Tabhead_a></Link></Tabhead_li>
+            <Tabhead_li><Link to="aminities-tab"><Tabhead_a><GiPlaneWing /> What's on your flight</Tabhead_a></Link></Tabhead_li>
+            <Tabhead_li><Link to="status-tab"><Tabhead_a><FaClock /> Flight status</Tabhead_a></Link></Tabhead_li>
         </Tabhead_ul>
     </TabheadContainer>
   )
@@ -29,7 +29,7 @@ const TabheadContainer=styled.div`
 
 const Tabhead_ul=styled.ul`
     display: flex;
-    height: 60px;
+    /* height: 60px; */
 `;
 
 const Tabhead_li=styled.li`
@@ -48,7 +48,8 @@ const Tabhead_li=styled.li`
 
 `;
 
-const Tabhead_a=styled(Link)`
+const Tabhead_a=styled.div`
+    padding: 20px 25px;
     color: #666666;
     display: flex;
     align-items: center;

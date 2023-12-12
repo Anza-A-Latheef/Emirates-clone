@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-scroll';
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 
 export default function Tabsearch() {
   return (
-    <TabsearchContainer className='active-content'>
+    <TabsearchContainer>
         <TabsearchTop>
             <TabsearchSelect>
                 <SelectFieldset>

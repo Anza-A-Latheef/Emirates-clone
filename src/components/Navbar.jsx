@@ -5,8 +5,8 @@ import { VscTriangleDown } from "react-icons/vsc";
 import { BiSearchAlt } from "react-icons/bi";
 import { Link } from 'react-scroll';
 
-
 const Navbar = () => {
+
   return (
 	<HeaderContainer>
 		<Wrapper>

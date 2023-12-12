@@ -5,16 +5,20 @@ import Tabsearch from '../Tabs-section/Tabsearch';
 import Tabbooking from '../Tabs-section/Tabbooking';
 import Tabaminities from '../Tabs-section/Tabaminities';
 import Tabstatus from '../Tabs-section/Tabstatus';
+import { Routes ,Route} from 'react-router-dom';
 
 const Tabs = () => {
   return (
     <Wrapper>
       <TabContainer>
         <Tabhead/>
-        <Tabsearch/>
-        <Tabbooking/>
-        <Tabaminities/>
-        <Tabstatus/>
+        <Routes>
+          <Route path="/" element={<Tabsearch/>}/>
+          <Route path="search-tab" element={<Tabsearch/>}/>
+          <Route path="booking-tab" element={<Tabbooking/>}/>
+          <Route path="aminities-tab" element={<Tabaminities/>}/>
+          <Route path="status-tab" element={<Tabstatus/>}/>
+        </Routes>
       </TabContainer>
     </Wrapper>
   )
@@ -22,7 +26,7 @@ const Tabs = () => {
 
 export default Tabs
 
-//styling
+//styling area
 
 const Wrapper=styled.div`
     padding:0px 125px;
