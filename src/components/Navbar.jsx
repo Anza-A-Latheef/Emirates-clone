@@ -1,13 +1,26 @@
-import React from 'react';
+import React , {useState} from 'react';
 import styled from 'styled-components';
 import { FaGlobeEurope, FaRegUserCircle  } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { BiSearchAlt } from "react-icons/bi";
-import { Link } from 'react-scroll';
+// import { Link } from 'react-router-dom';
+import BookOptions from '../components/Nav-dropdown/book/BookOptions';
+import ManageOptions from '../components/Nav-dropdown/manage/ManageOptions';
+import ExperienceOptions from '../components/Nav-dropdown/experience/ExperienceOptions';
+import FlyOptions from '../components/Nav-dropdown/where-we-fly/FlyOptions';
+import LoyaltyOptions from '../components/Nav-dropdown/loyalty/LoyaltyOptions';
+import HelpOptions from '../components/Nav-dropdown/help/HelpOptions';
 
 const Navbar = () => {
-
+	const [bookoption,setBookoption]=useState(false);
+	const [manageoption,setManageoption]=useState(false);
+	const [experienceoption,setExperienceoption]=useState(false);
+	const [flyoption,setFlyoption]=useState(false);
+	const [loyaltyoption,setLoyaltyoption]=useState(false);
+	const [helpoption,setHelpoption]=useState(false);
+	
   return (
+
 	<HeaderContainer>
 		<Wrapper>
 			<LeftBox>
@@ -16,19 +29,75 @@ const Navbar = () => {
 				</Logo>
 				<NavElements>
 					<Nav_ul>
-						<Nav_li><Nav_a>book <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
-						<Nav_li><Nav_a>manage <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
-						<Nav_li><Nav_a>experience <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
-						<Nav_li><Nav_a>where we fly <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
-						<Nav_li><Nav_a>loyalty <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
-						<Nav_li><Nav_a>help <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(!bookoption)
+							setManageoption(false)
+							setExperienceoption(false)
+							setFlyoption(false)
+							setLoyaltyoption(false)
+							setHelpoption(false)
+							}}>
+							<Nav_a>book <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(false)
+							setManageoption(!manageoption)
+							setExperienceoption(false)
+							setFlyoption(false)
+							setLoyaltyoption(false)
+							setHelpoption(false)
+							}}>
+							<Nav_a>manage <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(false)
+							setManageoption(false)
+							setExperienceoption(!experienceoption)
+							setFlyoption(false)
+							setLoyaltyoption(false)
+							setHelpoption(false)
+							}}>
+							<Nav_a>experience <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(false)
+							setManageoption(false)
+							setExperienceoption(false)
+							setFlyoption(!flyoption)
+							setLoyaltyoption(false)
+							setHelpoption(false)
+							}}>
+						<Nav_a>where we fly <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(false)
+							setManageoption(false)
+							setExperienceoption(false)
+							setFlyoption(false)
+							setLoyaltyoption(!loyaltyoption)
+							setHelpoption(false)
+							}}>
+						<Nav_a>loyalty <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
+						<Nav_li onClick={()=>{
+							setBookoption(false)
+							setManageoption(false)
+							setExperienceoption(false)
+							setFlyoption(false)
+							setLoyaltyoption(false)
+							setHelpoption(!helpoption)
+							}}>
+						<Nav_a>help <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
 					</Nav_ul>
 				</NavElements>
+				{bookoption && <BookOptions/>}
+				{manageoption && <ManageOptions/>}
+				{experienceoption && <ExperienceOptions/>}
+				{flyoption && <FlyOptions/>}
+				{loyaltyoption && <LoyaltyOptions/>}
+				{helpoption && <HelpOptions/>}
+				
 			</LeftBox>
 			<RightBox>
 				<Button><FaGlobeEurope /> IN <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
 				<Button><BiSearchAlt /> <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
-				<Button><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
+				{/* <Button><Link to="/" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
+				<Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button>
 			</RightBox>
 		</Wrapper>
 	</HeaderContainer>
@@ -90,7 +159,7 @@ const Nav_li=styled.li`
 	white-space: nowrap;
 `;
 
-const Nav_a=styled(Link)`
+const Nav_a=styled.a`
 	cursor: pointer;
 	position: relative;
 	display: flex;
@@ -128,10 +197,20 @@ const Button=styled.button`
 	letter-spacing: 0.5px;
 	gap: 8px;
 	padding: 20px 10px;
+	text-decoration: none;
 	&:hover{
 		background-color:#212121;
 	}
 
+`;
+const Login_a=styled.a`
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	gap: 8px;
+	text-decoration: none;
 `;
 
 const Arrow_icon=styled.div`
@@ -139,15 +218,16 @@ const Arrow_icon=styled.div`
 	position:absolute;
 	bottom : 5px;
 	display: none;
+	flex-direction: column;
 	align-items: center;
 	font-size:10px;
 	color: gray;
 
 	${ Button }:hover & {
-		display: block;
+		display: flex;
 	}
 	${ Nav_a }:hover & {
-		display: block;
+		display: flex;
 	}
 `;
 

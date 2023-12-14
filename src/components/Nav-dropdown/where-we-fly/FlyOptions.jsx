@@ -5,10 +5,10 @@ const FlyOptions = () => {
   return (
     <FlyoptionContainer>
         <FlyOption_ul>
-            <FlyOption_li><FlyOption_a>Fly</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Before you fly</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Baggage</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Visa and passport</FlyOption_a></FlyOption_li>
+            <FlyOption_li><FlyOption_a>Our destinations</FlyOption_a></FlyOption_li>
+            <FlyOption_li><FlyOption_a>Our travel partners</FlyOption_a></FlyOption_li>
+            <FlyOption_li><FlyOption_a>Explore</FlyOption_a></FlyOption_li>
+            <FlyOption_li><FlyOption_a>Flight schedules</FlyOption_a></FlyOption_li>
         </FlyOption_ul>
         <FlyOption_btn type='submit' >Search flights</FlyOption_btn>
     </FlyoptionContainer>
@@ -26,12 +26,12 @@ const FlyoptionContainer=styled.div`
     background: #f9f9f9;
     border-bottom: 1px solid #ababab;
     padding: 0px 128px;
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    display: none;
     transition: .5s ease-in-out;
     left: 0;
+    top: 55px;
 `;
 
 const FlyOption_ul=styled.ul`

@@ -5,10 +5,11 @@ const ExperienceOptions = () => {
   return (
     <ManageoptionContainer>
     <ManageOption_ul>
-        <ManageOption_li><ManageOption_a>Our Destinations</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>Our travel partners</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>Explore</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>Flight schedules</ManageOption_a></ManageOption_li>
+        <ManageOption_li><ManageOption_a>Inflight Experience</ManageOption_a></ManageOption_li>
+        <ManageOption_li><ManageOption_a>The Emirates Experience</ManageOption_a></ManageOption_li>
+        <ManageOption_li><ManageOption_a>Family travel</ManageOption_a></ManageOption_li>
+        <ManageOption_li><ManageOption_a>Fly Better</ManageOption_a></ManageOption_li>
+        <ManageOption_li><ManageOption_a>About us</ManageOption_a></ManageOption_li>
     </ManageOption_ul>
     <ManageOption_btn type='submit' >Search flights</ManageOption_btn>
 </ManageoptionContainer>
@@ -27,12 +28,12 @@ z-index: 1;
 background: #f9f9f9;
 border-bottom: 1px solid #ababab;
 padding: 0px 128px;
-/* display: flex; */
+display: flex;
 justify-content: space-between;
 align-items: center;
-display: none;
 transition: .5s ease-in-out;
 left: 0;
+top: 55px;
 `;
 
 const ManageOption_ul=styled.ul`

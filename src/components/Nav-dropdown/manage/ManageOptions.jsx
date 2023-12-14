@@ -26,12 +26,13 @@ const ManageoptionContainer=styled.div`
     background: #f9f9f9;
     border-bottom: 1px solid #ababab;
     padding: 0px 128px;
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    display: none;
     transition: .5s ease-in-out;
     left: 0;
+    top:55px;
+
 `;
 
 const ManageOption_ul=styled.ul`

@@ -92,7 +92,7 @@ const FirstContainer=styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	border-top: 1px solid #d9d9d933; 
+	border-bottom: 1px solid #d9d9d933; 
 	padding: 30px 0px;
 	`;
 

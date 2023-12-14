@@ -9,12 +9,6 @@ import Offer from './Offer';
 import Experience from './Experience/Exp-head';
 import About from './About';
 import Footer from '../footer/Footer';
-import BookOptions from '../Nav-dropdown/book/BookOptions';
-import ManageOptions from '../Nav-dropdown/manage/ManageOptions';
-import ExperienceOptions from '../Nav-dropdown/experience/ExperienceOptions';
-import FlyOptions from '../Nav-dropdown/where-we-fly/FlyOptions';
-import LoyaltyOptions from '../Nav-dropdown/loyalty/LoyaltyOptions';
-import HelpOptions from '../Nav-dropdown/help/HelpOptions';
 
 
 const Home = () => {
@@ -22,12 +16,6 @@ const Home = () => {
     <>
       <HomeContainer>
         <Navbar/>
-        <BookOptions/>
-        <ManageOptions/>
-        <ExperienceOptions/>
-        <FlyOptions/>
-        <LoyaltyOptions/>
-        <HelpOptions/>
         <Spotlight/>
         <Tabs/>
         <Services/>

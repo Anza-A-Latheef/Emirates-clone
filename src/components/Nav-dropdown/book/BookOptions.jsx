@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import BookContent from './BookContent';
 
 const BookOptions = () => {
     
   return (
-    <BookoptionContainer>
-        <BookOption_ul>
-            <BookOption_li><BookOption_a>Book</BookOption_a></BookOption_li>
-            <BookOption_li><BookOption_a>About booking online</BookOption_a></BookOption_li>
-        </BookOption_ul>
-        <BookOption_btn type='submit' >Search flights</BookOption_btn>
-    </BookoptionContainer>
+    <>
+        <BookoptionContainer>
+            <BookOption_ul>
+                <BookOption_li><BookOption_a>Book</BookOption_a></BookOption_li>
+                <BookOption_li><BookOption_a>About booking online</BookOption_a></BookOption_li>
+            </BookOption_ul>
+            <BookOption_btn type='submit' >Search flights</BookOption_btn>
+        </BookoptionContainer>
+        <BookContent/>
+    </>
   )
 }
 
@@ -28,9 +32,9 @@ const BookoptionContainer=styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    display: none;
     transition: .5s ease-in-out;
     left: 0;
+    top:55px;
 `;
 const BookOption_ul=styled.ul`
     display: flex;
