@@ -5,12 +5,11 @@ const Logcontent = ({ onLogin }) => {
 
     const [userEmail, setUserEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [keepLoggedIn, setKeepLoggedIn] = useState(false);
     const handleLogin = (e) => {
-        console.log('Submitting with email:', userEmail);
-        onLogin({ userEmail });
-        console.log('Submitted successfully');
-      };
+        e.preventDefault();
+        onLogin({ userEmail, password, keepLoggedIn });
+    };
     
 
   return (
@@ -24,7 +23,7 @@ const Logcontent = ({ onLogin }) => {
                 <LoginEmail type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="logindetail" placeholder="Password"  />
                 <ForgetDetails>Forgot/Create password</ForgetDetails>
                 <Checkbox>
-                    <KeepLogin type="checkbox" aria-checked='checked'/>
+                    <KeepLogin type="checkbox" checked={keepLoggedIn} defaultChecked={keepLoggedIn} onChange={(e) => setKeepLoggedIn(e.target.checked)}/>
                     <KeepLoginLabel>Keep me logged in on this device</KeepLoginLabel>
                 </Checkbox>
                 <LoginSubmit type="submit">Login</LoginSubmit>
@@ -172,19 +171,6 @@ const KeepLoginLabel = styled.label`
   vertical-align: middle;
 `;
 
-// const KeepLoginLabel=styled.label`
-//     display: flex;
-//     flex-wrap: wrap;
-//     align-items: center;
-//     padding-left: 15px;
-//     color: #333;
-//     font-family: 'Helvetica';
-//     font-size: 15px;
-//     white-space: pre-wrap;
-//     vertical-align: middle;
-
-// `;
-
 const LoginSubmit=styled.button`
     height: 48px;
     color: #fff;
@@ -196,6 +182,7 @@ const LoginSubmit=styled.button`
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    outline: none;
 
     &:hover{
         box-shadow: 0 0 6px 0 grey;

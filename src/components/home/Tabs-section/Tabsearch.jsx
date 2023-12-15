@@ -88,7 +88,38 @@ const SelectContainer=styled.div`
 
 const SearchInput =styled.input`
     cursor: pointer;
-    opacity: 0;
+    /* opacity: 0; */
+
+    position: relative;
+    width: 18px;
+    height: 18px;
+    appearance: none;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 18px; 
+        height: 18px; 
+        background-color: transparent; 
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        &:checked {
+            &:before {
+                content: '\u2714'; 
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 15px;
+                color: #c60c30; 
+        }
+    }
 
 `;
 

@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import Loghead from './Loghead';
 import Logcontent from './Logcontent';
 import Footer from '../footer/Footer';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+    const Login = ({onLogin}) => {
   return (
     <LoginContainer>
         <LoginHeader>
-        {/* <Link to="/" style={{ textDecoration: 'none'}}> */}
+        <Link to="/" style={{ textDecoration: 'none'}}>
             <SimpleLogo>
                 <Logo src="./src\assets\images\emirates-logo-horizontal.svg" alt="Emirates logo" />
             </SimpleLogo>
-        {/* </Link> */}
+        </Link>
         </LoginHeader>
         <LoginTop>
             <Loghead/>
         </LoginTop>
         <LoginBottom>
-            <Logcontent/>
+            <Logcontent onLogin ={onLogin} />
         </LoginBottom>
         <Footer/>  
     </LoginContainer>

@@ -96,7 +96,7 @@ const Navbar = () => {
 			<RightBox>
 				<Button><FaGlobeEurope /> IN <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
 				<Button><BiSearchAlt /> <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
-				{/* <Button><Link to="/" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
+				{/* <Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
 				<Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button>
 			</RightBox>
 		</Wrapper>

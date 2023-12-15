@@ -1,44 +1,44 @@
-import React,{useState} from 'react';
-import './App.css';
-import Home from "./components/home/Home";
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate ,BrowserRouter} from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import Home from './components/home/Home';
 import Login from './components/login/Login';
-import { Routes , Route, Navigate} from 'react-router-dom';
-
+import "./App.css"
 
 function App() {
-
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const handleLogin = ({ userEmail }) => {
-    setLoggedIn(true);
+  const navigate = useNavigate();
+
+  function handleLogin({ userEmail }){
+    console.log("SUBMIT");
     setUserEmail(userEmail);
+    localStorage.setItem('userEmail', userEmail);
+    navigate('/');
   };
-  // console.log(isLoggedIn);
+
+  useEffect(() => {
+    const storedUserEmail = localStorage.getItem('userEmail');
+    if (storedUserEmail) {
+      setUserEmail(storedUserEmail);
+      navigate('/');
+    } else {
+      navigate('Login-page');
+    }
+  }, [navigate]);
 
   return (
     <>
-        <Helmet>
-              <title>Emirates | A clone site</title>
-        </Helmet>
+      <Helmet>
+        <title>Emirates | A clone site</title>
+      </Helmet>
+      {/* <BrowserRouter> */}
         <Routes>
-        <Route
-          path="/"
-          element={isLoggedIn ===true?(
-            <Home userEmail={userEmail} />
-          ) : (
-            <Navigate to="login-page" replace={true} />
-          )}
-        />
-        <Route path="Login-page" element={<Login onLogin={handleLogin} />} />
-      </Routes>
-
-        {/* <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="Login-page" element={<Login/>}/>
-        </Routes> */}
-	</>
-  )
+          <Route path="/" element={<Home userEmail={userEmail} />} />
+          <Route path="Login-page" element={<Login onLogin={handleLogin} />} />
+        </Routes>
+      {/* </BrowserRouter> */}
+    </>
+  );
 }
 
-export default App
+export default App;

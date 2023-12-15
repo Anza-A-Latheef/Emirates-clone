@@ -9,10 +9,9 @@ const Pricecard = () => {
         setPlaceDetails(placeData,PlaceDetails);
     }, []);
 
-
     return (
         <PricecardContainer>
-            {PlaceDetails.map((place,index) => (
+            {PlaceDetails.map((place) => (
                 <PriceCard>
                 <CardTop>
                     <DestinationImage>
