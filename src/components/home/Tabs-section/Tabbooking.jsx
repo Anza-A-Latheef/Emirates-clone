@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default function Tabbooking() {
   return (
     <TabbookingContainer>
-        <AdvancedSearch>Log in to view your trips</AdvancedSearch>
+        <AdvancedSearch to="">Log in to view your trips</AdvancedSearch>
         <BookingForm>
             <BookingDetails type="text" placeholder="Last name" />
             <BookingDetails type="text" placeholder="Booking reference" />

@@ -54,20 +54,20 @@ const Second_li=styled.li`
 	line-height: 1.3;
 `;
 
-const Second_a=styled(Link)`
+const Second_a=styled.a`
 	font-family: Helvetica;
 	color: #a9a9a9;
 	font-size: 14px;
 
 `;
-const Second_p=styled(Link)`
+const Second_p=styled.p`
 	font-family: Helvetica;
 	color: #a9a9a9;
 	font-size: 14px;
 	padding: 30px 0px;
 
 `;
-const SecondStyled=styled(Link)`
+const SecondStyled=styled.span`
 	font-family: Helvetica;
 	color: #a9a9a9;
 	font-size: 14px;

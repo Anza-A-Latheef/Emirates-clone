@@ -1,28 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-scroll';
 import { MdKeyboardArrowRight } from "react-icons/md";
-
+import { Link as ScrollLink } from 'react-scroll';
 
 export default function Tabsearch() {
+    const [selectedOption, setSelectedOption] = useState('flight');
+    const handleRadioChange = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
     <TabsearchContainer>
         <TabsearchTop>
             <TabsearchSelect>
                 <SelectFieldset>
                     <SelectContainer role="tablist">
-                        <RadioButton className='SwitchButton switchButton--checkmark'>
-                            <SearchInput type="radio" className='radio-buttonInput' id="flight"  name="ToggleRadio" aria-checked="true" role="tab" aria-controls='search-flight' checked="checked"/>
-                            <SearchLabel for="route" className='radioButton-label' >Flight</SearchLabel>
+                        <RadioButton className={selectedOption === 'flight' ? 'switchButton--checkmark' : ''} onClick={() => handleRadioChange('flight')}>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight"  name="ToggleRadio" aria-checked={selectedOption === 'flight'} role="tab" aria-controls='search-flight' checked={selectedOption === 'flight'}/>
+                            <SearchLabel  className='radioButton-label' htmlFor="flight">Flight</SearchLabel>
                         </RadioButton>
-                        <RadioButton>
-                            <SearchInput type="radio" className='radio-buttonInput' id="flight+hotel"  name="ToggleRadio" aria-checked="false" role="tab" aria-controls='search-flight+hotel' />
-                            <SearchLabel for="flight+hotel" className='radioButton-label' >Flight + Hotel</SearchLabel>
+                        <RadioButton className={selectedOption === 'flight+hotel' ? 'switchButton--checkmark' : ''} onClick={() => handleRadioChange('flight+hotel')}>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight+hotel"  name="ToggleRadio" aria-checked={selectedOption === 'flight+hotel'} role="tab" aria-controls='search-flight+hotel'  checked={selectedOption === 'flight+hotel'}/>
+                            <SearchLabel  className='radioButton-label' htmlFor="flight+hotel" >Flight + Hotel</SearchLabel>
                         </RadioButton>
                     </SelectContainer> 
                 </SelectFieldset>
             </TabsearchSelect>
-            <AdvancedSearch>Advanced search: multi-city, promo codes, partner airlines <MdKeyboardArrowRight /></AdvancedSearch>
+            <AdvancedSearch to="">Advanced search: multi-city, promo codes, partner airlines <MdKeyboardArrowRight /></AdvancedSearch>
         </TabsearchTop>
         <TabsearchBottom>
             <AirportForm>
@@ -52,7 +56,7 @@ const TabsearchSelect=styled.div`
 
 `;
 
-const SelectFieldset=styled.fieldset`
+const SelectFieldset=styled.div`
     display: block;
     border: 0;
     padding: 0;
@@ -61,7 +65,6 @@ const SelectFieldset=styled.fieldset`
 const SelectContainer=styled.div`
     display: flex;
     border: 1px solid #666;
-    /* padding: 10px; */
     border-radius: 3px;
     width: fit-content;
     
@@ -80,16 +83,19 @@ const SelectContainer=styled.div`
     }
     
     &:first-child{
-        box-shadow: inset 0.4rem 0.4rem 0 0 #f6f6f6;
         border-right: 1px solid #666;
-        background-color: #f7f7f7;;
+    }
+
+    &.switchButton--checkmark{
+        background-color: #f7f7f7;
+        box-shadow: inset 3px 3px 0 2px #f0f0f0;
+        color: black;
+        font-weight: bold;
     }
     `;
 
 const SearchInput =styled.input`
     cursor: pointer;
-    /* opacity: 0; */
-
     position: relative;
     width: 18px;
     height: 18px;
@@ -114,10 +120,12 @@ const SearchInput =styled.input`
                 content: '\u2714'; 
                 position: absolute;
                 top: 50%;
-                left: 50%;
+                left: 0%;
                 transform: translate(-50%, -50%);
                 font-size: 15px;
                 color: #c60c30; 
+           
+
         }
     }
 
@@ -129,7 +137,7 @@ const SearchLabel=styled.label`
 `;
 
 
-const AdvancedSearch=styled(Link)`
+const AdvancedSearch=styled(ScrollLink)`
    font-family: helvetica;
     margin: 20px 0px;
     display: flex;

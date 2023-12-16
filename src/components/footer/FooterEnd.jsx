@@ -47,7 +47,7 @@ const Footerend_li=styled.li`
     line-height: 1.5;
 `;
 
-const Footerend_a=styled(Link)`
+const Footerend_a=styled.a`
     font-family: Helvetica;
 	color: #a9a9a9;
 	font-size: 14px;

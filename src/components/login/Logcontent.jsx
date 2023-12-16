@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState } from 'react'
 import styled from 'styled-components'
 
 const Logcontent = ({ onLogin }) => {
@@ -11,8 +11,7 @@ const Logcontent = ({ onLogin }) => {
         onLogin({ userEmail, password, keepLoggedIn });
     };
     
-
-  return (
+    return (
     <>
     <LogcontentContainer>
         <LogcontentLeft>

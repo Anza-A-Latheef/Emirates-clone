@@ -1,5 +1,4 @@
 import React, { useState ,useEffect } from 'react';
-import { Link } from 'react-scroll';
 import placeData from '../../../assets/places.json';
 import styled from 'styled-components';
 
@@ -12,7 +11,7 @@ const Pricecard = () => {
     return (
         <PricecardContainer>
             {PlaceDetails.map((place) => (
-                <PriceCard>
+                <PriceCard key={place.id}>
                 <CardTop>
                     <DestinationImage>
                         <Destination src={`src/assets/images/${place.image}.avif`} alt="Place image" />
@@ -45,7 +44,7 @@ const PricecardContainer=styled.div`
     gap: 50px;
 `;
 
-const PriceCard=styled(Link)`
+const PriceCard=styled.a`
     border-radius: 5px;
     width: 100%;
     cursor: pointer;

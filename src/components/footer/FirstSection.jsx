@@ -111,7 +111,7 @@ const First_li=styled.li`
 	line-height: 1.3;
 `;
 
-const First_a=styled(Link)`
+const First_a=styled.a`
 	font-family: Helvetica;
 	color: #a9a9a9;
 	font-size: 14px;

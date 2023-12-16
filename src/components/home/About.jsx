@@ -100,7 +100,7 @@ const About_li=styled.li`
     
 `;
 
-const About_a=styled(Link)`
+const About_a=styled.a`
     width: 100%;
     cursor: pointer;
     display: flex;

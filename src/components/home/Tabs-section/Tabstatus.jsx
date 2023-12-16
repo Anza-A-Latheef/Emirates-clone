@@ -1,25 +1,30 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import styled from 'styled-components';
 
 
 export default function Tabstatus() {
+    const [selectedOption, setSelectedOption] = useState('route'); // Set the default selected option
+
+  const handleRadioChange = (event) => {
+    setSelectedOption(event.target.id);
+  };
   return (
     <StatusContainer>
        <StatusTop>
             <StatusForm>
-                <StatusInput  checked type="radio" id="route"  name="RadioName"/>
-                <StatusLabel for="route">Route</StatusLabel>
-                <StatusInput type="radio" id="flight number" name="RadioName"/>
-                <StatusLabel for="flight number">Flight number</StatusLabel>
+                <StatusInput type="radio" id="route"  name="RadioName" checked={selectedOption === 'route'} onChange={handleRadioChange}/>
+                <StatusLabel>Route</StatusLabel>
+                <StatusInput type="radio" id="flight number" name="RadioName" checked={selectedOption === 'flight number'} onChange={handleRadioChange}/>
+                <StatusLabel>Flight number</StatusLabel>
             </StatusForm>
             <DayStatus>
                 <Travel>
-                    <TravelStatus  checked type="radio" id="departure"  name="RadioName"/>
-                    <TravelLabel for="departure">Departure day</TravelLabel>
+                <TravelStatus type="radio" id="departure" name="RadioName" checked={selectedOption === 'departure'} onChange={handleRadioChange}/>
+                    <TravelLabel>Departure day</TravelLabel>
                 </Travel>
                 <Travel>
-                    <TravelStatus type="radio" id="arrival" name="RadioName"/>
-                    <TravelLabel for="arrival">Arrival day</TravelLabel>
+                <TravelStatus type="radio" id="arrival" name="RadioName" checked={selectedOption === 'arrival'} onChange={handleRadioChange}/>
+                    <TravelLabel >Arrival day</TravelLabel>
                 </Travel>
             </DayStatus>
         </StatusTop>

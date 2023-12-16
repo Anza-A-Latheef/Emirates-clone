@@ -1,21 +1,27 @@
 
-[{
-   "image": "Place1",
-   "country":"Spain",
-   "placeName":"Barcelona"
-},
-{
-   "image": "Place2",
-   "country":"United Arab Emirates",
-   "placeName":"Dubai"
-},
-{
-   "image": "Place3",
-   "country":"Italy",
-   "placeName":"Rome"
-},
-{
-   "image": "Place4",
-   "country":"United Kingdom",
-   "placeName":"London"
-}]
+[
+   {
+     "id": 1,
+     "image": "Place1",
+     "country": "Spain",
+     "placeName": "Barcelona"
+   },
+   {
+     "id": 2,
+     "image": "Place2",
+     "country": "United Arab Emirates",
+     "placeName": "Dubai"
+   },
+   {
+     "id": 3,
+     "image": "Place3",
+     "country": "Italy",
+     "placeName": "Rome"
+   },
+   {
+     "id": 4,
+     "image": "Place4",
+     "country": "United Kingdom",
+     "placeName": "London"
+   }
+ ]

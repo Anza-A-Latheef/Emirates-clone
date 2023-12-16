@@ -1,8 +1,7 @@
 import React from 'react';
 import Pricecard from './Pricecard';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
-import { TfiAngleRight , TfiAngleDown } from "react-icons/tfi";
+import { TfiAngleRight} from "react-icons/tfi";
 
 const Bestprice = () => {
   return (
@@ -14,11 +13,9 @@ const Bestprice = () => {
             <Pricecard/>
         <BestpriceBottom>
             <BpTop>
-                {/* <Left_a>Explore more destinations<RightIcon> <TfiAngleRight /></RightIcon></Left_a> */}
                 <ShowMore>More destinations</ShowMore>
                 <Right_a>Be inspired by our route map <RightIcon> <TfiAngleRight /></RightIcon></Right_a>
             </BpTop>
-            {/* <Terms>*Terms and conditions apply</Terms> */}
         </BestpriceBottom>
     </BestpriceContainer>
   )
@@ -50,7 +47,7 @@ const PriceHead=styled.h4`
     color: #333333;
 `;
 
-const PriceLocation=styled(Link)`
+const PriceLocation=styled.span`
     color: black;
     font-weight: bold;
     cursor: pointer;
@@ -63,7 +60,6 @@ const BestpriceImage=styled.img`
     position: absolute;
     right: 0;
     top: -10px;
-    display: none;
 `;
 
 const BestpriceBottom=styled.div`
@@ -85,17 +81,6 @@ const BpTop=styled.div`
     margin-bottom: 10px;
 `;
 
-// const Left_a=styled(Link)`
-//     font-family: Helvetica;
-//     text-decoration: underline;
-//     font-size: 14px;
-
-//     &:hover{
-//         text-decoration: none;
-//         cursor: pointer;
-//     }
-// `;
-
 const ShowMore=styled.button`
     font-family: Helvetica;
     font-size: 14px;
@@ -111,7 +96,7 @@ const ShowMore=styled.button`
     }
 `;
 
-const Right_a=styled(Link)`
+const Right_a=styled.a`
     font-family: Helvetica;
     text-decoration: underline;
     font-size: 14px;
@@ -123,10 +108,6 @@ const Right_a=styled(Link)`
     }
 `;
 
-const RightIcon=styled(Link)`
+const RightIcon=styled.span`
     font-size: 10px;
-`;
-
-const Terms=styled.p`
-    font-size: 14px;
 `;

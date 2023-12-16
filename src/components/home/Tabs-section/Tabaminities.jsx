@@ -7,10 +7,10 @@ export default function Tabaminities() {
     <AminitiesContainer>
         <AminitiesTop>
             <AminitiesForm>
-                <AminitiesInput  checked type="radio" id="route"  name="RadioName"/>
-                <AminitiesLabel for="route">Route</AminitiesLabel>
+                <AminitiesInput type="radio" id="route"  name="RadioName" defaultChecked="true"/>
+                <AminitiesLabel>Route</AminitiesLabel>
                 <AminitiesInput type="radio" id="flight number" name="RadioName"/>
-                <AminitiesLabel for="flight number">Flight number</AminitiesLabel>
+                <AminitiesLabel>Flight number</AminitiesLabel>
             </AminitiesForm>
         </AminitiesTop>
         <AminitiesBottom>

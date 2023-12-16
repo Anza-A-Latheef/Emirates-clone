@@ -13,28 +13,28 @@ function ExpContent() {
 		<DiscoverDubai>
 			<GridTitle>dubai and the uae</GridTitle>
 			<DubaiHead>Discover Dubai</DubaiHead>
-			<ExpLink>Learn more</ExpLink>
+			<ExpLink to="">Learn more</ExpLink>
 		</DiscoverDubai>
 		<CabinFeatures>
 			<FirstClass>
 				<GridTitle>cabin features</GridTitle>
 				<CabinHead>First Class</CabinHead>
-				<ExpLink>Learn more</ExpLink>
+				<ExpLink to="">Learn more</ExpLink>
 			</FirstClass>
 			<BusinessClass>
 				<GridTitle>cabin features</GridTitle>
 				<CabinHead>Business Class</CabinHead>
-				<ExpLink>Learn more</ExpLink>
+				<ExpLink to="">Learn more</ExpLink>
 			</BusinessClass>
 			<PremiumEconomy>
 				<GridTitle>cabin features</GridTitle>
 				<CabinHead>Premium Economy</CabinHead>
-				<ExpLink>Learn more</ExpLink>
+				<ExpLink to="">Learn more</ExpLink>
 			</PremiumEconomy>
 			<EconomyClass>
 				<GridTitle>cabin features</GridTitle>
 				<CabinHead>Economy Class</CabinHead>
-				<ExpLink>Learn more</ExpLink>
+				<ExpLink to="">Learn more</ExpLink>
 			</EconomyClass>
 		</CabinFeatures>
     </ExperienceContainer>

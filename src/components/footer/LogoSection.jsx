@@ -55,7 +55,7 @@ const Logos_li=styled.li`
     margin-bottom: 50px;
 `;
 
-const Logos_a=styled(Link)`
+const Logos_a=styled.a`
     cursor: pointer;
 `;
 
