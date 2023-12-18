@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState,useEffect} from 'react';
 import styled from 'styled-components';
 import { FaGlobeEurope, FaRegUserCircle  } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
@@ -18,6 +18,29 @@ const Navbar = () => {
 	const [flyoption,setFlyoption]=useState(false);
 	const [loyaltyoption,setLoyaltyoption]=useState(false);
 	const [helpoption,setHelpoption]=useState(false);
+
+	const closeDropdowns = () => {
+		setBookoption(false);
+		setManageoption(false);
+		setExperienceoption(false);
+		setFlyoption(false);
+		setLoyaltyoption(false);
+		setHelpoption(false);
+	  };
+	  useEffect(() => {
+		const handleClickOutside = (event) => {
+		  const navElements = document.getElementById('nav-elements');
+		  if (navElements && !navElements.contains(event.target)) {
+			closeDropdowns();
+		  }
+		};
+	
+		document.addEventListener('mousedown', handleClickOutside);
+	
+		return () => {
+		  document.removeEventListener('mousedown', handleClickOutside);
+		};
+	  }, []);
 	
   return (
 
@@ -27,7 +50,7 @@ const Navbar = () => {
 				<Logo>
 					<LogoImage src ="src\assets\images\emirates-logo-badge.svg" alt="Emirates Logo"/>
 				</Logo>
-				<NavElements>
+				<NavElements id="nav-elements">
 					<Nav_ul>
 						<Nav_li onClick={()=>{
 							setBookoption(!bookoption)
@@ -84,13 +107,13 @@ const Navbar = () => {
 							}}>
 						<Nav_a>help <Arrow_icon><VscTriangleDown /></Arrow_icon></Nav_a></Nav_li>
 					</Nav_ul>
+					{bookoption && <BookOptions/>}
+					{manageoption && <ManageOptions/>}
+					{experienceoption && <ExperienceOptions/>}
+					{flyoption && <FlyOptions/>}
+					{loyaltyoption && <LoyaltyOptions/>}
+					{helpoption && <HelpOptions/>}
 				</NavElements>
-				{bookoption && <BookOptions/>}
-				{manageoption && <ManageOptions/>}
-				{experienceoption && <ExperienceOptions/>}
-				{flyoption && <FlyOptions/>}
-				{loyaltyoption && <LoyaltyOptions/>}
-				{helpoption && <HelpOptions/>}
 				
 			</LeftBox>
 			<RightBox>

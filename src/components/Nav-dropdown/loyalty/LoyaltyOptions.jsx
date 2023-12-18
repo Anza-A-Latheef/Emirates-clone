@@ -1,15 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import Skywards from './Skywards';
+import Rewards from './Rewards';
 
 const LoyaltyOptions = () => {
   return (
-    <LoyaltyoptionContainer>
-    <LoyaltyOption_ul>
-        <LoyaltyOption_li><LoyaltyOption_a>Emirates Skywards</LoyaltyOption_a></LoyaltyOption_li>
-        <LoyaltyOption_li><LoyaltyOption_a>Business Rewards</LoyaltyOption_a></LoyaltyOption_li>        <LoyaltyOption_li><LoyaltyOption_a>Loyalty Better</LoyaltyOption_a></LoyaltyOption_li>
-    </LoyaltyOption_ul>
-    <LoyaltyOption_btn type='submit' >Search flights</LoyaltyOption_btn>
-</LoyaltyoptionContainer>
+        <LoyaltyoptionContainer>
+        <LoyaltyOption_ul>
+            <LoyaltyOption_li>
+            <LoyaltyOption_a>Emirates Skywards</LoyaltyOption_a>
+                <ManageWrapper>
+                    <Skywards/>
+                </ManageWrapper>
+            </LoyaltyOption_li>
+            <LoyaltyOption_li>
+            <LoyaltyOption_a>Business Rewards</LoyaltyOption_a>
+                <ManageWrapper>
+                    <Rewards/>
+                </ManageWrapper>
+            </LoyaltyOption_li>        
+        </LoyaltyOption_ul>
+        <LoyaltyOption_btn type='submit' >Search flights</LoyaltyOption_btn>
+    </LoyaltyoptionContainer>
   )
 }
 
@@ -60,6 +72,16 @@ font-size: 15px;
 font-family: Helvetica;
 color: #333;
 `;
+
+const ManageWrapper=styled.div`
+    display: none;
+
+    ${ LoyaltyOption_li }:hover & {
+        display: flex;
+        margin: 200px 0;
+    }
+`;
+
 const LoyaltyOption_btn=styled.button`
 cursor: pointer;
 display: flex;

@@ -1,15 +1,46 @@
 import React from 'react';
+import ExperienceContent from './ExperienceContent'
+import EmiratesExp from './EmiratesExp'
+import Family from './Family'
+import FlyBetter from './FlyBetter'
+import About from './About'
 import styled from 'styled-components';
+
 
 const ExperienceOptions = () => {
   return (
     <ManageoptionContainer>
     <ManageOption_ul>
-        <ManageOption_li><ManageOption_a>Inflight Experience</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>The Emirates Experience</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>Family travel</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>Fly Better</ManageOption_a></ManageOption_li>
-        <ManageOption_li><ManageOption_a>About us</ManageOption_a></ManageOption_li>
+        <ManageOption_li>
+            <ManageOption_a>Inflight Experience</ManageOption_a>
+                <ManageWrapper>
+                    <ExperienceContent/>
+                </ManageWrapper>
+        </ManageOption_li>
+        <ManageOption_li>
+            <ManageOption_a>The Emirates Experience</ManageOption_a>
+                <ManageWrapper>
+                    <EmiratesExp/>
+                </ManageWrapper>
+        </ManageOption_li>
+        <ManageOption_li>
+            <ManageOption_a>Family travel</ManageOption_a>
+                <ManageWrapper>
+                    <Family/>
+                </ManageWrapper>
+        </ManageOption_li>
+        <ManageOption_li>
+            <ManageOption_a>Fly Better</ManageOption_a>
+                <ManageWrapper>
+                    <FlyBetter/>
+                </ManageWrapper>
+        </ManageOption_li>
+        <ManageOption_li>
+            <ManageOption_a>About us</ManageOption_a>
+                <ManageWrapper>
+                    <About/>
+                </ManageWrapper>
+        </ManageOption_li>
     </ManageOption_ul>
     <ManageOption_btn type='submit' >Search flights</ManageOption_btn>
 </ManageoptionContainer>
@@ -63,6 +94,15 @@ padding:0px 10px;
 font-size: 15px;
 font-family: Helvetica;
 color: #333;
+`;
+
+const ManageWrapper=styled.div`
+    display: none;
+
+    ${ ManageOption_li }:hover & {
+        display: flex;
+        margin: 200px 0;
+    }
 `;
 const ManageOption_btn=styled.button`
 cursor: pointer;

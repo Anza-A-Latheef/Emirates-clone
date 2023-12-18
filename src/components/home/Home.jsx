@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import styled from 'styled-components';
 import Navbar from '../Navbar';
 import Spotlight from './Spotlight';
@@ -10,10 +10,16 @@ import Experience from './Experience/Exp-head';
 import About from './About';
 import Footer from '../footer/Footer';
 import { VscFeedback } from "react-icons/vsc";
-// import FeedBackPopup from '../FeedBackPopup';
+import FeedBackPopup from '../FeedBackPopup';
 
 
 const Home = () => {
+
+  const [popupVisible,setPopupVisible]=useState(false);
+  const togglePopup=()=>{
+    setPopupVisible(!popupVisible);
+  }
+
   return (
     <>
       <HomeContainer>
@@ -28,7 +34,8 @@ const Home = () => {
         {/* <FeedBackPopup/> */}
         <Footer/>
       </HomeContainer>
-      <Feedback><StyledIcon /> Feedback</Feedback>
+      <Feedback onClick={togglePopup}><StyledIcon /> Feedback</Feedback>
+      {popupVisible && <FeedBackPopup onClose={togglePopup} />}
     </>
   )
 }

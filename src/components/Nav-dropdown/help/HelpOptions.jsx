@@ -5,9 +5,15 @@ const HelpOptions = () => {
   return (
     <HelpoptionContainer>
     <HelpOption_ul>
-        <HelpOption_li><HelpOption_a>Help and contacts</HelpOption_a></HelpOption_li>
-        <HelpOption_li><HelpOption_a>COVID-19  travel support</HelpOption_a></HelpOption_li>
-        <HelpOption_li><HelpOption_a>Your questions</HelpOption_a></HelpOption_li>
+        <HelpOption_li>
+          <HelpOption_a>Help and contacts</HelpOption_a>
+        </HelpOption_li>
+        <HelpOption_li>
+          <HelpOption_a>COVID-19  travel support</HelpOption_a>
+        </HelpOption_li>
+        <HelpOption_li>
+          <HelpOption_a>Your questions</HelpOption_a>
+        </HelpOption_li>
     </HelpOption_ul>
     <HelpOption_btn type='submit' >Search flights</HelpOption_btn>
 </HelpoptionContainer>

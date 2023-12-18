@@ -3,34 +3,51 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
 
-const FlyContent = () => {
+const Family = () => {
   return (
-        <ContentContainer>
-            <HoverHeadContainer>
-                <HoverDropHead>Destinations <StyledArrow /></HoverDropHead>
-            </HoverHeadContainer>
-            <HoverDropBody>
-                <HoverDrop_ul>
-                    <HoverDrop_li>
-                        <HoverDropSubhead>Destinations <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Asia and Pacific <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Americas <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Africa <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Europe <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Middle East <StyledArrow /></HoverDrop_a>
-                    </HoverDrop_li>
-                </HoverDrop_ul>
-                <HoverDrop_ul>
-                    <HoverDrop_li>
-                        <HoverDropSubhead>Discover Dubai <StyledArrow /></HoverDropSubhead>
-                    </HoverDrop_li>
-                </HoverDrop_ul>
-            </HoverDropBody>
-        </ContentContainer>
+    <ContentContainer>
+        <HoverHeadContainer>
+            <HoverDropHead>Travelling with your family <StyledArrow /></HoverDropHead>
+        </HoverHeadContainer>
+        <HoverDropBody>
+            <HoverDrop_ul>
+                <HoverDrop_li>
+                    <HoverDropSubhead>Planning your family trip <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Unaccompanied minors <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Pregnancy <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Baggage allowances <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Child and infant fare rules <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Cars seats and bassinets <StyledArrow /></HoverDrop_a>
+                </HoverDrop_li>
+            </HoverDrop_ul>
+            <HoverDrop_ul>
+                <HoverDrop_li>
+                    <HoverDropSubhead>At the airport <StyledArrow /></HoverDropSubhead>
+                </HoverDrop_li>
+            </HoverDrop_ul>
+            <HoverDrop_ul>
+                <HoverDrop_li>
+                    <HoverDropSubhead>On board <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Travelling with children <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Travelling with infants <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Infants baggage allowance <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Child and infant meals<StyledArrow /></HoverDrop_a>
+                </HoverDrop_li>
+            </HoverDrop_ul>
+            <HoverDrop_ul>
+                <HoverDrop_li>
+                    <HoverDropSubhead>Fun for kids <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Childrens's entertainment <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Kids' toys <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Activities for kids <StyledArrow /></HoverDrop_a>
+                </HoverDrop_li>
+            </HoverDrop_ul>
+        </HoverDropBody>
+    </ContentContainer>
       )
     }
     
-    export default FlyContent
+    export default Family
     
     //styling area
     

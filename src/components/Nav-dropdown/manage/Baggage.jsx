@@ -3,44 +3,26 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
 
-const BookContent = () => {
+const Baggage = () => {
   return (
     <ContentContainer>
         <HoverHeadContainer>
-            <HoverDropHead>Book Flights <StyledArrow /></HoverDropHead>
+            <HoverDropHead>Baggage information <StyledArrow /></HoverDropHead>
         </HoverHeadContainer>
         <HoverDropBody>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Search for a flight <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Flight Schedules <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Featured fares <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Special offers <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Best Fare Finder <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Baggage information <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Checked baggage <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Purchase more baggage <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Baggage services in Dubai <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Cabin baggage <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Extra checked baggage allowances <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Planning your trip <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Book a hotel <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Tours and activities <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a holiday <StyledLink/> <StyledArrow /></HoverDrop_a>
-                </HoverDrop_li>
-            </HoverDrop_ul>
-            <HoverDrop_ul>
-                <HoverDrop_li>
-                    <HoverDropSubhead>Travel services <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Meet & Greet <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
-                </HoverDrop_li>
-            </HoverDrop_ul>
-            <HoverDrop_ul>
-                <HoverDrop_li>
-                    <HoverDropSubhead>Transportation <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Airport transfer <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a car <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Airline partners <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Eurail <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Delayed or damaged baggage <StyledArrow /></HoverDropSubhead>
                 </HoverDrop_li>
             </HoverDrop_ul>
         </HoverDropBody>
@@ -48,7 +30,7 @@ const BookContent = () => {
   )
 }
 
-export default BookContent
+export default Baggage
 
 //styling area
 

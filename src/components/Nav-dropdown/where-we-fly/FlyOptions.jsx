@@ -1,14 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
+import FlyContent from './FlyContent';
+import Partner from './Partner';
+import Explore from './Explore';
 
 const FlyOptions = () => {
   return (
     <FlyoptionContainer>
         <FlyOption_ul>
-            <FlyOption_li><FlyOption_a>Our destinations</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Our travel partners</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Explore</FlyOption_a></FlyOption_li>
-            <FlyOption_li><FlyOption_a>Flight schedules</FlyOption_a></FlyOption_li>
+            <FlyOption_li>
+                <FlyOption_a>Our destinations</FlyOption_a>
+                 <ManageWrapper>
+                    <FlyContent/>
+                </ManageWrapper>
+            </FlyOption_li>
+            <FlyOption_li>
+                <FlyOption_a>Our travel partners</FlyOption_a>
+                 <ManageWrapper>
+                    <Partner/>
+                </ManageWrapper>
+            </FlyOption_li>
+            <FlyOption_li>
+                <FlyOption_a>Explore</FlyOption_a>
+                 <ManageWrapper>
+                    <Explore/>
+                </ManageWrapper>
+            </FlyOption_li>
         </FlyOption_ul>
         <FlyOption_btn type='submit' >Search flights</FlyOption_btn>
     </FlyoptionContainer>
@@ -62,6 +79,16 @@ const FlyOption_a=styled.a`
     font-family: Helvetica;
     color: #333;
 `;
+
+const ManageWrapper=styled.div`
+    display: none;
+
+    ${ FlyOption_li }:hover & {
+        display: flex;
+        margin: 200px 0;
+    }
+`;
+
 const FlyOption_btn=styled.button`
     cursor: pointer;
 	display: flex;

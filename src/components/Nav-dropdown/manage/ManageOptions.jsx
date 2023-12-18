@@ -1,14 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import ManageContent from './ManageContent';
+import BeforeFly from './BeforeFly';
+import Baggage from './Baggage';
+import VandP from './VandP';
 
 const ManageOptions = () => {
   return (
     <ManageoptionContainer>
         <ManageOption_ul>
-            <ManageOption_li><ManageOption_a>Manage</ManageOption_a></ManageOption_li>
-            <ManageOption_li><ManageOption_a>Before you fly</ManageOption_a></ManageOption_li>
-            <ManageOption_li><ManageOption_a>Baggage</ManageOption_a></ManageOption_li>
-            <ManageOption_li><ManageOption_a>Visa and passport</ManageOption_a></ManageOption_li>
+            <ManageOption_li>
+                <ManageOption_a>Manage</ManageOption_a>
+                    <ManageWrapper>
+                        <ManageContent/>
+                    </ManageWrapper>
+            </ManageOption_li>
+            <ManageOption_li>
+                <ManageOption_a>Before you fly</ManageOption_a>
+                    <ManageWrapper>
+                        <BeforeFly/>
+                    </ManageWrapper>
+            </ManageOption_li>
+            <ManageOption_li>
+                <ManageOption_a>Baggage</ManageOption_a>
+                    <ManageWrapper>
+                        <Baggage/>
+                    </ManageWrapper>
+            </ManageOption_li>
+            <ManageOption_li>
+                <ManageOption_a>Visa and passport</ManageOption_a>
+                    <ManageWrapper>
+                        <VandP/>
+                    </ManageWrapper>
+            </ManageOption_li>
         </ManageOption_ul>
         <ManageOption_btn type='submit' >Search flights</ManageOption_btn>
     </ManageoptionContainer>
@@ -63,6 +87,16 @@ const ManageOption_a=styled.a`
     font-family: Helvetica;
     color: #333;
 `;
+
+const ManageWrapper=styled.div`
+    display: none;
+
+    ${ ManageOption_li }:hover & {
+        display: flex;
+        margin: 200px 0;
+    }
+`;
+
 const ManageOption_btn=styled.button`
     cursor: pointer;
 	display: flex;

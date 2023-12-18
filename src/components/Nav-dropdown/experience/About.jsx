@@ -3,44 +3,44 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
 
-const BookContent = () => {
+const About = () => {
   return (
     <ContentContainer>
         <HoverHeadContainer>
-            <HoverDropHead>Book Flights <StyledArrow /></HoverDropHead>
+            <HoverDropHead>About <StyledArrow /></HoverDropHead>
         </HoverHeadContainer>
         <HoverDropBody>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Search for a flight <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Flight Schedules <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Featured fares <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Special offers <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Best Fare Finder <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Our Story <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Media centre <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Group companies <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Safety <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Financial transparency <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Responsible business <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Planning your trip <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Book a hotel <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Tours and activities <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a holiday <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Our people <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Our leadership team <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Careers <StyledLink/><StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Travel services <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Meet & Greet <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Our planet <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Sustainability in operations <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Environmental policy <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Environmental reports <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Transportation <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Airport transfer <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a car <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Airline partners <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Eurail <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Our communities <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>The Emirates Airline Foundations <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Sponsorships  <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Government affairs <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
         </HoverDropBody>
@@ -48,7 +48,7 @@ const BookContent = () => {
   )
 }
 
-export default BookContent
+export default About
 
 //styling area
 
@@ -140,3 +140,5 @@ const StyledLink=styled(HiExternalLink)`
     color: #333;
     margin: 0px 5px;
 `;
+
+

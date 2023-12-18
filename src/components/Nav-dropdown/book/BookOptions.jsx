@@ -1,19 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import BookContent from './BookContent';
+import AboutBooking from './AboutBooking';
 
 const BookOptions = () => {
     
   return (
     <>
         <BookoptionContainer>
-            <BookOption_ul>
-                <BookOption_li><BookOption_a>Book</BookOption_a></BookOption_li>
-                <BookOption_li><BookOption_a>About booking online</BookOption_a></BookOption_li>
-            </BookOption_ul>
-            <BookOption_btn type='submit' >Search flights</BookOption_btn>
+            <BookOption>
+                <BookOption_ul>
+                        <BookOption_li>
+                            <BookOption_a>Book</BookOption_a>
+                            <BookContentWrapper>
+                                <BookContent />
+                            </BookContentWrapper>
+                        </BookOption_li>
+                        <BookOption_li>
+                            <BookOption_a>About booking online</BookOption_a>
+                                <AboutBookingWrapper>
+                                    <AboutBooking />
+                                </AboutBookingWrapper>
+                        </BookOption_li>
+                </BookOption_ul>
+                <BookOption_btn type='submit' >Search flights</BookOption_btn>
+            </BookOption>
         </BookoptionContainer>
-        <BookContent/>
     </>
   )
 }
@@ -23,6 +35,11 @@ export default BookOptions
 //styling area
 
 const BookoptionContainer=styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const BookOption=styled.div`
     position:absolute;
     width:100%;
     z-index: 1;
@@ -58,6 +75,25 @@ const BookOption_li=styled.li`
         background-color: white;
     }
 `;
+
+const BookContentWrapper = styled.div`
+  display: none;
+
+  ${ BookOption_li }:hover & {
+    display: flex;
+    margin: 200px 0;
+  }
+`;
+
+const AboutBookingWrapper = styled.div`
+  display: none;
+
+  ${BookOption_li}:hover & {
+    display: flex;
+  }
+`;
+
+
 const BookOption_a=styled.a`
     padding:0px 20px;
     font-size: 15px;

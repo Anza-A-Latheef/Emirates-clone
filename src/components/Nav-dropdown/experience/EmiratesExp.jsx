@@ -3,44 +3,41 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
 
-const BookContent = () => {
+
+const EmiratesExp = () => {
   return (
+
     <ContentContainer>
         <HoverHeadContainer>
-            <HoverDropHead>Book Flights <StyledArrow /></HoverDropHead>
+            <HoverDropHead>Your journey starts here <StyledArrow /></HoverDropHead>
         </HoverHeadContainer>
         <HoverDropBody>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Search for a flight <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Flight Schedules <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Featured fares <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Special offers <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Best Fare Finder <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>The Emirates Experience <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Chauffeur-drive <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>The Emirates Service <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Seasonal occasions <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Rating & Reviews <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Contactless journey <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Planning your trip <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Book a hotel <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Tours and activities <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a holiday <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Our lounges <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>First Class lounge <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Business Class lounge <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Worldwide lounges <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Partner lounges <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Paid lounge access <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Marhaba lounges <StyledLink/> <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Travel services <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Meet & Greet <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
-                </HoverDrop_li>
-            </HoverDrop_ul>
-            <HoverDrop_ul>
-                <HoverDrop_li>
-                    <HoverDropSubhead>Transportation <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Airport transfer <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a car <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Airline partners <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Eurail <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>Shop Emirates <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Emirates duty free collection <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Emirates Official Store <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
         </HoverDropBody>
@@ -48,7 +45,7 @@ const BookContent = () => {
   )
 }
 
-export default BookContent
+export default EmiratesExp
 
 //styling area
 

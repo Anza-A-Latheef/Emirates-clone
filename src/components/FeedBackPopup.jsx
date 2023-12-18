@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import FeedbackData from '../../src/assets/feedback.json'
 import { IoMdClose } from "react-icons/io";
 
-const FeedBackPopup = () => {
+const FeedBackPopup = ({ onClose }) => {
     const [FbDetails,setFbDetails]=useState([]);
     useEffect(()=>{
         setFbDetails(FeedbackData,FbDetails);
@@ -11,7 +11,7 @@ const FeedBackPopup = () => {
 
   return (
     <FeedbackWrapper>
-        <CloseButton><IoMdClose /></CloseButton>
+        <CloseButton onClick={onClose}><IoMdClose /></CloseButton>
         <FeedbackContainer>
             {FbDetails.map((content)=>(
                 <Feedback key={content.id}>
@@ -35,9 +35,13 @@ export default FeedBackPopup
 const FeedbackWrapper=styled.div`
     display: block;
     background-color: white;
-    padding: 50px 125px;
-    position: relative;
+    padding: 60px 125px;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    background-size: cover;
     background-color: rgba(0,0,0,0.4);
+    height: 100vh;
 `;
 
 const CloseButton=styled.button`

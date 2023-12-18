@@ -3,44 +3,44 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
 
-const BookContent = () => {
+const Skywards = () => {
   return (
     <ContentContainer>
         <HoverHeadContainer>
-            <HoverDropHead>Book Flights <StyledArrow /></HoverDropHead>
+            <HoverDropHead>Join Emirates Skywards <StyledArrow /></HoverDropHead>
         </HoverHeadContainer>
         <HoverDropBody>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Search for a flight <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Flight Schedules <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Featured fares <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Special offers <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Best Fare Finder <StyledArrow /></HoverDrop_a>
+                    <HoverDropSubhead>About Emirates Skywards <StyledArrow /></HoverDropSubhead>
+                    <HoverDrop_a>Membership tiers <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>My Family <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Earn miles <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Skywards miles @ mall <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Planning your trip <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Book a hotel <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Tours and activities <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a holiday <StyledLink/> <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>flydubai <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Spend Miles <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Skywards Skysurfers <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Miles Calculator <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Travel services <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Meet & Greet <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Cash+Miles <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Claim Miles<StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Skywards Exclusives  <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Log in to Emirates Skywards<StyledArrow /></HoverDrop_a><HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
             <HoverDrop_ul>
                 <HoverDrop_li>
-                    <HoverDropSubhead>Transportation <StyledArrow /></HoverDropSubhead>
-                    <HoverDrop_a>Airport transfer <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Book a car <StyledLink/> <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Airline partners <StyledArrow /></HoverDrop_a>
-                    <HoverDrop_a>Eurail <StyledLink/><StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Digital membership card <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Buy Miles <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Our Partners <StyledArrow /></HoverDrop_a>
+                    <HoverDrop_a>Skywards+<StyledArrow /></HoverDrop_a>
                 </HoverDrop_li>
             </HoverDrop_ul>
         </HoverDropBody>
@@ -48,7 +48,8 @@ const BookContent = () => {
   )
 }
 
-export default BookContent
+export default Skywards
+
 
 //styling area
 
@@ -140,3 +141,5 @@ const StyledLink=styled(HiExternalLink)`
     color: #333;
     margin: 0px 5px;
 `;
+
+
