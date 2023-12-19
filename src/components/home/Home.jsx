@@ -31,7 +31,6 @@ const Home = () => {
         <Offer/>
         <Experience/>
         <About/>
-        {/* <FeedBackPopup/> */}
         <Footer/>
       </HomeContainer>
       <Feedback onClick={togglePopup}><StyledIcon /> Feedback</Feedback>
