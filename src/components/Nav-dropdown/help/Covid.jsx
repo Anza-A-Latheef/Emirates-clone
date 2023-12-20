@@ -7,30 +7,17 @@ const Covid = () => {
   return (
         <ContentContainer>
             <HoverHeadContainer>
-                <HoverDropHead>Manage your booking <StyledArrow /></HoverDropHead>
+                <HoverDropHead>COVID-19 information hub <StyledArrow /></HoverDropHead>
             </HoverHeadContainer>
             <HoverDropBody>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Retrieve your booking <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Cancel your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Change your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Choose your seat <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Upgrade your flight <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Manage chauffeur-drive <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>
-Book accessible travel <StyledArrow /></HoverDrop_a>
-                    </HoverDrop_li>
-                </HoverDrop_ul>
-                <HoverDrop_ul>
-                    <HoverDrop_li>
-                        <HoverDropSubhead>Check in online <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Check-in options <StyledArrow /></HoverDrop_a>
-                    </HoverDrop_li>
-                </HoverDrop_ul>
-                <HoverDrop_ul>
-                    <HoverDrop_li>
-                        <HoverDropSubhead>Flight status <StyledArrow /></HoverDropSubhead>
+                        <HoverDropSubhead>COVID-19 information hub <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a>Travel requirements for Dubai <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Travel requirements by destination <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Your ticket options <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Request a refund <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Travel Safety during COVID-19 <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
             </HoverDropBody>

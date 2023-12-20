@@ -8,30 +8,38 @@ const HelpContent = () => {
   return (
         <ContentContainer>
             <HoverHeadContainer>
-                <HoverDropHead>Manage your booking <StyledArrow /></HoverDropHead>
+                <HoverDropHead>Help and Contacts <StyledArrow /></HoverDropHead>
             </HoverHeadContainer>
             <HoverDropBody>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Retrieve your booking <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Cancel your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Change your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Choose your seat <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Upgrade your flight <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Manage chauffeur-drive <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>
-Book accessible travel <StyledArrow /></HoverDrop_a>
+                        <HoverDropSubhead>Help and Contacts <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a> Changing or Cancelling<StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Visa and passport help <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Feedback and complaints <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Checking your travel requirements <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Check in online <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Check-in options <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a> Keeping your tickets or refunds<StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Delayed or damaged baggage support<StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Lost property <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Dubai Connect <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Flight status <StyledArrow /></HoverDropSubhead>
+                        <HoverDropSubhead>Changes to our operations <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a>Recent travel Updates <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Check your flight status <StyledArrow /></HoverDrop_a>
+                    </HoverDrop_li>
+                </HoverDrop_ul>
+                <HoverDrop_ul>
+                    <HoverDrop_li>
+                        <HoverDropSubhead>Special assistance <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a>Accessible travel with Emirates <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Special assistance and requests <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
             </HoverDropBody>

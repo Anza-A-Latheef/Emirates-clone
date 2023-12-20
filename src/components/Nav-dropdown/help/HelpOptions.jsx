@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import HelpContent from './HelpContent';
+import Covid from './Covid';
+import Question from './Question';
 
 const HelpOptions = () => {
   return (
@@ -7,12 +10,21 @@ const HelpOptions = () => {
     <HelpOption_ul>
         <HelpOption_li>
           <HelpOption_a>Help and contacts</HelpOption_a>
+            <ManageWrapper>
+                <HelpContent/>
+            </ManageWrapper>
         </HelpOption_li>
         <HelpOption_li>
           <HelpOption_a>COVID-19  travel support</HelpOption_a>
+            <ManageWrapper>
+                <Covid/>
+            </ManageWrapper>
         </HelpOption_li>
         <HelpOption_li>
           <HelpOption_a>Your questions</HelpOption_a>
+            <ManageWrapper>
+                <Question/>
+            </ManageWrapper>
         </HelpOption_li>
     </HelpOption_ul>
     <HelpOption_btn type='submit' >Search flights</HelpOption_btn>
@@ -67,6 +79,16 @@ font-size: 15px;
 font-family: Helvetica;
 color: #333;
 `;
+
+const ManageWrapper=styled.div`
+    display: none;
+
+    ${ HelpOption_li }:hover & {
+        display: flex;
+        margin: 200px 0;
+    }
+`;
+
 const HelpOption_btn=styled.button`
 cursor: pointer;
 display: flex;

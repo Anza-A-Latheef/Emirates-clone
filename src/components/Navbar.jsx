@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FaGlobeEurope, FaRegUserCircle  } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { BiSearchAlt } from "react-icons/bi";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import BookOptions from '../components/Nav-dropdown/book/BookOptions';
 import ManageOptions from '../components/Nav-dropdown/manage/ManageOptions';
 import ExperienceOptions from '../components/Nav-dropdown/experience/ExperienceOptions';
@@ -119,8 +119,8 @@ const Navbar = () => {
 			<RightBox>
 				<Button><FaGlobeEurope /> IN <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
 				<Button><BiSearchAlt /> <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
-				{/* <Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
-				<Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button>
+				<Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button>
+				{/* <Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button> */}
 			</RightBox>
 		</Wrapper>
 	</HeaderContainer>

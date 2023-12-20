@@ -2,12 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { HiExternalLink } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 const Skywards = () => {
   return (
     <ContentContainer>
         <HoverHeadContainer>
-            <HoverDropHead>Join Emirates Skywards <StyledArrow /></HoverDropHead>
+            <Link to="Loyalty-page" style={{ textDecoration: 'none'}}>
+                    <HoverDropHead>Join Emirates Skywards <StyledArrow /></HoverDropHead>
+            </Link>
         </HoverHeadContainer>
         <HoverDropBody>
             <HoverDrop_ul>

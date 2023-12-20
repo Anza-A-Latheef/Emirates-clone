@@ -2,35 +2,72 @@ import React, { useState ,useEffect } from 'react'
 import styled from 'styled-components'
 import FeedbackData from '../../src/assets/feedback.json'
 import { IoMdClose } from "react-icons/io";
+import { VscFeedback } from "react-icons/vsc";
 
-const FeedBackPopup = ({ onClose }) => {
+const FeedBackPopup = () => {
+    const [popupVisible,setPopupVisible]=useState(false);
+
     const [FbDetails,setFbDetails]=useState([]);
     useEffect(()=>{
         setFbDetails(FeedbackData,FbDetails);
     }, []);
 
   return (
-    <FeedbackWrapper>
-        <CloseButton onClick={onClose}><IoMdClose /></CloseButton>
-        <FeedbackContainer>
-            {FbDetails.map((content)=>(
-                <Feedback key={content.id}>
-                <FbImageContainer>
-                    <FbImage src={`${content.image}`} alt="Feedback image" />
-                </FbImageContainer>
-                <FeedbackHead>{content.heading}</FeedbackHead>
-                <FeedbackTitle>{content.subtitle}</FeedbackTitle>
-                <FeedbackButton>{content.buttonTitle}</FeedbackButton>
-            </Feedback>
-            ))}
-        </FeedbackContainer>
-    </FeedbackWrapper>
+    <>
+        <Feedback onClick={()=>setPopupVisible(true)}><StyledIcon /> Feedback</Feedback>
+                {popupVisible && 
+        <FeedbackWrapper>
+            <CloseButton onClick={()=>{setPopupVisible(false)}}><IoMdClose /></CloseButton>
+            <FeedbackContainer>
+                {FbDetails.map((content)=>(
+                    <FeedbackDiv key={content.id}>
+                    <FbImageContainer>
+                        <FbImage src={`${content.image}`} alt="Feedback image" />
+                    </FbImageContainer>
+                    <FeedbackHead>{content.heading}</FeedbackHead>
+                    <FeedbackTitle>{content.subtitle}</FeedbackTitle>
+                    <FeedbackButton>{content.buttonTitle}</FeedbackButton>
+                </FeedbackDiv>
+                ))}
+            </FeedbackContainer>
+        </FeedbackWrapper>
+            }
+        </>
   )
 }
 
 export default FeedBackPopup
 
 //styling area
+
+
+const Feedback=styled.button`
+    display: flex;
+    background-color: white;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 1px 4px 1px #666;
+    color: #333;
+    cursor: pointer;
+    font-family: Helvetica;
+    font-size: 14px;
+    height: 40px;
+    border: none;
+    padding: 10px 15px 25px 25px;
+    position: fixed;
+    right: 0;
+    top: calc(50% - 120px);
+    transform: rotate(-90deg);
+    transform-origin: 100% 100%;
+    `;
+const StyledIcon = styled(VscFeedback)`
+    font-weight: bold;
+    margin-right: 8px; 
+    color: #333;
+    font-size: 1.2rem;
+    transform: rotate(90deg);
+
+`;
+
 
 const FeedbackWrapper=styled.div`
     display: block;
@@ -69,7 +106,7 @@ const FeedbackContainer=styled.div`
     border: none;
 `;
 
-const Feedback=styled.div`
+const FeedbackDiv=styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;

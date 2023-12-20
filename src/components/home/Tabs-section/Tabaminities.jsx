@@ -45,14 +45,13 @@ const AminitiesForm=styled.form`
 `;
 
 const AminitiesInput=styled.input`
-padding: 10px;
+    padding: 10px;
     width: 20px;
     height: 20px;
     cursor: pointer;
     font-size: 10px;
     margin: 5px;
     accent-color: #d71921;
-
 
 `;
 

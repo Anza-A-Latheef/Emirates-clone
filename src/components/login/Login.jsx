@@ -19,7 +19,8 @@ import { Link } from 'react-router-dom';
             <Loghead/>
         </LoginTop>
         <LoginBottom>
-            <Logcontent onLogin ={onLogin} />
+            {/* <Logcontent onLogin ={onLogin} /> */}
+            <Logcontent/>
         </LoginBottom>
         <Footer/>  
     </LoginContainer>

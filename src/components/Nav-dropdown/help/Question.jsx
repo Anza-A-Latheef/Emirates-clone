@@ -8,30 +8,39 @@ const Question = () => {
     
         <ContentContainer>
             <HoverHeadContainer>
-                <HoverDropHead>Manage your booking <StyledArrow /></HoverDropHead>
+                <HoverDropHead>FAQs <StyledArrow /></HoverDropHead>
             </HoverHeadContainer>
             <HoverDropBody>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Retrieve your booking <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Cancel your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Change your booking <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Choose your seat <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Upgrade your flight <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>Manage chauffeur-drive <StyledArrow /></HoverDrop_a>
-                        <HoverDrop_a>
-Book accessible travel <StyledArrow /></HoverDrop_a>
+                        <HoverDropSubhead>Frequently asked questions <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a>Booking with Emirates <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Our network and codeshares <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Our other products <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Special assistance and requests <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Check in online <StyledArrow /></HoverDropSubhead>
-                        <HoverDrop_a>Check-in options <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Baggage and lost property <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Preparing to travel <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>At the airport <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Emirates Skywards <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
                 <HoverDrop_ul>
                     <HoverDrop_li>
-                        <HoverDropSubhead>Flight status <StyledArrow /></HoverDropSubhead>
+                        <HoverDrop_a>Emirates Business Rewards <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Your on-board experience <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Tools and resources <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>Mobile and the Emirates App <StyledArrow /></HoverDrop_a>
+                    </HoverDrop_li>
+                </HoverDrop_ul>
+                <HoverDrop_ul>
+                    <HoverDrop_li>
+                        <HoverDrop_a>Cancelling or changing a booking <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>COVID-19 information and disrupted travel <StyledArrow /></HoverDrop_a>
+                        <HoverDrop_a>About Emirates <StyledArrow /></HoverDrop_a>
                     </HoverDrop_li>
                 </HoverDrop_ul>
             </HoverDropBody>
