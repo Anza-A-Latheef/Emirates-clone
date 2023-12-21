@@ -1,11 +1,48 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+import { BASE_URL } from '../../axiosConfig'
 import LoyaltyOptions from './Nav-dropdown/loyalty/LoyaltyOptions'
 import FeedBackPopup from './FeedBackPopup'
 import Footer from './footer/Footer'
+import { HiExternalLink } from "react-icons/hi";
 
 const LoyaltyJoin = () => {
+    const [useremail, setUseremail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [message,setMessage] = useState('');  
+    // const navigate = useNavigate();
+
+
+    const handleSubmit = (e) => {
+        setMessage("");
+        e.preventDefault();
+        axios
+        .post(`${ BASE_URL }/auth/register/`,{password,useremail,firstName,lastName})
+        .then((response)=>{
+            let data=response.data.data;
+            let status_code=response.data.StatusCode;
+            if(status_code===6000){
+                console.log(response.data);
+                localStorage.setItem("user_data",JSON.stringify(data));
+                // history.push('./');
+                // navigate('/');
+            } else{
+               setMessage(error.response.data.message);
+            }
+        })
+        .catch((error)=>{
+            console.log(error.response.status);
+            if(error.response.status==401){
+               setMessage(error.response.data.detail);
+            }
+        });
+    };
+
   return (
     <LoyaltyContainer>
         <Navbar/>
@@ -18,16 +55,16 @@ const LoyaltyJoin = () => {
             </LoyalTop>
             <LoyalBottom>
                 <UserCard>
-                    <UserDetailsForm>
+                    <UserDetailsForm onSubmit={handleSubmit}>
                         <NameDetails>
                             <TitleInput type="text" placeholder="Title" />
-                            <NameInput type="text" placeholder="First name" />
-                            <NameInput type="text" placeholder="Last name" />
+                            <NameInput type="text" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                            <NameInput type='text' placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                         </NameDetails>
                         <Note>Your name must be entered in English as it appears on your passport.</Note>
                         <Credentials>
-                            <CredentialInput type="text" placeholder="Email" />
-                            <CredentialInput type="password" placeholder="Password" />
+                            <CredentialInput type="email" placeholder="Email" value={useremail} onChange={(e) => setUseremail(e.target.value)}/>
+                            <CredentialInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </Credentials>
                         <DatePlace>
                             <MonthSelect>
@@ -38,9 +75,9 @@ const LoyaltyJoin = () => {
                             <CountrySelect type="text" placeholder="Country/Territory of residence" />
                         </DatePlace>
                         <Communication>
-                            <Language type="text" Placeholder="Preferred Language" />
-                            <CountryCode type="text" Placeholder="Country code" />
-                            <Phone type="telephone" Placeholder="Mobile number" />
+                            <Language type="text" placeholder="Preferred Language" />
+                            <CountryCode type="text" placeholder="Country code" />
+                            <Phone type="telephone" placeholder="Mobile number" />
                         </Communication>
                         <Invite type="text" placeholder="Enter invite code (optional)" />
                         <AlreadyMember>Already have an Emirates Skywards membership number?</AlreadyMember>
@@ -52,18 +89,26 @@ const LoyaltyJoin = () => {
                         </RadioInput>
                         <CheckClick>
                             <CheckInput type="checkbox" name="CheckPolicy" />
-                            <CheckLabel>Sign up to receive Emirates newsletters and special offer emails. You can unsubscribe at any time via the link in our emails, by updating your Emirates Skywards account preferences or by contacting us. For more details on how we use your personal information, please see our <u>privacy policy.</u></CheckLabel>
+                            <CheckLabel>Sign up to receive Emirates newsletters and special offer emails. You can unsubscribe at any time via the link in our emails, by updating your Emirates Skywards account preferences or by contacting us. For more details on how we use your personal information, please see our <u>privacy policy.<HiExternalLink /></u></CheckLabel>
                         </CheckClick>
                         <CheckClick>
                             <CheckInput type="checkbox" name="CheckPolicy" />
-                            <CheckLabel>Sign up to receive flydubai   newsletters and special offer emails. Your name and email address will be shared with flydubai for this purpose. Unsubscribe at any time via relevant link in flydubai emails, by updating your Emirates Skywards account preferences or by contacting Emirates or flydubai. For more details, please see flydubai’s <u>privacy policy.</u></CheckLabel>
+                            <CheckLabel>Sign up to receive flydubai   newsletters and special offer emails. Your name and email address will be shared with flydubai for this purpose. Unsubscribe at any time via relevant link in flydubai emails, by updating your Emirates Skywards account preferences or by contacting Emirates or flydubai. For more details, please see flydubai’s <u>privacy policy. <HiExternalLink /></u></CheckLabel>
                         </CheckClick>
-                        <PolicyNote>By creating an account you are agreeing to the <u>Emirates Skywards programme rules</u> and our <u>privacy policy.</u></PolicyNote>
+                        <PolicyNote>By creating an account you are agreeing to the <u>Emirates Skywards programme rules <HiExternalLink /></u> and our <u>privacy policy. <HiExternalLink /></u></PolicyNote>
+                        {message && <ErrorMessage>{message}</ErrorMessage>}
                         <CreateButton type="submit">Create an account</CreateButton>
                     </UserDetailsForm>
                 </UserCard>
             </LoyalBottom>
         </LoyalContainer>
+        <FooterCapContainer>
+        <FooterCap>
+            <Head_a><FootercapHead>Emirates</FootercapHead></Head_a>
+            <FootercapTitle>Emirates Skywards</FootercapTitle>
+            <FootercapTitle>Skyward Registration</FootercapTitle>
+        </FooterCap>
+    </FooterCapContainer>
         <Footer/>
         <FeedBackPopup/>
     </LoyaltyContainer>
@@ -492,4 +537,74 @@ const CreateButton=styled.button`
     border: none;
     border-radius: 3px;
     cursor: pointer;
+`;
+
+const FooterCapContainer =styled.div`
+    width: 100%;
+    padding: 10px 125px;
+    background-color: #282828;
+`;
+
+const FooterCap =styled.div`
+    display: flex;
+    align-items: center;
+
+    &:nth-child(1){
+        &:after{
+        position: relative;
+        top: 0;
+        right: 159px;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-left: 15px;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #fff;
+        transform: rotate(45deg);
+        content: "";
+
+    }
+    }
+`;
+
+const Head_a =styled.a`
+    font-family: "Emirates-Medium";
+    color: #fff;
+    display: flex;
+    opacity: .8;
+    
+    &:after{
+        position: relative;
+        top: 14px;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-left: 15px;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #fff;
+        transform: rotate(45deg);
+        content: "";
+
+    }
+    &:hover{
+    color: white;
+    opacity: 1.8;
+    text-decoration: underline;
+}
+    `;
+
+const FootercapHead =styled.h2`
+    font-weight: lighter;
+    font-size: 22px;
+
+`;
+
+const FootercapTitle =styled.h6`
+    font-family: 'Helvetica';
+    color: #fff;
+    opacity: .5;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: lighter;
+
 `;

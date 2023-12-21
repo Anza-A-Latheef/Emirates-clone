@@ -10,6 +10,14 @@
     <div id="root">
 
     </div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx">
+      if('ServiceWorker' in navigator){
+        window.addEventListener('load',()=>{
+          navigator.ServiceWorker.register('./ServiceWorker.js')
+          .then(()=>console.log('success'))
+          .catch((err)=>console.log('failure',err));
+        })
+      }
+    </script>
   </body>
 </html>

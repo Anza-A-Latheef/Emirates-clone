@@ -1,6 +1,5 @@
 import React from 'react';
 import { HiExternalLink } from "react-icons/hi";
-import { Link } from 'react-scroll';
 import styled from 'styled-components';
 
 const FirstSection = () => {
