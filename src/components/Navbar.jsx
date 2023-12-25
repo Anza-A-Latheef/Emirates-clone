@@ -10,6 +10,7 @@ import ExperienceOptions from '../components/Nav-dropdown/experience/ExperienceO
 import FlyOptions from '../components/Nav-dropdown/where-we-fly/FlyOptions';
 import LoyaltyOptions from '../components/Nav-dropdown/loyalty/LoyaltyOptions';
 import HelpOptions from '../components/Nav-dropdown/help/HelpOptions';
+import logo from '../assets/images/emirates-logo-badge.svg'
 
 const Navbar = () => {
 	const [bookoption,setBookoption]=useState(false);
@@ -48,7 +49,7 @@ const Navbar = () => {
 		<Wrapper>
 			<LeftBox>
 				<Logo>
-					<LogoImage src ="src\assets\images\emirates-logo-badge.svg" alt="Emirates Logo"/>
+					<LogoImage src ={logo} alt="Emirates Logo"/>
 				</Logo>
 				<NavElements id="nav-elements">
 					<Nav_ul>
