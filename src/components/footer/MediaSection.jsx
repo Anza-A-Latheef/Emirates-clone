@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaFacebookSquare ,FaLinkedin ,FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter, FaSquareYoutube } from "react-icons/fa6";
+import appstore_logo from '../../assets/images/apple-en.svg';
+import playstore_logo from '../../assets/images/google-en.svg';
+
 
 const MediaSection = () => {
   return (
@@ -13,8 +16,8 @@ const MediaSection = () => {
             </Subscribe>
         </EmailInput>
         <AppDownload>
-            <Appstore src="src\assets\images\apple-en.svg" alt="Direct to AppStore" />
-            <Playstore src="src\assets\images\google-en.svg" alt="Direct to PlayStore" />
+            <Appstore src={appstore_logo} alt="Direct to AppStore" />
+            <Playstore src={playstore_logo} alt="Direct to PlayStore" />
         </AppDownload>
         <MediaIcons>
             <MediaIcon><FaFacebookSquare /></MediaIcon>

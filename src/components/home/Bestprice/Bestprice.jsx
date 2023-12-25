@@ -2,13 +2,14 @@ import React from 'react';
 import Pricecard from './Pricecard';
 import styled from 'styled-components';
 import { TfiAngleRight} from "react-icons/tfi";
+import bestprice_logo from "../../../assets/images/best-price-in.svg"
 
 const Bestprice = () => {
   return (
     <BestpriceContainer>
         <BestpriceHead>
             <PriceHead>Featured destinations from <PriceLocation>India</PriceLocation></PriceHead>
-            <BestpriceImage src="src\assets\images\best-price-in.svg" alt="Bestprice Logo" />
+            <BestpriceImage src={bestprice_logo} alt="Bestprice Logo" />
         </BestpriceHead>
             <Pricecard/>
         <BestpriceBottom>

@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
+import Logoimage1 from '../../assets/images/apex-world-class-airline.svg'
+import Logoimage2 from '../../assets/images/fgfa-star.svg'
+import Logoimage3 from '../../assets/images/skytrax-badge-2019.svg'
 
 const LogoSection = () => {
     return (
@@ -9,7 +12,7 @@ const LogoSection = () => {
                 <Logos_li>
                     <Logos_a>
                         <LogosImageContainer>
-                            <LogosImage src="src\assets\images\apex-world-class-airline.svg" alt="Official world class airline" />
+                            <LogosImage src={Logoimage1} alt="Official world class airline" />
                         </LogosImageContainer>
                     </Logos_a>
                 </Logos_li>
@@ -18,7 +21,7 @@ const LogoSection = () => {
                 <Logos_li>
                     <Logos_a>
                         <LogosImageContainer>
-                            <LogosImage src="src\assets\images\fgfa-star.svg" alt="Official Five star global airline" />
+                            <LogosImage src={Logoimage2} alt="Official Five star global airline" />
                         </LogosImageContainer>
                     </Logos_a>
                 </Logos_li>
@@ -27,7 +30,7 @@ const LogoSection = () => {
                 <Logos_li>
                     <Logos_a>
                         <LogosImageContainer>
-                            <LogosImage src="src\assets\images\skytrax-badge-2019.svg" alt="" />
+                            <LogosImage src={Logoimage3} alt="" />
                         </LogosImageContainer>
                     </Logos_a>
                 </Logos_li>

@@ -7,7 +7,8 @@ const Pricecard = () => {
     useEffect(() => {
         setPlaceDetails(placeData,PlaceDetails);
     }, []);
-
+ 
+console.log(PlaceDetails,"PlaceDetails")
     return (
         <PricecardContainer>
             {PlaceDetails.map((place) => (
@@ -15,6 +16,7 @@ const Pricecard = () => {
                 <CardTop>
                     <DestinationImage>
                         <Destination src={`src/assets/images/${place.image}.avif`} alt="Place image" />
+                        {/* <Destination src={require(`../../../assets/images/${place.image}.avif`)} className="Place image"/> */}
                     </DestinationImage>
                 </CardTop>
                 <CardBottom>

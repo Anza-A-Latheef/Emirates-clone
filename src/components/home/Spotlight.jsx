@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import img from "../../assets/images/happy-family-in-winter-clothes-in-a-european-city-hp-w1920x480.jpg";
+import flybetter_img from "../../assets/images/emirates-fly-better-white.svg"
 
 const Spotlight = () => {
   return (
     <SpotlightContainer>
         <Wrapper>
             <FlyBetter>
-                <FlyBetterImage src="src\assets\images\emirates-fly-better-white.svg" alt="Fly Better" />
+                <FlyBetterImage src={flybetter_img} alt="Fly Better" />
             </FlyBetter>
             <SpotlightHead>
                 <SpotheadOne>

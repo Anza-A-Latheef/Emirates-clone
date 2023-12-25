@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import styled from 'styled-components';
+import business_img from '../../assets/images/a380-sky-view-w300x300.jpg'
+import planet_img from '../../assets/images/sunlight-baths-the-blyde-river-canyon-w300x300.jpg'
+import people_img from '../../assets/images/emirates-group-staff-group-photo-m300x300.jpg'
+import communities_img from '../../assets/images/family-planting-tree-w300x300.jpg'
 
 function About() {
   return (
@@ -14,7 +18,7 @@ function About() {
                 <About_li>
                     <About_a>
                         <AboutImages>
-                            <AboutImage src="src\assets\images\a380-sky-view-w300x300.jpg" alt="Our business" />
+                            <AboutImage src={business_img} alt="Our business" />
                         </AboutImages>
                         <AboutTag>Our business</AboutTag>
                     </About_a>
@@ -22,7 +26,7 @@ function About() {
                 <About_li>
                     <About_a>
                         <AboutImages>
-                            <AboutImage src="src\assets\images\sunlight-baths-the-blyde-river-canyon-w300x300.jpg" alt="Our Planet" />
+                            <AboutImage src={planet_img} alt="Our Planet" />
                         </AboutImages>
                         <AboutTag>Our planet</AboutTag>
                     </About_a>
@@ -30,7 +34,7 @@ function About() {
                 <About_li>
                     <About_a>
                         <AboutImages>
-                            <AboutImage src="src\assets\images\emirates-group-staff-group-photo-m300x300.jpg" alt="Our people" />
+                            <AboutImage src={people_img} alt="Our people" />
                         </AboutImages>
                         <AboutTag>Our people</AboutTag>
                     </About_a>
@@ -38,7 +42,7 @@ function About() {
                 <About_li>
                     <About_a>
                         <AboutImages>
-                            <AboutImage src="src\assets\images\family-planting-tree-w300x300.jpg" alt="Our communities" />
+                            <AboutImage src={communities_img} alt="Our communities" />
                         </AboutImages>
                         <AboutTag>Our communities</AboutTag>
                     </About_a>
