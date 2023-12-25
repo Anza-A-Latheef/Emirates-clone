@@ -15,22 +15,26 @@ const LoyaltyJoin = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [message,setMessage] = useState('');  
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
         setMessage("");
         e.preventDefault();
+        let form = new FormData()
+        form.append('email',useremail)
+        form.append('password',password)
+        form.append('firstname',firstName)
+        form.append('lastname',lastName)
         axios
-        .post(`${ BASE_URL }/auth/register/`,{password,useremail,firstName,lastName})
+        .post(`${ BASE_URL }/auth/register/`,form)
         .then((response)=>{
             let data=response.data.data;
             let status_code=response.data.StatusCode;
             if(status_code===6000){
                 console.log(response.data);
                 localStorage.setItem("user_data",JSON.stringify(data));
-                // history.push('./');
-                // navigate('/');
+                navigate('/');
             } else{
                setMessage(error.response.data.message);
             }

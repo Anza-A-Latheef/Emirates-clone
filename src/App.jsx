@@ -39,6 +39,8 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="Login-page" element={<Login/>}/>
           <Route path="Loyalty-page" element={<LoyaltyJoin/>}/>
+          {/* <Route path="Loyalty-page" element={<LoyaltyJoin/>}/> */}
+
         </Routes>
     </>
   );

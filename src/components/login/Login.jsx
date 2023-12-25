@@ -70,7 +70,7 @@ return (
             <LogcontentRight>
                 <RightTitle>Not an Emirates Skywards member yet?</RightTitle>
                 <RightSubtitle>Register now to make the most of every mile with <RightSpan>Emirates Skywards</RightSpan></RightSubtitle>
-                <JoinButton type="button" >Join now</JoinButton>
+                <JoinButton type="button"><ButtonLink to="/Loyalty-page">Join now</ButtonLink></JoinButton>
             </LogcontentRight>   
         </LogcontentContainer>
         <FooterCapContainer>
@@ -299,11 +299,9 @@ const RightSpan=styled.span`
 `;
 
 const JoinButton =styled.button`
-    color: #333;
     background: #fff;
     border: 1px solid #333;
     height: 40px;
-    font-size: 15px;
     font-weight: bold;
     width: 100%;
     border-radius: 3px;
@@ -313,6 +311,12 @@ const JoinButton =styled.button`
     &:hover{
         box-shadow: 0 0 6px 0 grey;
     }
+`;
+
+const ButtonLink=styled(Link)`
+    color: #333;
+    text-decoration: none; 
+    font-size: 15px;
 `;
 
 const FooterCapContainer =styled.div`

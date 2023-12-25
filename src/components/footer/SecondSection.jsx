@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
 import MediaSection from './MediaSection';
 import LogoSection from './LogoSection';
 
