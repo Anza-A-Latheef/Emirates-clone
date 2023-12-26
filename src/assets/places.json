@@ -1,26 +1,27 @@
 
+
 [
    {
      "id": 1,
-     "image": "Place1",
+     "image": "place1",
      "country": "Spain",
      "placeName": "Barcelona"
    },
    {
      "id": 2,
-     "image": "Place2",
+     "image": "place2",
      "country": "United Arab Emirates",
      "placeName": "Dubai"
    },
    {
      "id": 3,
-     "image": "Place3",
+     "image": "place3",
      "country": "Italy",
      "placeName": "Rome"
    },
    {
      "id": 4,
-     "image": "Place4",
+     "image": "place4",
      "country": "United Kingdom",
      "placeName": "London"
    }

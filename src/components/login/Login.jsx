@@ -1,18 +1,20 @@
-import React,{useState} from 'react';
+import React,{useState , useContext} from 'react';
 import styled from 'styled-components';
 import Loghead from './Loghead';
 import Footer from '../footer/Footer';
+import horizontal_logo from '../../assets/images/emirates-logo-horizontal.svg'
 import axios from 'axios';
 import { Link , useNavigate} from 'react-router-dom';
 import { BASE_URL } from '../../../axiosConfig'
+import { UserContext } from '../../App';
 
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message,setMessage] = useState('');  
-    // const history=useHistory('');
     const navigate = useNavigate();
+	const {updateUserData}=useContext(UserContext);
 
 
 const handleSubmit = (e) => {
@@ -24,7 +26,7 @@ const handleSubmit = (e) => {
         console.log(response.data);
         let data=response.data;
         localStorage.setItem("user_data",JSON.stringify(data));
-        // history.push('./');
+        updateUserData({type:"LOGIN",payload:data});
         navigate('/');
     })
     .catch((error)=>{
@@ -39,7 +41,7 @@ return (
     <LoginHeader>
         <Link to="/" style={{ textDecoration: 'none'}}>
             <SimpleLogo>
-                <Logo src="./src\assets\images\emirates-logo-horizontal.svg" alt="Emirates logo" />
+                <Logo src={horizontal_logo} alt="Emirates logo" />
             </SimpleLogo>
         </Link>
     </LoginHeader>

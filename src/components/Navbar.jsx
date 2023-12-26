@@ -1,4 +1,4 @@
-import React , {useState,useEffect} from 'react';
+import React , {useState,useEffect,useContext} from 'react';
 import styled from 'styled-components';
 import { FaGlobeEurope, FaRegUserCircle  } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
@@ -11,6 +11,7 @@ import FlyOptions from '../components/Nav-dropdown/where-we-fly/FlyOptions';
 import LoyaltyOptions from '../components/Nav-dropdown/loyalty/LoyaltyOptions';
 import HelpOptions from '../components/Nav-dropdown/help/HelpOptions';
 import logo from '../assets/images/emirates-logo-badge.svg'
+import { UserContext } from '../App';
 
 const Navbar = () => {
 	const [bookoption,setBookoption]=useState(false);
@@ -42,7 +43,11 @@ const Navbar = () => {
 		  document.removeEventListener('mousedown', handleClickOutside);
 		};
 	  }, []);
-	
+	 
+	  const {userData, updateUserData}=useContext(UserContext);
+	  const handleLogout=()=>{
+		 updateUserData({type:"LOGOUT"});
+	  }
   return (
 
 	<HeaderContainer>
@@ -120,7 +125,13 @@ const Navbar = () => {
 			<RightBox>
 				<Button><FaGlobeEurope /> IN <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
 				<Button><BiSearchAlt /> <Arrow_icon><VscTriangleDown /></Arrow_icon></Button>
-				<Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button>
+				<LoginButtonContainer>
+					{userData ? (
+					<Button onClick={()=>handleLogout()}><Login_a><FaRegUserCircle/> LOGOUT <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button> 
+					):(
+					<Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button>)}
+					{/* <Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
+				</LoginButtonContainer>
 				{/* <Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button> */}
 			</RightBox>
 		</Wrapper>
@@ -205,6 +216,10 @@ const Nav_a=styled.a`
 const RightBox = styled.div`
 	display: flex;
 	padding: 0px 10px;
+`;
+
+const LoginButtonContainer=styled.div`
+
 `;
 
 const Button=styled.button`

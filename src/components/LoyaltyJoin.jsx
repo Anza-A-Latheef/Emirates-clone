@@ -1,4 +1,5 @@
-import React ,{useState} from 'react'
+import React ,{useState, useContext} from 'react'
+import { UserContext } from '../App';
 import styled from 'styled-components'
 import Navbar from './Navbar'
 import axios from 'axios';
@@ -16,6 +17,8 @@ const LoyaltyJoin = () => {
     const [lastName, setLastName] = useState('');
     const [message,setMessage] = useState('');  
     const navigate = useNavigate();
+	const {updateUserData}=useContext(UserContext);
+
 
 
     const handleSubmit = (e) => {
@@ -34,9 +37,10 @@ const LoyaltyJoin = () => {
             if(status_code===6000){
                 console.log(response.data);
                 localStorage.setItem("user_data",JSON.stringify(data));
+                updateUserData({type:"LOGIN",payload:data});
                 navigate('/');
             } else{
-               setMessage(error.response.data.message);
+               setMessage(response.data.message);
             }
         })
         .catch((error)=>{
@@ -610,5 +614,15 @@ const FootercapTitle =styled.h6`
     margin-left: 15px;
     font-size: 14px;
     font-weight: lighter;
+
+`;
+
+const ErrorMessage=styled.p`
+    color: red;
+    font-size: 13px;
+    font-weight: lighter;
+    font-family: Helvetica;
+    text-align: left;
+    margin-bottom: 20px;
 
 `;

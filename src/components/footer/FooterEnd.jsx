@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
 import { MdOutlineCopyright } from "react-icons/md";
 import logobadge from '../../assets/images/emirates-logo-badge.svg'
 

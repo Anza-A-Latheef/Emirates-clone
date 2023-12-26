@@ -1,33 +1,62 @@
 import React, { useState ,useEffect } from 'react';
 import placeData from '../../../assets/places.json';
 import styled from 'styled-components';
+import apple from '../../../assets/images/apple-en.svg'
+import place1 from '../../../assets/images/Place1.avif'
+import place2 from '../../../assets/images/Place2.avif'
+import place3 from '../../../assets/images/Place3.avif'
+import place4 from '../../../assets/images/Place4.avif'
 
 const Pricecard = () => {
-    const [PlaceDetails,setPlaceDetails]=useState([]);
-    useEffect(() => {
-        setPlaceDetails(placeData,PlaceDetails);
-    }, []);
- 
+    const [PlaceDetails,setPlaceDetails]=useState([
+        {
+            "id": 1,
+            "image": place1,
+            "country": "Spain",
+            "placeName": "Barcelona"
+          },
+          {
+            "id": 2,
+            "image": place2,
+            "country": "United Arab Emirates",
+            "placeName": "Dubai"
+          },
+          {
+            "id": 3,
+            "image": place3,
+            "country": "Italy",
+            "placeName": "Rome"
+          },
+          {
+            "id": 4,
+            "image": place4,
+            "country": "United Kingdom",
+            "placeName": "London"
+          }
+    ]);
+
+  
 console.log(PlaceDetails,"PlaceDetails")
     return (
         <PricecardContainer>
-            {PlaceDetails.map((place) => (
-                <PriceCard key={place.id}>
-                <CardTop>
-                    <DestinationImage>
-                        <Destination src={`src/assets/images/${place.image}.avif`} alt="Place image" />
-                        {/* <Destination src={require(`../../../assets/images/${place.image}.avif`)} className="Place image"/> */}
-                    </DestinationImage>
-                </CardTop>
-                <CardBottom>
-                    <CardTitle>
-                        <DestinationCountry>{place.country}</DestinationCountry>
-                        <DestinationPlace>{place.placeName}</DestinationPlace>
-                        <Discover>Discover for yourself</Discover>
-                    </CardTitle>
-                </CardBottom>
-            </PriceCard>
-            ))
+            {
+            PlaceDetails.map((place) => {
+                return ( <PriceCard key={place.id}>
+                 <CardTop>
+                     <DestinationImage>
+                         <Destination src={place.image} alt="Place image" />
+                         {/* <Destination src={require(`../../../assets/images/${place.image}.avif`)} className="Place image"/> */}
+                     </DestinationImage>
+                 </CardTop>
+                 <CardBottom>
+                     <CardTitle>
+                         <DestinationCountry>{place.country}</DestinationCountry>
+                         <DestinationPlace>{place.placeName}</DestinationPlace>
+                         <Discover>Discover for yourself</Discover>
+                     </CardTitle>
+                 </CardBottom>
+             </PriceCard>)
+         })
         }
         </PricecardContainer>
   )
