@@ -147,6 +147,9 @@ const HeaderContainer = styled.section`
 	display:flex;
 	position: relative;
 
+	@media (max-width: 960px) {
+        display: none;
+	}
 `;
 
 const Wrapper = styled.div`
@@ -170,7 +173,7 @@ const Logo = styled.div`
 	top: 0;
 	display: flex;
 	align-items:end;
-	z-index: 11;
+	z-index: 10;
 	padding-bottom: 5px;
 	box-sizing: border-box;
 `;

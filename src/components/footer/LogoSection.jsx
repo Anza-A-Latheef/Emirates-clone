@@ -48,10 +48,22 @@ const LogosContainer=styled.div`
     justify-content: space-between;
     width: 90%;
     border-bottom: 1px solid #d9d9d933; 
+
+    @media (max-width: 786px) {
+        flex-direction: column;
+		align-items: center;
+		width: 100%;
+  }
     `;
 
 const Logos_ul=styled.ul`
     width: 25%;
+
+    @media (max-width: 786px) {
+        flex-direction: column;
+		align-items: center;
+		width: 100%;
+  }
 `;
 
 const Logos_li=styled.li`
@@ -60,11 +72,17 @@ const Logos_li=styled.li`
 
 const Logos_a=styled.a`
     cursor: pointer;
+   
 `;
 
 const LogosImageContainer=styled.div`
     width: 240px;
     height: 80px;
+    @media (max-width: 786px) {
+        flex-direction: column;
+		align-items: center;
+		width: 100%;
+  }
 `;
 
 const LogosImage=styled.img`

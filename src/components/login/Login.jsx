@@ -23,7 +23,6 @@ const handleSubmit = (e) => {
     axios
     .post(`${ BASE_URL }/auth/token/`,{username,password})
     .then((response)=>{
-        console.log(response.data);
         let data=response.data;
         localStorage.setItem("user_data",JSON.stringify(data));
         updateUserData({type:"LOGIN",payload:data});

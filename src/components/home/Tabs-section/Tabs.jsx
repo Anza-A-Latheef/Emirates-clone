@@ -56,6 +56,10 @@ const Wrapper=styled.div`
     padding:0px 125px;
     position: relative;
     height: 232px;
+
+    @media (max-width: 680px) {
+        display: none;
+	}
 `;
 
 const TabContainer=styled.section`

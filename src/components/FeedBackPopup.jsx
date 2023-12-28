@@ -1,16 +1,34 @@
 import React, { useState ,useEffect } from 'react'
 import styled from 'styled-components'
-import FeedbackData from '../../src/assets/feedback.json'
 import { IoMdClose } from "react-icons/io";
 import { VscFeedback } from "react-icons/vsc";
 
 const FeedBackPopup = () => {
     const [popupVisible,setPopupVisible]=useState(false);
 
-    const [FbDetails,setFbDetails]=useState([]);
-    useEffect(()=>{
-        setFbDetails(FeedbackData,FbDetails);
-    }, []);
+    const [FbDetails,setFbDetails]=useState([
+        {
+            "id": 1,
+            "image": "https://c.ekstatic.net/ecl/iconography/9a9731bdeeac7dabae8183d63729c015_81_68.png",
+            "heading": "Leave website feedback",
+            "subtitle": "Your opinion is important to us. Help us improve your online experience",
+            "buttonTitle": "Submit feedback"
+          },
+          {
+            "id": 2,
+            "image": "https://c.ekstatic.net/ecl/iconography/c8be9d69c9aa7b9c193ce1049e616f36_81_68.png",
+            "heading": "Get in touch",
+            "subtitle": "Need answers? Here are the most convenient ways to contact us",
+            "buttonTitle": "Contact us"
+          },
+          {
+            "id": 3,
+            "image": "https://c.ekstatic.net/ecl/iconography/fbc91a6287d56b2f84607070934ba7d8_81_68.png",
+            "heading": "Raise a concern",
+            "subtitle": "If you've had a less than satisfying experience. we'd like to hear from you",
+            "buttonTitle": "Submit a complaint"
+          }
+    ]);
 
   return (
     <>

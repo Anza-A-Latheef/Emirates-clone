@@ -40,6 +40,10 @@ const Footerend_ul=styled.ul`
 	display: flex;
 	flex-wrap: wrap;
     margin-bottom: 10px;
+
+    @media (max-width: 786px) {
+        flex-direction: column;
+  }
 `;
 
 const Footerend_li=styled.li`
@@ -65,6 +69,12 @@ const Right=styled.p`
 	font-size: 12px;
     font-weight: bold;
     padding-bottom: 15px;
+
+    @media (max-width: 480px) {
+        width: 50%;
+        white-space: break-spaces;
+
+  }
 `;
 
 const LogoEnd = styled.div`
@@ -80,6 +90,12 @@ const LogoEnd = styled.div`
 	z-index: 11;
 	padding-bottom: 5px;
 	box-sizing: border-box;
+
+    @media (max-width: 786px) {
+        flex-direction: column;
+		width:60px;
+	    height:80px;
+  }
 `;
 
 const LogoEndImage=styled.img`

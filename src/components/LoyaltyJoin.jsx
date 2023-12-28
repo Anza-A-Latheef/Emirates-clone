@@ -19,8 +19,6 @@ const LoyaltyJoin = () => {
     const navigate = useNavigate();
 	const {updateUserData}=useContext(UserContext);
 
-
-
     const handleSubmit = (e) => {
         setMessage("");
         e.preventDefault();

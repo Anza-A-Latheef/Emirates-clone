@@ -1,51 +1,62 @@
-import React, { useState ,useEffect } from 'react';
-import placeData from '../../../assets/places.json';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import apple from '../../../assets/images/apple-en.svg'
 import place1 from '../../../assets/images/Place1.avif'
 import place2 from '../../../assets/images/Place2.avif'
 import place3 from '../../../assets/images/Place3.avif'
 import place4 from '../../../assets/images/Place4.avif'
+import { useNavigate } from 'react-router-dom';
 
 const Pricecard = () => {
+
     const [PlaceDetails,setPlaceDetails]=useState([
         {
             "id": 1,
             "image": place1,
             "country": "Spain",
-            "placeName": "Barcelona"
-          },
-          {
+            "placeName": "Barcelona",
+            "fare":" 124,609",
+            "airport": "Barcelona (BCN)"
+        },
+        {
             "id": 2,
             "image": place2,
             "country": "United Arab Emirates",
-            "placeName": "Dubai"
-          },
-          {
+            "placeName": "Dubai",
+            "fare":"25,956",
+            "airport": "Dubai (DXB)"
+        },
+        {
             "id": 3,
             "image": place3,
             "country": "Italy",
-            "placeName": "Rome"
-          },
-          {
+            "placeName": "Rome",
+            "fare":"94,626",
+            "airport": "Rome (FCO)"
+        },
+        {
             "id": 4,
             "image": place4,
             "country": "United Kingdom",
-            "placeName": "London"
+            "placeName": "London",
+            "fare":"64,647",
+            "airport": "London (LHR)"
           }
     ]);
 
-  
-console.log(PlaceDetails,"PlaceDetails")
+    const navigate=useNavigate();
+    const handleClick=(cardId, cardImage,cardFare,cardAirport)=>{
+        navigate(`/singleitem`,{state:{id:cardId, image:cardImage ,fare:cardFare,airport:cardAirport}})
+    }
+
     return (
         <PricecardContainer>
-            {
-            PlaceDetails.map((place) => {
-                return ( <PriceCard key={place.id}>
+            {PlaceDetails.map((place) => {
+                return ( <PriceCard key={place.id} onClick={()=>{
+                    handleClick(place.id,place.image,place.fare,place.airport)
+                }}>
                  <CardTop>
                      <DestinationImage>
                          <Destination src={place.image} alt="Place image" />
-                         {/* <Destination src={require(`../../../assets/images/${place.image}.avif`)} className="Place image"/> */}
                      </DestinationImage>
                  </CardTop>
                  <CardBottom>
