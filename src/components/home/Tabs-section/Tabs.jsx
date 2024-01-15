@@ -4,7 +4,6 @@ import Tabsearch from '../Tabs-section/Tabsearch';
 import Tabbooking from '../Tabs-section/Tabbooking';
 import Tabaminities from '../Tabs-section/Tabaminities';
 import Tabstatus from '../Tabs-section/Tabstatus';
-
 import { GiCommercialAirplane } from "react-icons/gi";
 import { BsFillTagFill } from "react-icons/bs";
 import { GiPlaneWing } from "react-icons/gi";
@@ -54,21 +53,20 @@ export default Tabs
 
 const Wrapper=styled.div`
     padding:0px 125px;
+    margin-bottom: 25px;
     position: relative;
-    height: 232px;
-
+    
     @media (max-width: 680px) {
         display: none;
 	}
-`;
+    `;
 
 const TabContainer=styled.section`
+    width: 100%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 5px;
-    width: 81.5%;
     background-color: white;
-    position: absolute;
-    top: -60px;
+    position: relative;
 `;
 
 const TabheadContainer=styled.div`
@@ -77,6 +75,11 @@ const TabheadContainer=styled.div`
 
 const Tabhead_ul=styled.ul`
     display: flex;
+    position: absolute;
+    top: -60px;
+    z-index: 0;
+    width: 100%;
+    background-color: #fff;
 `;
 
 const Tabhead_li=styled.li`
