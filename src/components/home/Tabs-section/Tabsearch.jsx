@@ -1,21 +1,67 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link as ScrollLink } from 'react-scroll';
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import airportData from "../../../../airport.json"
 
 export default function Tabsearch() {
+    
     const [selectedOption, setSelectedOption] = useState('flight');
-    const handleRadioChange = (option) => {
-    setSelectedOption(option);
-  };
+    const [departure, setDeparture] = useState('');
+    const [arrival, setArrival] = useState('');
+    const [passenger, setPassenger] = useState('');
+    const [classes, setClasses] = useState('');
+    const [departureDate, setDepartureDate] = useState('');
+    const [returnDate, setReturnDate] = useState('');
+    const [adults,setAdults]=useState(1);
+    const [children,setChildren]=useState(0);
+    const [infants,setInfants]=useState(0);
+    const [totalPassenger,setTotalPassenger]=useState(1);
+    const [popup,SetPopup] =useState(false);
+    const navigate = useNavigate();
 
-  const [departure, setDeparture] = useState('');
-  const [arrival, setArrival] = useState('');
-  const [passenger, setPassenger] = useState('');
-  const [classes, setClasses] = useState('');
-  const [departureDate, setDepartureDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
+    const handleAirportSubmit = () => {
+        navigate.push('/booking');
+    }
+
+    const handleIncrement = (type) =>{
+        switch(type){
+            case 'adults':
+                if(adults+children<9) setAdults(adults+1);
+                break;
+            case 'children':
+                if(adults+children<9) setChildren(children+1);
+                break;
+            case 'infants':
+                if(infants<adults) setInfants(infants+1);
+                
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleDecrement =(type)=>{
+        switch(type){
+            case 'adults':
+                if(adults>1) setAdults(adults-1);
+                break;
+            case 'children':
+                if(children>0) setChildren(children-1);
+                break;
+            case 'infants':
+                if(infants>0) setInfants(infants-1);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleRadioChange = (option) => {
+        setSelectedOption(option === 'flight' ? 'flight' : 'flight+hotel');
+    };
 
   const handleInputChange = (value, setState) => {
     setState(value);
@@ -50,9 +96,14 @@ export default function Tabsearch() {
   const handleReturnDateChange = (event) => {
     handleInputChange(event.target.value, setReturnDate);
   };
-  
 
-  return (
+  useEffect(() => {
+    console.log(airportData);
+    setTotalPassenger(adults+children+infants)
+    if(infants>adults) setInfants(adults)
+    }, [adults,children,infants]);
+
+return (
     <TabsearchContainer>
         <TabsearchTop>
             <TabsearchSelect>
@@ -74,35 +125,100 @@ export default function Tabsearch() {
         <TabsearchBottom>
             <AirportForm>
                 <DepartureInputItem>
-                    <DepartureInput type="select" value={departure} onChange={handleDepartureChange} className={departure ? 'hasValue' : ''} />
-                    <DepartureLabel>Depature Airport</DepartureLabel>
+                    <DepartureLabel>Departure Airport</DepartureLabel>
+                    <DepartureInput name='from' id='from' value={departure} onChange={handleDepartureChange} className={departure ? 'hasValue' : ''}>
+                    <DepartureOption value="">Barcelona (BCN)</DepartureOption>
+                    {airportData.map((Element)=>(
+                <DepartureOption>
+                    {Element.name}  ({Element.code})
+                </DepartureOption>
+                    ))}
+                    </DepartureInput>
                 </DepartureInputItem>
                 <DepartureInputItem>
-                    <ArrivalInput type="select" value={arrival} onChange={handleArrivalChange} className={arrival ? 'hasValue' : ''} />
                     <DepartureLabel>Arrival Airport</DepartureLabel>
+                    <ArrivalInput type="select" value={arrival} onChange={handleArrivalChange} className={arrival ? 'hasValue' : ''} >
+                    <DepartureOption value="">Mumbai (BOM)</DepartureOption>
+                    {airportData.map((Element)=>(
+                <DepartureOption>
+                    {Element.name}  ({Element.code})
+                </DepartureOption>
+                    ))}
+                    </ArrivalInput>
                 </DepartureInputItem>
                 <DateInputItem>
                     <DateSelect>
-                        <DateInput type="select" value={departureDate} onChange={handleDepartureDateChange} className={departureDate ? 'hasValue' : ''}/>
+                        <DateInput type="date" value={departureDate} onChange={handleDepartureDateChange} className={departureDate ? 'hasValue' : ''}/>
                         <DepartureLabel> Departing</DepartureLabel>
                     </DateSelect>
                     <DateSelect>
-                        <DateInput type="select" value={returnDate} onChange={handleReturnDateChange} className={returnDate ? 'hasValue' : ''}/>
+                        <DateInput type="date" value={returnDate} onChange={handleReturnDateChange} className={returnDate ? 'hasValue' : ''}/>
                         <DepartureLabel>Returning</DepartureLabel>
                     </DateSelect>
                 </DateInputItem>
             </AirportForm>
             <AirportForm>
                 <DepartureInputItem>
-                    <PassengerInput type="select" value={passenger} onChange={handlePassengerChange} className={passenger ? 'hasValue' : ''}/>
-                    <DepartureLabel>Passengers</DepartureLabel>
+                    <PassengerInput onClick={()=>SetPopup(popup?false:true)} onChange={handlePassengerChange} className={passenger ? 'hasValue' : ''}>
+                        <DepartureLabel>Passengers</DepartureLabel>
+                        <PassengerNumber>{totalPassenger} Passengers</PassengerNumber>
+                    </PassengerInput>
+                   {popup && 
+                   <PassengerSelect>
+                        <PopoverArrow></PopoverArrow>
+                        <PassengerHead>Passengers</PassengerHead>
+                        <PassengerCounter>
+                            <PassengerAge>
+                                <CounterButton onClick={(e) => {
+                                    handleDecrement('adults'); 
+                                    e.preventDefault() ;} }>-</CounterButton>
+                                <AgeDetails> 
+                                    <NumberSect>{adults} Adults</NumberSect>
+                                    <AgeLimit>Ages 12+</AgeLimit>
+                                </AgeDetails>
+                                <CounterButton onClick={(e) => {
+                                    handleIncrement('adults');
+                                    e.preventDefault();}}>+</CounterButton>
+                            </PassengerAge>
+                            <PassengerAge>
+                                <CounterButton onClick={(e) => {
+                                    handleDecrement('children');
+                                    e.preventDefault();}}>-</CounterButton>
+                                <AgeDetails> 
+                                    <NumberSect>{children} Children</NumberSect>
+                                    <AgeLimit>Ages 2-11</AgeLimit>
+                                </AgeDetails>
+                                <CounterButton onClick={(e) => {
+                                    handleIncrement('children');
+                                    e.preventDefault();}}>+</CounterButton>
+                            </PassengerAge>
+                            <PassengerAge>
+                                <CounterButton onClick={(e) => {
+                                    handleDecrement('infants');
+                                    e.preventDefault();}}>-</CounterButton>
+                                <AgeDetails> 
+                                    <NumberSect>{infants} Infants</NumberSect>
+                                    <AgeLimit>Age under 2, on lap</AgeLimit>
+                                </AgeDetails>
+                                <CounterButton onClick={(e) => {
+                                    handleIncrement('infants');
+                                    e.preventDefault();}}>+</CounterButton>
+                            </PassengerAge>
+                        </PassengerCounter>
+                        <PassengerNote><NoteSpan>Please note: </NoteSpan> You can book a maximum of 9 passengers per booking.</PassengerNote>
+                    </PassengerSelect>}
                 </DepartureInputItem>
                 <StyledInfo />
                 <DepartureInputItem>
-                    <ClassInput type="select" value={classes} onChange={handleClassesChange} className={classes ? 'hasValue' : ''}/>
                     <DepartureLabel>Class</DepartureLabel>
+                    <ClassInput type="select" value={classes} onChange={handleClassesChange} className={classes ? 'hasValue' : ''}>
+                        <DepartureOption value="">Economy Class</DepartureOption>
+                        <DepartureOption>Premium Class</DepartureOption>
+                        <DepartureOption>Business Class</DepartureOption>
+                        <DepartureOption>First Class</DepartureOption>
+                    </ClassInput>
                 </DepartureInputItem>
-                <AirportSubmit>Search flights</AirportSubmit>
+                <AirportSubmit onClick={handleAirportSubmit}>Search flights</AirportSubmit>
             </AirportForm>
         </TabsearchBottom>
     </TabsearchContainer>
@@ -198,7 +314,6 @@ const SearchLabel=styled.label`
     font-size: 14px;
 `;
     
-    
 const AdvancedSearch=styled(ScrollLink)`
     font-family: helvetica;
     margin: 20px 0px;
@@ -241,13 +356,15 @@ const DepartureLabel=styled.p`
     left: 17px;
     top: 23px;
     pointer-events: none;
-    font-size: 16px;
+    font-size: 12px;
     color: #333;
     font-family: Helvetica;
     font-weight: 300;
+    transform: translateX(0px) translateY(-10px);
+    transition: 0.5s;
 `;
 
-const DepartureInput=styled.input`
+const DepartureInput=styled.select`
     padding: 30px 15px 10px 15px;
     outline: none;
     width: 100%;
@@ -257,14 +374,9 @@ const DepartureInput=styled.input`
     &:hover{
         box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
     }
-    &:focus ~p,
-    &.hasValue ~ p{
-        color: #333;
-        font-family: Helvetica;
-        transform: translateX(0px) translateY(-10px);
-        font-size: 12px;
-        transition: 0.5s;
-    }
+`;
+
+const DepartureOption=styled.option`
 
 `;
 
@@ -274,7 +386,7 @@ const StyledInfo = styled(IoIosInformationCircleOutline)`
 `;
 
 
-const ArrivalInput=styled.input`
+const ArrivalInput=styled.select`
     padding: 30px 15px 10px 15px;
     outline: none;
     width: 100%;
@@ -295,9 +407,8 @@ const ArrivalInput=styled.input`
     }
 `;
 
-const PassengerInput=styled.input`
-
-    padding: 30px 15px 10px 15px;
+const PassengerInput=styled.div`
+    padding: 31px 15px 8px 16px;
     outline: none;
     width: 100%;
     font-size: large;
@@ -321,8 +432,115 @@ const PassengerInput=styled.input`
         transition: 0.5s;
     }
 `;
-const ClassInput=styled.input`
 
+const PassengerNumber =styled.p`
+    color: #333;
+    font-size: 20px;
+`;
+
+const PassengerSelect =styled.div`
+    position:absolute;
+    top:75px;
+    border: black solid 1px;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+    height: max-content;
+`;
+
+const PopoverArrow=styled.div`
+    position: absolute;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    margin-left: -10px;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-right: none;
+    border-bottom: none;
+    transform: rotate(45deg);
+    top: -7px;
+`;
+
+const PassengerHead =styled.h4`
+    color: #333;
+    font-size: 23px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+`;
+const PassengerCounter =styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom:solid 1px #ccc ;
+    border-top:solid 1px #ccc ;
+    width: 100%;
+`;
+const PassengerAge =styled.div`
+    width: 90%;
+    margin: 10px 0px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+const CounterButton =styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39px;
+    height: 39px;
+    font-size: 1.6rem;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow: 0 2px 1px 0 #efefef;
+    cursor: pointer;
+    margin: 0px 10px;
+    font-weight: bolder;
+    color: #333;
+`;
+
+const AgeDetails =styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const NumberSect =styled.p`
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    font-family:Helvetica;
+`;
+    
+    const AgeLimit =styled.p`
+    color: #333;
+    font-weight: lighter;
+    font-size: 11px;
+    font-family:Helvetica;
+`;
+
+const PassengerNote =styled.p`
+    text-align: left;
+    width: 85% ;
+    padding-top: 10px;
+    color: #333;
+    font-weight: lighter;
+    font-size: 12px;
+    font-family:Helvetica;
+    line-height: 1rem;
+`;
+
+const NoteSpan =styled.span`
+    font-weight: bold;
+    font-size: 14px;
+`;
+
+const ClassInput=styled.select`
     padding: 30px 15px 10px 15px;
     outline: none;
     width: 100%;
@@ -395,4 +613,4 @@ const AirportSubmit=styled.button`
     &:hover{
         box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
     }
-    `;
+`;

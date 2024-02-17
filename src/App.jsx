@@ -35,12 +35,10 @@ useEffect(()=>{
         <title>Emirates | A clone site</title>
       </Helmet>
         <Routes>
-        
           <Route path="/" element={<Home/>}/>
           <Route path="Login-page" element={<Login/>}/>
           <Route path='/singleitem' element={<Book/>}/>
           <Route path="Loyalty-page" element={<LoyaltyJoin/>}/>
-
         </Routes>
           </UserContext.Provider>
     </>

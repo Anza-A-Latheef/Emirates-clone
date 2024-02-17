@@ -1,0 +1,165 @@
+{
+    "flights": [
+      {
+        "departureAirport": "JFK",
+        "arrivalAirport": "LAX",
+        "departureDate": "2024-02-15",
+        "arrivalDate": "2024-02-18",
+        "passengers": 1,
+        "class": "Economy"
+      },
+      {
+        "departureAirport": "LAX",
+        "arrivalAirport": "JFK",
+        "departureDate": "2024-02-20",
+        "arrivalDate": "2024-02-20",
+        "passengers": 2,
+        "class": "Business"
+      },
+      {
+        "departureAirport": "SFO",
+        "arrivalAirport": "ORD",
+        "departureDate": "2024-02-18",
+        "arrivalDate": "2024-02-18",
+        "passengers": 3,
+        "class": "First Class"
+      },
+      {
+        "departureAirport": "ORD",
+        "arrivalAirport": "SFO",
+        "departureDate": "2024-02-25",
+        "arrivalDate": "2024-02-25",
+        "passengers": 4,
+        "class": "Premium Economy"
+      },
+      {
+        "departureAirport": "SEA",
+        "arrivalAirport": "MIA",
+        "departureDate": "2024-02-16",
+        "arrivalDate": "2024-02-16",
+        "passengers": 1,
+        "class": "Economy"
+      },
+      {
+        "departureAirport": "MIA",
+        "arrivalAirport": "SEA",
+        "departureDate": "2024-02-21",
+        "arrivalDate": "2024-02-21",
+        "passengers": 2,
+        "class": "Business"
+      },
+      {
+        "departureAirport": "DFW",
+        "arrivalAirport": "LAS",
+        "departureDate": "2024-02-19",
+        "arrivalDate": "2024-02-19",
+        "passengers": 3,
+        "class": "First Class"
+      },
+      {
+        "departureAirport": "LAS",
+        "arrivalAirport": "DFW",
+        "departureDate": "2024-02-26",
+        "arrivalDate": "2024-02-26",
+        "passengers": 4,
+        "class": "Premium Economy"
+      },
+      {
+        "departureAirport": "ATL",
+        "arrivalAirport": "BOS",
+        "departureDate": "2024-02-17",
+        "arrivalDate": "2024-02-17",
+        "passengers": 1,
+        "class": "Economy"
+      },
+      {
+        "departureAirport": "BOS",
+        "arrivalAirport": "ATL",
+        "departureDate": "2024-02-22",
+        "arrivalDate": "2024-02-22",
+        "passengers": 2,
+        "class": "Business"
+      },
+      {
+        "departureAirport": "DEN",
+        "arrivalAirport": "PHX",
+        "departureDate": "2024-02-18",
+        "arrivalDate": "2024-02-18",
+        "passengers": 3,
+        "class": "First Class"
+      },
+      {
+        "departureAirport": "PHX",
+        "arrivalAirport": "DEN",
+        "departureDate": "2024-02-23",
+        "arrivalDate": "2024-02-23",
+        "passengers": 4,
+        "class": "Premium Economy"
+      },
+      {
+        "departureAirport": "MCO",
+        "arrivalAirport": "IAH",
+        "departureDate": "2024-02-16",
+        "arrivalDate": "2024-02-16",
+        "passengers": 1,
+        "class": "Economy"
+      },
+      {
+        "departureAirport": "IAH",
+        "arrivalAirport": "MCO",
+        "departureDate": "2024-02-21",
+        "arrivalDate": "2024-02-21",
+        "passengers": 2,
+        "class": "Business"
+      },
+      {
+        "departureAirport": "PHL",
+        "arrivalAirport": "DTW",
+        "departureDate": "2024-02-20",
+        "arrivalDate": "2024-02-20",
+        "passengers": 3,
+        "class": "First Class"
+      },
+      {
+        "departureAirport": "DTW",
+        "arrivalAirport": "PHL",
+        "departureDate": "2024-02-25",
+        "arrivalDate": "2024-02-25",
+        "passengers": 4,
+        "class": "Premium Economy"
+      },
+      {
+        "departureAirport": "MSP",
+        "arrivalAirport": "CLT",
+        "departureDate": "2024-02-15",
+        "arrivalDate": "2024-02-15",
+        "passengers": 1,
+        "class": "Economy"
+      },
+      {
+        "departureAirport": "CLT",
+        "arrivalAirport": "MSP",
+        "departureDate": "2024-02-20",
+        "arrivalDate": "2024-02-20",
+        "passengers": 2,
+        "class": "Business"
+      },
+      {
+        "departureAirport": "FLL",
+        "arrivalAirport": "SAN",
+        "departureDate": "2024-02-19",
+        "arrivalDate": "2024-02-19",
+        "passengers": 3,
+        "class": "First Class"
+      },
+      {
+        "departureAirport": "SAN",
+        "arrivalAirport": "FLL",
+        "departureDate": "2024-02-24",
+        "arrivalDate": "2024-02-24",
+        "passengers": 4,
+        "class": "Premium Economy"
+      }
+    ]
+  }
+  
