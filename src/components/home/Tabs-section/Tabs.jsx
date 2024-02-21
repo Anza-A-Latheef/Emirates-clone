@@ -28,7 +28,7 @@ const Tabs = () => {
         </TabheadContainer>
         <TabContents>
             <TabContents_li className={tabTitle===1?'active':'content'}>
-                <Tabsearch/>
+                    <Tabsearch />
             </TabContents_li> 
             <TabContents_li className={tabTitle===2?'active':'content'}>
                 <Tabbooking/>

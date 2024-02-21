@@ -1,30 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link as ScrollLink } from 'react-scroll';
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import airportData from "../../../../airport.json"
+import airportData from "../../../../airport.json";
 
 export default function Tabsearch() {
     
     const [selectedOption, setSelectedOption] = useState('flight');
-    const [departure, setDeparture] = useState('');
-    const [arrival, setArrival] = useState('');
-    const [passenger, setPassenger] = useState('');
-    const [classes, setClasses] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
-    const [returnDate, setReturnDate] = useState('');
+    const [departure, setDeparture] = useState('Barcelona (BCN)');
+    const [arrival, setArrival] = useState('Mumbai (BOM)');
+    const [passenger, setPassenger] = useState('1');
+    const [classes, setClasses] = useState('Economy Class');
+    const [departureDate, setDepartureDate] = useState('2024-02-21');
+    const [returnDate, setReturnDate] = useState('2024-02-22');
     const [adults,setAdults]=useState(1);
     const [children,setChildren]=useState(0);
     const [infants,setInfants]=useState(0);
     const [totalPassenger,setTotalPassenger]=useState(1);
     const [popup,SetPopup] =useState(false);
-    const navigate = useNavigate();
-
-    const handleAirportSubmit = () => {
-        navigate.push('/booking');
-    }
 
     const handleIncrement = (type) =>{
         switch(type){
@@ -74,7 +69,7 @@ export default function Tabsearch() {
   };
 
   const handleDepartureChange = (event) => {
-    handleInputChange(event.target.value, setDeparture);
+    handleInputChange(event.target.value,setDeparture);
   };
 
   const handleArrivalChange = (event) => {
@@ -101,7 +96,8 @@ export default function Tabsearch() {
     console.log(airportData);
     setTotalPassenger(adults+children+infants)
     if(infants>adults) setInfants(adults)
-    }, [adults,children,infants]);
+    console.log(arrival,departure);
+    }, [adults,children,infants,arrival,departure]);
 
 return (
     <TabsearchContainer>
@@ -128,9 +124,9 @@ return (
                     <DepartureLabel>Departure Airport</DepartureLabel>
                     <DepartureInput name='from' id='from' value={departure} onChange={handleDepartureChange} className={departure ? 'hasValue' : ''}>
                     <DepartureOption value="">Barcelona (BCN)</DepartureOption>
-                    {airportData.map((Element)=>(
-                <DepartureOption>
-                    {Element.name}  ({Element.code})
+                    {airportData.map((Element,index)=>(
+                <DepartureOption  key={index}>
+                    {Element.name}({Element.code})
                 </DepartureOption>
                     ))}
                     </DepartureInput>
@@ -138,10 +134,10 @@ return (
                 <DepartureInputItem>
                     <DepartureLabel>Arrival Airport</DepartureLabel>
                     <ArrivalInput type="select" value={arrival} onChange={handleArrivalChange} className={arrival ? 'hasValue' : ''} >
-                    <DepartureOption value="">Mumbai (BOM)</DepartureOption>
-                    {airportData.map((Element)=>(
-                <DepartureOption>
-                    {Element.name}  ({Element.code})
+                    <DepartureOption value="Mumbai (BOM)">Mumbai (BOM)</DepartureOption>
+                    {airportData.map((Element,index)=>(
+                <DepartureOption key={index}>
+                    {Element.name}({Element.code})
                 </DepartureOption>
                     ))}
                     </ArrivalInput>
@@ -218,7 +214,7 @@ return (
                         <DepartureOption>First Class</DepartureOption>
                     </ClassInput>
                 </DepartureInputItem>
-                <AirportSubmit onClick={handleAirportSubmit}>Search flights</AirportSubmit>
+                <Link to={`/Search-page/${departure}/${arrival}/${totalPassenger}/${classes}/${departureDate}/${returnDate}`}><AirportSubmit >Search flights</AirportSubmit></Link>
             </AirportForm>
         </TabsearchBottom>
     </TabsearchContainer>
@@ -600,7 +596,7 @@ const DateInput=styled.input`
 `;
 
 const AirportSubmit=styled.button`
-    width: 500px;
+    width:380px;
     background-color: #d71921;
     cursor: pointer;
     color: white;

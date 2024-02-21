@@ -5,7 +5,9 @@ import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Book from './components/Bookplaces/Book';
 import LoyaltyJoin from './components/LoyaltyJoin';
+import SearchPage from './components/SearchPage';
 import "./App.css";
+
 
 
 export const UserContext = React.createContext();
@@ -39,6 +41,7 @@ useEffect(()=>{
           <Route path="Login-page" element={<Login/>}/>
           <Route path='/singleitem' element={<Book/>}/>
           <Route path="Loyalty-page" element={<LoyaltyJoin/>}/>
+          <Route path="/Search-page/:departure/:arrival/:totalPassenger/:classes/:departureDate/:returnDate" element={<SearchPage/>} />
         </Routes>
           </UserContext.Provider>
     </>
