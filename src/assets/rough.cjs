@@ -39,51 +39,58 @@ const airport_api = [
 ]
 
 
-const airportArr = airport_api.map((i)=>i.code)
-const PlaceArr = airport_api.map((i)=>i.name)
-var arr = []
-airportArr.map((item,index1)=>{
-    airportArr.map((arrival,index2)=>{
-        for (let index = 0; index < 3; index++) {
-            const departure_place=PlaceArr[index1]
-            const arrival_place=PlaceArr[index2]
-            const departure_airport=item
-            const arrival_airport=arrival
-            const flight_code=Math.floor(Math.random()*900)+100
-            const departure_time=`${Math.floor(Math.random()*20)+2}:${Math.floor(Math.random()*59)}`
-            const travelTime=`${Math.floor(Math.random()*20)+2}:${Math.floor(Math.random()*59)}`
-            const economy_class=(Math.floor(Math.random()*10)+1)*10000
-            
-            const obj = {
-                departure_place:departure_place,
-                arrival_place:arrival_place,
-                departure:departure_airport,
-                arrival:arrival_airport,
-                flight_code:flight_code,
-                departure_time:departure_time,
-                travel_time:travelTime,
-                class:[
-                    {
-                        economy:economy_class,
-                        premium:economy_class+5000,
-                        business:economy_class+10000,
-                        firstclass:economy_class+15000
+const airportArr = airport_api.map((i) => i.code);
+const PlaceArr = airport_api.map((i) => i.name);
+const arr = [];
+
+airportArr.forEach((departure, index1) => {
+    airportArr.forEach((arrival, index2) => {
+        if (index1 !== index2) {
+            for (let index = 0; index < 3; index++) {
+                const departure_place = PlaceArr[index1];
+                const arrival_place = PlaceArr[index2];
+                const flight_code = Math.floor(Math.random() * 900) + 100;
+                const departure_hour = Math.floor(Math.random() * 20) + 2;
+                const departureMinute = Math.floor(Math.random() * 59);
+                const travelHour = Math.floor(Math.random() * 20) + 2;
+                const travelMinute = Math.floor(Math.random() * 59);
+                const arrival_hour = (departure_hour + travelHour) % 24;
+                const arrival_minute = (departureMinute + travelMinute) % 60;
+
+                const departure_time = `${departure_hour}:${departureMinute < 10 ? '0' + departureMinute : departureMinute}`;
+                const travelTime = `${travelHour}:${travelMinute < 10 ? '0' + travelMinute : travelMinute}`;
+                const arrivalTime = `${arrival_hour}:${arrival_minute < 10 ? '0' + arrival_minute : arrival_minute}`;
+                const economy_class = (Math.floor(Math.random() * 10) + 1) * 10000;
+
+                const obj = {
+                    departure_place: departure_place,
+                    arrival_place: arrival_place,
+                    departure: departure,
+                    arrival: arrival,
+                    flight_code: flight_code,
+                    departure_time: departure_time,
+                    travel_time: travelTime,
+                    arrival_time: arrivalTime,
+                    SeatingClass: {
+                        economy: economy_class,
+                        premium: economy_class + 5000,
+                        business: economy_class + 10000,
+                        firstclass: economy_class + 15000
                     }
-                ]
+                };
+                arr.push(obj);
             }
-            arr.push(obj)
-            // console.log(obj)
         }
-    })
-})
+    });
+});
 
-const FlightJson=JSON.stringify(arr,null,2)
-const Fd="FlightDetail.json"
-fs.writeFile(Fd,FlightJson,(err)=>{
-    if (err){
-        console.log('asdf');
+const FlightJson = JSON.stringify(arr, null, 2);
+const Fd = "FlightDetail.json";
+
+fs.writeFile(Fd, FlightJson, (err) => {
+    if (err) {
+        console.log('Error writing file:', err);
+    } else {
+        console.log("Flight details generated and saved successfully!");
     }
-    else{
-        console.log(";lkj");
-}})
-
+});

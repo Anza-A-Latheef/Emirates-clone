@@ -5,16 +5,26 @@ import { VscTriangleDown } from "react-icons/vsc";
 import logobadge from '../../src/assets/images/emirates-logo-badge.svg';
 import { useParams } from 'react-router-dom';
 import LoadingPage from './LoadingPage';
+import FlightDetail from '../assets/FlightDetail.json'
 
 const SearchPage = () => {
 const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
 const [loading,setLoading]= useState(false);
- useEffect(() => {
-    setLoading(true)
-    setTimeout(()=>{
-        setLoading(false)
-    },100)
- }, []);
+const [emiratesFlight,setEmiratesFlight]=useState([]);
+useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+        const filteredFlights = FlightDetail.filter(flight => {
+            return (
+                flight.departure_place.includes(departure.slice(0, -6)) &&
+                flight.arrival_place.includes(arrival.slice(0, -6))
+            );
+        });
+        setEmiratesFlight(filteredFlights);
+        setLoading(false);
+    }, 100);
+}, [departure, arrival]);
+
 
   return (
     <>
@@ -76,81 +86,84 @@ const [loading,setLoading]= useState(false);
                         <OutboundDetails>
                             <Outbound>Outbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
                             <OutboundDate>{departureDate}</OutboundDate>
-                            <Flightbox>
-                                <TravelData>
+                            {emiratesFlight && emiratesFlight.map((flight, index) => (
+                            <Flightbox key={index}>
+                                <TravelData >
                                     <FlightCode>
                                     <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
                                         <FlagCode>
                                             <Code>B777</Code>
-                                            <Code>EK547</Code>
+                                            <Code>EK{flight.flight_code}</Code>
                                         </FlagCode>
                                     </FlightCode>
                                     <FlightData>
                                         <AirportTime>
-                                        <AirportCode>{departure.slice(-4,-1)}</AirportCode>
-                                            <FlightTime>21:40</FlightTime>
+                                        <AirportCode>{flight.departure}</AirportCode>
+                                            <FlightTime>{flight.departure_time}</FlightTime>
                                         </AirportTime>
                                         <FlightDuration>
-                                            <TravelDetail>19 hrs 25 mins</TravelDetail>
+                                            <TravelDetail>{flight.travel_time}</TravelDetail>
                                             <FlightTrackImg>
                                                 <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
                                             </FlightTrackImg>
                                             <TravelDetail><u>1 connection</u></TravelDetail>
                                         </FlightDuration>
                                         <AirportTime>
-                                        <AirportCode>{arrival.slice(-4,-1)}</AirportCode>
-                                            <FlightTime>11:35</FlightTime>
+                                        <AirportCode>{flight.arrival}</AirportCode>
+                                            <FlightTime>{flight.arrival_time}</FlightTime>
                                         </AirportTime>
                                     </FlightData>
                                 </TravelData>
                                 <FairData>
                                     <SelectedClass>{classes}</SelectedClass>
                                     <SelectedClassFair>
-                                        <ClassFair>from INR</ClassFair>
-                                        <ClassFairInr>197,164</ClassFairInr>
+                                    <ClassFair>from INR</ClassFair>
+                                                <ClassFairInr>1235566</ClassFairInr>
                                     </SelectedClassFair>
                                 </FairData>
                             </Flightbox>
+                            ))}
                         </OutboundDetails>
-
                         <OutboundDetails>
-                            <Outbound>Inbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
+                            <Outbound>Inbound, {arrival.slice(0,-5)} to {departure.slice(0,-5)}</Outbound>
                             <OutboundDate>{returnDate}</OutboundDate>
-                            <Flightbox>
-                                <TravelData>
-                                    <FlightCode>
-                                        <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
-                                        <FlagCode>
-                                            <Code>B777</Code>
-                                            <Code>EK547</Code>
-                                        </FlagCode>
-                                    </FlightCode>
-                                    <FlightData>
-                                        <AirportTime>
-                                        <AirportCode>{arrival.slice(-4,-1)}</AirportCode>
-                                            <FlightTime>21:40</FlightTime>
-                                        </AirportTime>
-                                        <FlightDuration>
-                                            <TravelDetail>19 hrs 25 mins</TravelDetail>
-                                            <FlightTrackImg>
-                                                <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
-                                            </FlightTrackImg>
-                                            <TravelDetail><u>1 connection</u></TravelDetail>
-                                        </FlightDuration>
-                                        <AirportTime>
-                                        <AirportCode>{departure.slice(-4,-1)}</AirportCode>
-                                            <FlightTime>11:35</FlightTime>
-                                        </AirportTime>
-                                    </FlightData>
-                                </TravelData>
+                            {emiratesFlight && emiratesFlight.map((flight, index) => (
+                                <Flightbox key={index}>
+                                    <TravelData>
+                                        <FlightCode>
+                                            <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
+                                            <FlagCode>
+                                                <Code>B777</Code>
+                                                <Code>EK{flight.flight_code}</Code>
+                                            </FlagCode>
+                                        </FlightCode>
+                                        <FlightData>
+                                            <AirportTime>
+                                            <AirportCode>{flight.arrival}</AirportCode>
+                                                <FlightTime>{flight.arrival_time}</FlightTime>
+                                            </AirportTime>
+                                            <FlightDuration>
+                                                <TravelDetail>{flight.travel_time}</TravelDetail>
+                                                <FlightTrackImg>
+                                                    <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
+                                                </FlightTrackImg>
+                                                <TravelDetail><u>1 connection</u></TravelDetail>
+                                            </FlightDuration>
+                                            <AirportTime>
+                                            <AirportCode>{flight.departure}</AirportCode>
+                                                <FlightTime>{flight.departure_time}</FlightTime>
+                                            </AirportTime>
+                                        </FlightData>
+                                    </TravelData>
                                 <FairData>
                                     <SelectedClass>{classes}</SelectedClass>
                                     <SelectedClassFair>
                                         <ClassFair>from INR</ClassFair>
-                                        <ClassFairInr>197,164</ClassFairInr>
+                                        <ClassFairInr>1234557</ClassFairInr>
                                     </SelectedClassFair>
                                 </FairData>
                             </Flightbox>
+                        ))}
                         </OutboundDetails>
                     </FlightDetails>
                     <FairSummary>
