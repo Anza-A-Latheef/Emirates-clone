@@ -72,10 +72,10 @@ airportArr.forEach((departure, index1) => {
                     travel_time: travelTime,
                     arrival_time: arrivalTime,
                     SeatingClass: {
-                        economy: economy_class,
-                        premium: economy_class + 5000,
-                        business: economy_class + 10000,
-                        firstclass: economy_class + 15000
+                        Economy: economy_class,
+                        Premium: economy_class + 5000,
+                        Business: economy_class + 10000,
+                        First: economy_class + 15000
                     }
                 };
                 arr.push(obj);

@@ -11,6 +11,8 @@ const SearchPage = () => {
 const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
 const [loading,setLoading]= useState(false);
 const [emiratesFlight,setEmiratesFlight]=useState([]);
+const [totalFare,setTotalFare]=useState();
+
 useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -18,12 +20,15 @@ useEffect(() => {
             return (
                 flight.departure_place.includes(departure.slice(0, -6)) &&
                 flight.arrival_place.includes(arrival.slice(0, -6))
-            );
-        });
-        setEmiratesFlight(filteredFlights);
-        setLoading(false);
-    }, 100);
-}, [departure, arrival]);
+                );
+            });
+            const totalFare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
+
+            setEmiratesFlight(filteredFlights);
+            setTotalFare(totalFare); // Assuming you have a state variable for total fare
+            setLoading(false);
+        }, 2000);
+    }, [departure, arrival, totalPassenger, classes]);
 
 
   return (
@@ -78,7 +83,7 @@ useEffect(() => {
                     </CurencyConverter>
                     <PriceSection>
                         <LowPrice>Lowest price for all passengers</LowPrice>
-                        <FlightFare>INR 350,194</FlightFare>
+                        <FlightFare>INR {totalFare}</FlightFare>
                         <FareDetails>This price is the lowest available price combination for your selected dates. Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and carrier-imposed charges for {totalPassenger} passengers.</FareDetails>
                     </PriceSection>
                     <FairConditions>Please ensure you read the <u> fare conditions</u> at the bottom before selecting your flights.</FairConditions>
@@ -115,10 +120,10 @@ useEffect(() => {
                                     </FlightData>
                                 </TravelData>
                                 <FairData>
-                                    <SelectedClass>{classes}</SelectedClass>
+                                    <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
                                     <SelectedClassFair>
                                     <ClassFair>from INR</ClassFair>
-                                                <ClassFairInr>1235566</ClassFairInr>
+                                        <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
                                     </SelectedClassFair>
                                 </FairData>
                             </Flightbox>
@@ -156,10 +161,10 @@ useEffect(() => {
                                         </FlightData>
                                     </TravelData>
                                 <FairData>
-                                    <SelectedClass>{classes}</SelectedClass>
+                                    <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
                                     <SelectedClassFair>
                                         <ClassFair>from INR</ClassFair>
-                                        <ClassFairInr>1234557</ClassFairInr>
+                                        <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
                                     </SelectedClassFair>
                                 </FairData>
                             </Flightbox>
