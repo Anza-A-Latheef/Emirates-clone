@@ -5,7 +5,7 @@ import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Book from './components/Bookplaces/Book';
 import LoyaltyJoin from './components/LoyaltyJoin';
-import SearchPage from './components/SearchPage';
+import SearchPage from '../src/components/Searchflight/SearchPage';
 import "./App.css";
 
 
