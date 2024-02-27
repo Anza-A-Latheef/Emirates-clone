@@ -7,19 +7,32 @@ import { useParams } from 'react-router-dom';
 import LoadingPage from '../LoadingPage';
 import Flights from './Flights';
 import Passengers from './Passengers';
+import Options from './Options';
+import Payment from './Payment';
+import Confirm from './Confirm';
 
 const SearchPage = () => {
-const {departure,arrival ,totalPassenger,classes} = useParams();
-const [loading,setLoading]= useState(false);
+    const [sectionTitle,setSectionTitle]=useState(1);
 
-useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-            setLoading(false)
-        }, 2000);
-    }, [departure, arrival, totalPassenger, classes]);
+    const handleContinue = () => {
+        if (sectionTitle < 5) {
+          const nextSection = sectionTitle + 1;
+          setSectionTitle(nextSection);
+        } else {
+          console.log('Booking process completed');
+        }
+      };
+    const {departure,arrival ,totalPassenger,classes} = useParams();
+    const [loading,setLoading]= useState(false);
 
-  return (
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+                setLoading(false)
+            }, 2000);
+        }, [departure, arrival, totalPassenger, classes]);
+
+    return (
     <>
         {loading ?(<LoadingPage/>):(
             <>
@@ -38,34 +51,50 @@ useEffect(() => {
                     </SummaryLeft>
                     <SummaryButton>View Summary</SummaryButton>
                 </AirportSummary>
-                    <BookStatus>
-                        <BookHeading>Make a booking</BookHeading>
-                        <BookSectionDiv>
-                            <BookSection>
-                                <StatusNo>1</StatusNo>
-                                <Statusname>Flights</Statusname>
-                            </BookSection>
-                            <BookSection>
-                                <StatusNo>2</StatusNo>
-                                <Statusname>Passengers</Statusname>
-                            </BookSection>
-                            <BookSection>
-                                <StatusNo>3</StatusNo>
-                                <Statusname>Options</Statusname>
-                            </BookSection>
-                            <BookSection>
-                                <StatusNo>4</StatusNo>
-                                <Statusname>Payment</Statusname>
-                            </BookSection>
-                            <BookSection>
-                                <StatusNo>5</StatusNo>
-                                <Statusname>Confirm</Statusname>
-                            </BookSection>
-                        </BookSectionDiv>
-                    </BookStatus>
+                <BookStatus>
+                    <BookHeading>Make a booking</BookHeading>
+                    <BookSectionDiv>
+                        {[1, 2, 3, 4, 5].map((number) => (
+                        <BookSection key={number} className={sectionTitle >= number ? 'active' : ''}>
+                            <StatusNo>{number}</StatusNo>
+                            <Statusname>
+                                {number === 1 && 'Flights'}
+                                {number === 2 && 'Passengers'}
+                                {number === 3 && 'Options'}
+                                {number === 4 && 'Payment'}
+                                {number === 5 && 'Confirm'}
+                            </Statusname>
+                        </BookSection>))}
+                    </BookSectionDiv>
+                </BookStatus>
                 <SummaryBody>
-                    {/* <Flights/> */}
-                    <Passengers/>
+                    <SectionContent className={sectionTitle===1?'active':'content'}>
+                        <Flights/>
+                        <ContinueButtonCont>
+                            <ContinueButton onClick={handleContinue}>Continue to passengers</ContinueButton>
+                        </ContinueButtonCont>
+                    </SectionContent>
+                    <SectionContent className={sectionTitle===2?'active':'content'}>
+                        <Passengers totalPassengers={totalPassenger}/>
+                        <ContinueButtonCont>
+                            <ContinueButton onClick={handleContinue}>Continue to Options</ContinueButton>
+                        </ContinueButtonCont>
+                    </SectionContent>
+                    <SectionContent className={sectionTitle===3?'active':'content'}>
+                        <Options/>
+                        <ContinueButtonCont>
+                            <ContinueButton onClick={handleContinue}>Continue to Payment</ContinueButton>
+                        </ContinueButtonCont>
+                    </SectionContent>
+                    <SectionContent className={sectionTitle===4?'active':'content'}>
+                        <Payment/>
+                        <ContinueButtonCont>
+                            <ContinueButton onClick={handleContinue}>Continue to Confirm</ContinueButton>
+                        </ContinueButtonCont>
+                    </SectionContent>
+                    <SectionContent className={sectionTitle===5?'active':'content'}>
+                        <Confirm/>
+                    </SectionContent>
                 </SummaryBody>
                 <SearchFooter>
                     <FooterTop>
@@ -87,8 +116,7 @@ useEffect(() => {
             </>)
         }
     </>
-  )
-}
+)}
 
 export default SearchPage;
 
@@ -273,23 +301,27 @@ const BookSection=styled.div`
     align-items: center;
     width: 200px;
     border-bottom: 5px solid #ccc;
+
+    &.active{
+        border-bottom: #333 5px solid;
+    }
 `;
 
-// const StatusNoActive=styled.h2`
-//     font-size: 45px;
-//     color: #c60c30;
-// `;
-
-// const StatusnameActive=styled.h6`
-//     font-size: 16px;
-//     color: #333;
-//     margin-left: 10px;
-//     font-weight: lighter;
-// `;
+const SectionContent=styled.div`
+    &.content{
+        display: none;
+    }
+    &.active{
+        display:block;
+    }
+`;
 
 const StatusNo=styled.h2`
     font-size: 45px;
     color: #666;
+    ${BookSection}.active &{
+        color: #c60c30;;
+    }
 `;
 
 const Statusname=styled.h6`
@@ -297,6 +329,26 @@ const Statusname=styled.h6`
     font-size: 16px;
     margin-left: 10px;
     font-weight: lighter;
+    ${BookSection}.active &{
+        color: #333333;
+        font-weight: bold;
+    }
 
 `;
 
+const ContinueButton=styled.button`
+    background-color: #c60c30;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+`;
+const ContinueButtonCont=styled.div`
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+`;

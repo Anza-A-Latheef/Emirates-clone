@@ -1,7 +1,119 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 
-const Passengers = () => {
+const Passengers = ({ totalPassengers }) => {
+    const [title, setTitle] = useState('');
+    const [day, setDay] = useState('');
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
+    const [showContent, setShowContent] = useState(Array(totalPassengers).fill(false));
+
+    const toggleContent = (index) => {
+        const newShowContent = [...showContent];
+        newShowContent[index] = !newShowContent[index];
+        setShowContent(newShowContent);
+    };
+
+    const handleTitleChange = (event) => {
+      setTitle(event.target.value);
+    };
+  
+    const handleDayChange = (event) => {
+      setDay(event.target.value);
+    };
+  
+    const handleMonthChange = (event) => {
+      setMonth(event.target.value);
+    };
+  
+    const handleYearChange = (event) => {
+      setYear(event.target.value);
+    };
+
+    const generatePassengerInputs = () => {
+        let inputs = [];
+        for (let i = 1; i <= totalPassengers; i++) {
+            inputs.push(
+                <PassengerData key={i}>
+                    <PassengerDataHead onClick={() => toggleContent(i)}>Passenger {i}</PassengerDataHead>
+                    {showContent[i] && (
+                        <>
+             <PassengerDataP>Make sure the names you enter exactly match your passport, and please use English characters only. Names can't be changed once you have completed your booking.</PassengerDataP>
+             <PassengerDataInputArea>
+             <TitleSelectItem>
+                     <TitleLabel>Title</TitleLabel>
+                     <TitleSelect value={title} onChange={handleTitleChange} className="">
+                         <TitleOption value="">Select Title</TitleOption>
+                         <TitleOption value="Mr">Mr</TitleOption>
+                         <TitleOption value="Mrs">Mrs</TitleOption>
+                         <TitleOption value="Miss">Miss</TitleOption>
+                         <TitleOption value="Ms">Ms</TitleOption>
+                         <TitleOption value="Undisclosed">Undisclosed</TitleOption>
+                     </TitleSelect>
+                 </TitleSelectItem>
+                 <NameInputItem>
+                     <FirstName placeholder='First Name'/>
+                     <LastName placeholder='Last Name'/>
+                 </NameInputItem>
+                 <DobInput>
+                     <TitleSelectItem>
+                     <DayLabel>Day</DayLabel>
+                     <DaySelect value={day} onChange={handleDayChange} className="">
+                         <TitleOption value="">2</TitleOption>
+                         {Array.from({ length: 31 }, (_, index) => (
+                             <TitleOption key={index + 1} value={index + 1}>
+                                 {index + 1}
+                             </TitleOption>
+                         ))}
+                 </DaySelect>
+                     </TitleSelectItem>
+                     <TitleSelectItem>
+                     <MonthLabel>Month</MonthLabel>
+                     <MonthSelect value={month} onChange={handleMonthChange} className="">
+                     <TitleOption value="">February</TitleOption>
+                     {Array.from({ length: 12 }, (_, index) => (
+                         <TitleOption key={index + 1} value={index + 1}>
+                             {new Date(0, index).toLocaleString('default', { month: 'long' })}
+                         </TitleOption>                   
+                         ))}               
+                         </MonthSelect>
+                    </TitleSelectItem>
+                    <TitleSelectItem>
+                        <YearLabel>Year</YearLabel>
+                        <YearSelect value={year} onChange={handleYearChange} className="">
+                    <TitleOption value="">2000</TitleOption>
+                    {Array.from({ length: 150}, (_, index) => (
+                        <TitleOption key={index + 1875} value={index + 1875}>
+                            {index + 1875}
+                        </TitleOption>
+                    ))}
+                </YearSelect>
+                    </TitleSelectItem>
+                </DobInput>
+            </PassengerDataInputArea>        
+            <FlyerBenefits>
+                <FlyerBenefitsHead>Your Frequent Flyer benefits</FlyerBenefitsHead>
+                <FlyerBenefitsP>Add your Emirates Skywards number to avail <FlyerBenefitSpan>exclusive Skywards benefits.</FlyerBenefitSpan> You can also add a partner airline membership number to earn Miles for this flight.</FlyerBenefitsP>
+                <FlyerBenefitsInput>
+                    <FlyerSelectItem>
+                        <FlyerLabel>Airline/Programme</FlyerLabel>
+                        <FlyerSelect type="select" value="" onChange="" className="">
+                            <TitleOption value="">None</TitleOption>
+                            <TitleOption>Emirates & flydubai / Skywards</TitleOption>
+                            <TitleOption>Qantas / Frequent Flyer</TitleOption>
+                        </FlyerSelect>
+                    </FlyerSelectItem>
+                    <FlyerNumber placeholder="Frequent flyer number"/>
+                </FlyerBenefitsInput>
+            </FlyerBenefits>
+                 </>
+                 )}
+             </PassengerData>
+         );
+     }
+     return inputs;
+ };
+
   return (
     <PassengerPage>
         <ImpInfo>
@@ -12,74 +124,8 @@ const Passengers = () => {
                 <ImpInfoPara><ImpInfoParaSpan>1. If you're travelling from India on flydubai:</ImpInfoParaSpan> An <ImpInfoParaSpan>Ok to board approval</ImpInfoParaSpan> from flydubai is mandatory for citizens of India travelling from Delhi. Please check the <u>flydubai website</u> for more information.</ImpInfoPara>
             </ImpInfoContent>
         </ImpInfo>
-        <PassengerData>
-            <PassengerDataHead>Passenger 1 (Adult)</PassengerDataHead>
-            <PassengerDataP>Make sure the names you enter exactly match your passport, and please use English characters only. Names can't be changed once you have completed your booking.</PassengerDataP>
-            <PassengerDataInputArea>
-                <TitleSelectItem>
-                    <TitleLabel>Title</TitleLabel>
-                    <TitleSelect type="select" value="" onChange="" className="">
-                        <TitleOption value="">Mr</TitleOption>
-                        <TitleOption>Mrs</TitleOption>
-                        <TitleOption>Miss</TitleOption>
-                        <TitleOption>ms</TitleOption>
-                        <TitleOption>Undisclosed</TitleOption>
-                    </TitleSelect>
-                </TitleSelectItem>
-                <NameInputItem>
-                    <FirstName placeholder='First Name'/>
-                    <LastName placeholder='Last Name'/>
-                </NameInputItem>
-                <DobInput>
-                    <TitleLabel>Day</TitleLabel>
-                        <TitleSelect type="select" value="" onChange="" className="">
-                            <TitleOption value="">1</TitleOption>
-                            <TitleOption>2</TitleOption>
-                            <TitleOption>3</TitleOption>
-                            <TitleOption>4</TitleOption>
-                            <TitleOption>5</TitleOption>
-                            <TitleOption>6</TitleOption>
-                            <TitleOption>7</TitleOption>
-                            <TitleOption>8</TitleOption>
-                            <TitleOption>9</TitleOption>
-                            <TitleOption>10</TitleOption>
-                        </TitleSelect>
-                    <TitleLabel>Month</TitleLabel>
-                        <TitleSelect type="select" value="" onChange="" className="">
-                            <TitleOption value="">January</TitleOption>
-                            <TitleOption>February</TitleOption>
-                            <TitleOption>March</TitleOption>
-                            <TitleOption>April</TitleOption>
-                            <TitleOption>May</TitleOption>
-                            <TitleOption>June</TitleOption>
-                            <TitleOption>July</TitleOption>
-                        </TitleSelect>
-                    <TitleLabel>Title</TitleLabel>
-                        <TitleSelect type="select" value="" onChange="" className="">
-                            <TitleOption value="">Mr</TitleOption>
-                            <TitleOption>Mrs</TitleOption>
-                            <TitleOption>Miss</TitleOption>
-                            <TitleOption>ms</TitleOption>
-                            <TitleOption>Undisclosed</TitleOption>
-                        </TitleSelect>
-                </DobInput>
-            </PassengerDataInputArea>        
-            <FlyerBenefits>
-                <FlyerBenefitsHead>Your Frequent Flyer benefits</FlyerBenefitsHead>
-                <FlyerBenefitsP>Add your Emirates Skywards number to avail <FlyerBenefitSpan>exclusive Skywards benefits.</FlyerBenefitSpan> You can also add a partner airline membership number to earn Miles for this flight.</FlyerBenefitsP>
-                <FlyerBenefitsInput>
-                    <TitleSelectItem>
-                        <TitleLabel>Airline/Programme</TitleLabel>
-                        <TitleSelect type="select" value="" onChange="" className="">
-                            <TitleOption value="">None</TitleOption>
-                            <TitleOption>Emirates & flydubai / Skywards</TitleOption>
-                            <TitleOption>Qantas / Frequent Flyer</TitleOption>
-                        </TitleSelect>
-                        <FlyerNumber placehholder="Frequent flyer number"/>
-                    </TitleSelectItem>
-                </FlyerBenefitsInput>
-            </FlyerBenefits>
-        </PassengerData>
+        {generatePassengerInputs()}
+        
     </PassengerPage>
   )
 }
@@ -118,14 +164,6 @@ const Important=styled.h3`
     color: #333;
 `;
 
-const WarningIcon=styled.em`
-    width: 15px;
-    height: 15px;
-    background-repeat: no-repeat;
-    background-size: 15px 15px;
-    background-image: url(../Images/tierbenefit/ic-info.png);
-`;
-
 const ImpInfoContent=styled.div`
    padding-top: 20px !important;
    border-top: 1px solid #fcfcfc;
@@ -141,6 +179,7 @@ const ImpInfoParaSpan=styled.strong`
 `;
 
 const PassengerData=styled.div`
+    margin: 30px 0px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1), 0 2px 4px 0 rgba(0,0,0,.1);
     border-radius: 3px;
     padding-bottom: 20px;
@@ -177,7 +216,7 @@ const TitleSelectItem=styled.div`
 const TitleLabel=styled.p`
     position: absolute;
     left: 29px;
-    top: 19px;
+    top: 38px;
     pointer-events: none;
     font-size: 12px;
     color: #333;
@@ -200,27 +239,30 @@ const TitleSelect=styled.select`
     box-sizing: border-box;
     font-size: 20px;
     font-weight: 600;
-    margin: 0 0 0 20px;
+    margin: 20px 0 0 20px;
     &:hover{
         box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
     }
 `;
 
 const TitleOption=styled.option`
-
+    font-size:15px;
+    font-family:Helvetica;
+    font-weight: bold;
 `;
 
 const NameInputItem=styled.div`
     display: flex;
     align-items: center;
+    margin: 20px 0px;
 `;
 
 const FirstName=styled.input`
     height: 60px;
-    width: 50%;
+    width: 45%;
     border: solid #666 1px;
     border-radius: 4px;
-    padding: 19px 40px 0 20px;
+    padding-left: 20px;
     color: #333;
     font: 400 16px/16px arial,sans-serif;
     box-shadow: inset 4px 4px 0 0 #f2f2f2;
@@ -242,11 +284,11 @@ const FirstName=styled.input`
 
 const LastName=styled.input`
     height: 60px;
-    width: 50%;
+    width: 45%;
     outline: none;
     border: solid #666 1px;
     border-radius: 4px;
-    padding: 19px 40px 0 20px;
+    padding-left: 20px;
     color: #333;
     font: 400 16px/16px arial,sans-serif;
     box-shadow: inset 4px 4px 0 0 #f2f2f2;
@@ -266,30 +308,208 @@ const LastName=styled.input`
 `;
 
 const DobInput=styled.div`
-    border: 1px solid #333;
+    display: flex;
+    height: 60px;
+    width: 40%;
+    outline: none;
+    border: solid #666 1px;
+    border-radius: 4px;
+    color: #333;
+    font: 400 16px/16px arial,sans-serif;
+    box-shadow: inset 4px 4px 0 0 #f2f2f2;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 0 20px;
+    margin-top: 20px;
+`;
+
+const DaySelect=styled.select`
+    height: 50px;
+    padding: 19px 40px 0 20px;
+    color: #333;
+    font: 400 16px/16px arial,sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    outline:none;
+    border:none;
+`;
+
+const DayLabel=styled.p`
+    position: absolute;
+    left: 29px;
+    top: 19px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #333;
+    font-family: Helvetica;
+    font-weight: 300;
+    transform: translateX(0px) translateY(-10px);
+    transition: 0.5s;
+`;
+
+const MonthSelect=styled.select`
+     height: 50px;
+    padding: 19px 40px 0 20px;
+    color: #333;
+    font: 400 16px/16px arial,sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    outline:none;
+    border:none;
+`;
+
+const MonthLabel=styled.p`
+position: absolute;
+    left: 29px;
+    top: 19px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #333;
+    font-family: Helvetica;
+    font-weight: 300;
+    transform: translateX(0px) translateY(-10px);
+    transition: 0.5s;
+`;
+
+const YearSelect=styled.select`
+    height: 50px;
+    padding: 19px 35px 0 20px;
+    color: #333;
+    font: 400 16px/16px arial,sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    outline:none;
+    border:none;
+`;
+
+
+const YearLabel=styled.p`
+    position: absolute;
+    left: 29px;
+    top: 19px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #333;
+    font-family: Helvetica;
+    font-weight: 300;
+    transform: translateX(0px) translateY(-10px);
+    transition: 0.5s;
 `;
 
 const FlyerBenefits=styled.div`
-    font-weight: bold;
+    min-width: 800px;
+    margin-top: 15px;
+    padding: unset;
+    background: none;
+    border-radius: 3px;
+    color: #333;
+    border: none;
 `;
 
 const FlyerBenefitsHead=styled.h4`
+    margin:  0 20px;
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #333;
+    position: relative;
+    padding-bottom: 15px;
 
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background-color: #c60c30;
+    }
 `;
 
 const FlyerBenefitsP=styled.p`
-
+    width: 1040px;
+    font-family: Helvetica;
+    margin:  15px 20px;
+    font-size: 16px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333;
 `;
 
 const FlyerBenefitSpan=styled.span`
-color: #d71921;
+    color: #c60c30;
+    text-decoration: underline;
+
 `;
 
 const FlyerBenefitsInput=styled.div`
     display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 0px 20px;
+`;
+const FlyerSelectItem=styled.div`
+    position: relative;
+    width: 45%;
+    height: 60px;
+`;
+const FlyerLabel=styled.p`
+   position: absolute;
+    left: 14px;
+    top: 19px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #333;
+    font-family: Helvetica;
+    font-weight: 300;
+    transform: translateX(0px) translateY(-10px);
+    transition: 0.5s;
 `;
 
+
+const FlyerSelect=styled.select`
+    height: 60px;
+    width: 100%;
+    border: solid #666 1px;
+    border-radius: 4px;
+    padding: 19px 40px 0 20px;
+    color: #333;
+    font: 400 16px/16px arial,sans-serif;
+    box-shadow: inset 4px 4px 0 0 #f2f2f2;
+    font-size: 20px;
+    font-weight: 600;
+    &:hover{
+        box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
+    }
+`;
 const FlyerNumber=styled.input`
-
+    height: 60px;
+    width: 45%;
+    border: solid #666 1px;
+    border-radius: 4px;
+    color: #333;
+    padding-left: 20px;
+    font: 400 16px/16px arial,sans-serif;
+    box-shadow: inset 4px 4px 0 0 #f2f2f2;
+    transition: height ease .3s;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 0 20px;
+    outline: none;
+    &:hover{
+        box-shadow: 0 0 6px 0 rgba(0,0,0,.5), inset 0 0 4px #a9a9a9;
+    }
+    &::placeholder{
+        color: #333;
+        font-weight: lighter;
+        font-size: 17px;
+    }
 `;
-

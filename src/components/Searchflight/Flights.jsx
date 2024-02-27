@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 import FlightDetail from '../../assets/FlightDetail.json'
 
 export default function Flights() {
-const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
-const [emiratesFlight,setEmiratesFlight]=useState([]);
-const [totalFare,setTotalFare]=useState();
+    const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
+    const [emiratesFlight,setEmiratesFlight]=useState([]);
+    const [totalFare,setTotalFare]=useState();
 
-useEffect(() => {
+    useEffect(() => {
         const filteredFlights = FlightDetail.filter(flight => {
             return (
                 flight.departure_place.includes(departure.slice(0, -6)) &&
@@ -21,114 +21,110 @@ useEffect(() => {
             setTotalFare(totalFare); 
     }, [departure, arrival, totalPassenger, classes]);
 
-  return (
+    return (
     <div>
-      <CurencyConverter>
-                        <CurrencyImage  src="https://fly4.ekstatic.net/Images/nld.png" />
-                        <CurrencyBody>You are viewing prices in <CurrSpan>INR.</CurrSpan>. If you would like to view prices in another currency you can change it from the dropdown menu. The online exchange rates provided are indicative and intended as a guide only. Final payment will be completed in <CurrSpan>INR.</CurrSpan></CurrencyBody>
-                        <ConverterInput placeholder="Currency Converter"/>
-                    </CurencyConverter>
-                    <PriceSection>
-                        <LowPrice>Lowest price for all passengers</LowPrice>
-                        <FlightFare>INR {totalFare}</FlightFare>
-                        <FareDetails>This price is the lowest available price combination for your selected dates. Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and carrier-imposed charges for {totalPassenger} passengers.</FareDetails>
-                    </PriceSection>
-                    <FairConditions>Please ensure you read the <u> fare conditions</u> at the bottom before selecting your flights.</FairConditions>
-                    <FlightDetails>
-                        <OutboundDetails>
-                            <Outbound>Outbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
-                            <OutboundDate>{departureDate}</OutboundDate>
-                            {emiratesFlight && emiratesFlight.map((flight, index) => (
-                            <Flightbox key={index}>
-                                <TravelData >
-                                    <FlightCode>
-                                    <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
-                                        <FlagCode>
-                                            <Code>B777</Code>
-                                            <Code>EK{flight.flight_code}</Code>
-                                        </FlagCode>
-                                    </FlightCode>
-                                    <FlightData>
-                                        <AirportTime>
-                                        <AirportCode>{flight.departure}</AirportCode>
-                                            <FlightTime>{flight.departure_time}</FlightTime>
-                                        </AirportTime>
-                                        <FlightDuration>
-                                            <TravelDetail>{flight.travel_time}</TravelDetail>
-                                            <FlightTrackImg>
-                                                <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
-                                            </FlightTrackImg>
-                                            <TravelDetail><u>1 connection</u></TravelDetail>
-                                        </FlightDuration>
-                                        <AirportTime>
-                                        <AirportCode>{flight.arrival}</AirportCode>
-                                            <FlightTime>{flight.arrival_time}</FlightTime>
-                                        </AirportTime>
-                                    </FlightData>
-                                </TravelData>
-                                <FairData>
-                                    <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
-                                    <SelectedClassFair>
-                                    <ClassFair>from INR</ClassFair>
-                                        <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
-                                    </SelectedClassFair>
-                                </FairData>
-                            </Flightbox>
-                            ))}
-                        </OutboundDetails>
-                        <OutboundDetails>
-                            <Outbound>Inbound, {arrival.slice(0,-5)} to {departure.slice(0,-5)}</Outbound>
-                            <OutboundDate>{returnDate}</OutboundDate>
-                            {emiratesFlight && emiratesFlight.map((flight, index) => (
-                                <Flightbox key={index}>
-                                    <TravelData>
-                                        <FlightCode>
-                                            <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
-                                            <FlagCode>
-                                                <Code>B777</Code>
-                                                <Code>EK{flight.flight_code}</Code>
-                                            </FlagCode>
-                                        </FlightCode>
-                                        <FlightData>
-                                            <AirportTime>
-                                            <AirportCode>{flight.arrival}</AirportCode>
-                                                <FlightTime>{flight.arrival_time}</FlightTime>
-                                            </AirportTime>
-                                            <FlightDuration>
-                                                <TravelDetail>{flight.travel_time}</TravelDetail>
-                                                <FlightTrackImg>
-                                                    <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
-                                                </FlightTrackImg>
-                                                <TravelDetail><u>1 connection</u></TravelDetail>
-                                            </FlightDuration>
-                                            <AirportTime>
-                                            <AirportCode>{flight.departure}</AirportCode>
-                                                <FlightTime>{flight.departure_time}</FlightTime>
-                                            </AirportTime>
-                                        </FlightData>
-                                    </TravelData>
-                                <FairData>
-                                    <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
-                                    <SelectedClassFair>
-                                        <ClassFair>from INR</ClassFair>
-                                        <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
-                                    </SelectedClassFair>
-                                </FairData>
-                            </Flightbox>
-                        ))}
-                        </OutboundDetails>
-                    </FlightDetails>
-                    <FairSummary>
-                        <FairHead>Fare conditions</FairHead>
-                        <FairPoints>• Note: Upgrade prices and seat selection are only applicable to Emirates operated flights.</FairPoints>
-                        <FairPoints>• View our <u>Emirates seat selection rules and rates.</u></FairPoints>
-                        <FairPoints>• <b>Important:</b> Change fees will be charged in addition to any applicable fare difference.<br/>The amounts quoted for refunds, change fees, Miles earned or upgrades are per person. Upgrades with Miles are subject to availability on Emirates operated flights only.</FairPoints>
-                    </FairSummary>
+        <CurencyConverter>
+            <CurrencyImage  src="https://fly4.ekstatic.net/Images/nld.png" />
+            <CurrencyBody>You are viewing prices in <CurrSpan>INR.</CurrSpan>. If you would like to view prices in another currency you can change it from the dropdown menu. The online exchange rates provided are indicative and intended as a guide only. Final payment will be completed in <CurrSpan>INR.</CurrSpan></CurrencyBody>
+            <ConverterInput placeholder="Currency Converter"/>
+        </CurencyConverter>
+        <PriceSection>
+            <LowPrice>Lowest price for all passengers</LowPrice>
+            <FlightFare>INR {totalFare}</FlightFare>
+            <FareDetails>This price is the lowest available price combination for your selected dates. Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and carrier-imposed charges for {totalPassenger} passengers.</FareDetails>
+        </PriceSection>
+        <FairConditions>Please ensure you read the <u> fare conditions</u> at the bottom before selecting your flights.</FairConditions>
+        <FlightDetails>
+            <OutboundDetails>
+                <Outbound>Outbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
+                <OutboundDate>{departureDate}</OutboundDate>
+                {emiratesFlight && emiratesFlight.map((flight, index) => (
+                <Flightbox key={index}>
+                    <TravelData >
+                        <FlightCode>
+                            <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
+                            <FlagCode>
+                                <Code>B777</Code>
+                                <Code>EK{flight.flight_code}</Code>
+                            </FlagCode>
+                        </FlightCode>
+                        <FlightData>
+                            <AirportTime>
+                                <AirportCode>{flight.departure}</AirportCode>
+                                <FlightTime>{flight.departure_time}</FlightTime>
+                            </AirportTime>
+                            <FlightDuration>
+                                <TravelDetail>{flight.travel_time}</TravelDetail>
+                                <FlightTrackImg>
+                                    <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
+                                </FlightTrackImg>
+                                <TravelDetail><u>1 connection</u></TravelDetail>
+                            </FlightDuration>
+                            <AirportTime>
+                                <AirportCode>{flight.arrival}</AirportCode>
+                                <FlightTime>{flight.arrival_time}</FlightTime>
+                            </AirportTime>
+                        </FlightData>
+                    </TravelData>
+                    <FairData>
+                        <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
+                        <SelectedClassFair>
+                            <ClassFair>from INR</ClassFair>
+                            <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
+                        </SelectedClassFair>
+                    </FairData>
+                </Flightbox>))}
+            </OutboundDetails>
+            <OutboundDetails>
+                <Outbound>Inbound, {arrival.slice(0,-5)} to {departure.slice(0,-5)}</Outbound>
+                <OutboundDate>{returnDate}</OutboundDate>
+                {emiratesFlight && emiratesFlight.map((flight, index) => (
+                <Flightbox key={index}>
+                    <TravelData>
+                        <FlightCode>
+                            <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
+                            <FlagCode>
+                                <Code>B777</Code>
+                                <Code>EK{flight.flight_code}</Code>
+                            </FlagCode>
+                        </FlightCode>
+                        <FlightData>
+                            <AirportTime>
+                                <AirportCode>{flight.arrival}</AirportCode>
+                                <FlightTime>{flight.arrival_time}</FlightTime>
+                            </AirportTime>
+                            <FlightDuration>
+                                <TravelDetail>{flight.travel_time}</TravelDetail>
+                                <FlightTrackImg>
+                                    <FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
+                                </FlightTrackImg>
+                                <TravelDetail><u>1 connection</u></TravelDetail>
+                            </FlightDuration>
+                            <AirportTime>
+                                <AirportCode>{flight.departure}</AirportCode>
+                                <FlightTime>{flight.departure_time}</FlightTime>
+                            </AirportTime>
+                        </FlightData>
+                    </TravelData>
+                    <FairData>
+                        <SelectedClass>{classes.slice(0,-6)}</SelectedClass>
+                        <SelectedClassFair>
+                            <ClassFair>from INR</ClassFair>
+                            <ClassFairInr>{flight.SeatingClass[classes.slice(0,-6)]}</ClassFairInr>
+                        </SelectedClassFair>
+                    </FairData>
+                </Flightbox>))}
+            </OutboundDetails>
+        </FlightDetails>
+        <FairSummary>
+            <FairHead>Fare conditions</FairHead>
+            <FairPoints>• Note: Upgrade prices and seat selection are only applicable to Emirates operated flights.</FairPoints>
+            <FairPoints>• View our <u>Emirates seat selection rules and rates.</u></FairPoints>
+            <FairPoints>• <b>Important:</b> Change fees will be charged in addition to any applicable fare difference.<br/>The amounts quoted for refunds, change fees, Miles earned or upgrades are per person. Upgrades with Miles are subject to availability on Emirates operated flights only.</FairPoints>
+        </FairSummary>
     </div>
   )
 }
-
-
 
 const CurencyConverter=styled.div`
     display: flex;

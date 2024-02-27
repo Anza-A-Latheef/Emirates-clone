@@ -119,7 +119,9 @@ const Tabhead_a=styled.div`
 
 `;
 
-const TabContents=styled.ul``;
+const TabContents=styled.ul`
+
+`;
 
 const TabContents_li=styled.li`
     &.content{
