@@ -13,7 +13,7 @@ import Confirm from './Confirm';
 
 const SearchPage = () => {
     const [sectionTitle,setSectionTitle]=useState(1);
-
+ 
     const handleContinue = () => {
         if (sectionTitle < 5) {
           const nextSection = sectionTitle + 1;
@@ -272,7 +272,7 @@ const LogoEndImage=styled.img`
 `;
 
 const SummaryBody=styled.div`
-    background-color: #f7f7f7;
+    background-color: #fbfbfb;
     padding: 10px 125px;
     `;
 
@@ -280,7 +280,7 @@ const BookStatus=styled.div`
     padding-block: 30px;
     padding-inline: 125px;
     display: block;
-    background-color: #f7f7f7;
+    background-color: #fbfbfb;
 `;
 
 const BookHeading=styled.h2`
