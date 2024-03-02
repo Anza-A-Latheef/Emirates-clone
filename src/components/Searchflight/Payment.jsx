@@ -5,6 +5,8 @@ import FlightDetail from '../../assets/FlightDetail.json'
 import { FaSuitcase } from "react-icons/fa";
 import { MdCalendarMonth } from "react-icons/md";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
+import { TiTick } from "react-icons/ti";
+
 
 	const Payment = () => {
 			const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
@@ -148,12 +150,14 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 							</ReviewPassengerBottom>
 						</ReviewPassengerContent>
 					</ReviewPassengers>
+			</ReviewSelection>
 				<PaymentOptions>
 					<PaymentOptionsHead>Payment options</PaymentOptionsHead>
 					<PaymentOptionsUl>
 						<PaymentOptionsLi>
 							<PaymentOptHead>In full</PaymentOptHead>
 							<PaymentOptCont>Pay in full,using your preferred payment method</PaymentOptCont>
+							<GreenMark><TiTick /></GreenMark>
 						</PaymentOptionsLi>
 						<PaymentOptionsLi>
 							<PaymentOptHead>Cash+Miles</PaymentOptHead>
@@ -165,6 +169,7 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 					<PaymentDetailsHead>Payment Details</PaymentDetailsHead>
 					<PaymentDetailsContent>
 						<PaymentDetailsLeft>
+							<PaymentMethod>Choose payment method</PaymentMethod>
 							<PayDetailUl>
 								<PayDetailLi>
 									<PaymentLiLeft>
@@ -214,16 +219,15 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 					</TermsUl>
 					<Conditions>
 						<Condition>
-							<ConditionInput type='checkbox'/>
+							<ConditionInput type="checkbox" name="CheckPolicy"/>
 							<ConditionLabel>I understand that Emirates can change seat assignments as a result of operational, safety or security reasons and I have read and understood the seat selection refund conditions. *</ConditionLabel>
 						</Condition>
 						<Condition>
-							<ConditionInput type='checkbox'/>
+							<ConditionInput type="checkbox" name="CheckPolicy"/>
 							<ConditionLabel>Please tick this box to indicate that you have read and agree to the terms and conditions.</ConditionLabel>
 						</Condition>
 					</Conditions>
 				</TermsSection>
-			</ReviewSelection>
 			</PaymentPage>
 		</div>
 	)
@@ -532,105 +536,271 @@ const ReviewPassengerName=styled.h4`
 	`;
 
 	const PaymentOptions=styled.div`
-	
+	padding: 30px 0 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex: 1 1 auto;
 	`;
 
 	const PaymentOptionsHead=styled.h2`
-	
+	font-weight: 400;
+    font-family: Emirates-Medium;
+    display: block;
+    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
 	`;
 
 	const PaymentOptionsUl=styled.ul`
-	
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+		margin-top:20px;
+		`;
+
+const PaymentOptionsLi=styled.li`
+	position: relative;
+	min-height: 130px;
+	flex-wrap: nowrap;
+	padding:15px 115px;
+	background-color: #fff;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
 	`;
 
-	const PaymentOptionsLi=styled.li`
-	
-	`;
+const PaymentOptHead=styled.h3`
+		font-weight: 400;
+		font-family: Emirates-Medium;
+		display: block;
+		font-weight: 700;
+		font-size: 21px;
+		text-align: center;
+		margin-bottom: 10px;
+			&::after {
+			content: '';
+			display: block;
+			width: 90%;
+			height: 1px;
+			margin: 0 auto 10px;
+			background-color: #c60c30;
+			border-top: 1px solid #c60c30;
+		}
+`;
 
-	const PaymentOptHead=styled.h3`
-	
-	`;
-
-	const PaymentOptCont=styled.p`
-	
+const PaymentOptCont = styled.p`
+	position: relative;
+	margin: 0 -10px;
+	color: #333;
+	text-align: center;
+	font-family: Helvetica;
+	font-size: 15px;
+`;
+ 
+	const GreenMark=styled.div`
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+		color: #fff;
+			&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-color: #287214 #287214 transparent transparent;
+			border-style: solid;
+			border-width: 20px;
+		}
 	`;
 
 	const PaymentDetails=styled.div`
-	
+		padding: 40px;
+
 	`;
 
 	const PaymentDetailsHead=styled.h2`
-	
+	font-weight: 400;
+    font-family: Emirates-Medium;
+    display: block;
+    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
 	`;
 
 	const PaymentDetailsContent=styled.div`
-	
+	display: flex;
+	gap: 20px;
+	padding: 10px;
 	`;
 
 	const PaymentDetailsLeft=styled.div`
-	
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+
+	`;
+
+	const PaymentMethod=styled.h6`
+		font-family: Helvetica;
+		font-size: 16px;
 	`;
 
 	const PayDetailUl=styled.ul`
-	
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;    
 	`;
 
 	const PayDetailLi=styled.li`
-	
+	    margin: 0 0 15px;
+		display: flex;
+		border-radius: 3px;
+		padding: 15px;
+		justify-content: space-between;
+    	box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
 	`;
 
 	const PaymentLiLeft=styled.div`
-	
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	`;
 
-	const AddButon=styled.h6`
-	
-	`;
+	const AddButon=styled.h3`
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 24px;
+		height: 24px;
+		color: #fff;
+		background: #d71921;
+		border-radius: 50%;
+		font-weight: bolder;
+		font-size: 16px;
+`;
 
 	const PayDetailOpt=styled.h6`
-	
+	font-size: 1.1rem;
+	margin-left:10px ;
+	font-family: Helvetica;
 	`;
 
 	const PaymentLiImg=styled.img`
-	
+	    width: 45px;
+    	height: 30px;
 	`;
 
 	const PaymentDetailsRight=styled.div`
-	
+	margin: 40px 0;
+	height: 125px;
+	width: 50%;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+	padding: 0px 30px;
+    box-shadow: 1px 2px 2px #f2f2f2;
+	display: flex;
+		align-items: center;
+		justify-content: space-between;
 	`;
 
 	const PayDetailTotal=styled.h5`
-	
+	font-weight: 700;
+    font-family: Helvetica;
+    font-size: 1.4rem;
 	`;
 
 	const TermsSection=styled.div`
-	
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		padding: 20px 0;
+		align-items: center;
+		justify-content: center;
 	`;
+
 
 	const TermsHead=styled.h5`
-	
+	color: #333;
+	font-size: 19px;
+	font-family: Helvetica;
+	margin-bottom: 20px;
 	`;
 
-	const TermsUl=styled.ul`
-	
+const TermsUl=styled.ul`
+	display: flex;
+	gap: 20px;
+	width:90%;
+	flex-wrap: wrap;
+	justify-content: center;
 	`;
-
+	
 	const TermsLi=styled.li`
-	
+		font-family: Helvetica;
+		text-decoration: underline;
+		color: #333;
+		font-size: 17px;
+		font-weight: 30px;
+		white-space:nowrap;
 	`;
 
 	const Conditions=styled.div`
-	
+	margin-top: 50px;
+	background-color: #fbfbfb;
+	width: 100%;
+	padding-left: 20px;
 	`;
 
 	const Condition=styled.div`
-	
+	    display: flex;
+    margin-top: 20px;
 	`;
 
 	const ConditionInput=styled.input`
-	
+	    position: relative;
+		width: 18px;
+		height: 18px;
+		appearance: none;
+		&::before{
+			content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 1px solid #333;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+		}
+
+		&:checked {
+        &:before {
+            content: '\u2714'; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 15px;
+            color: #c60c30; 
+    }
+  }
 	`;
 
 	const ConditionLabel=styled.label`
-	
+	    font-weight: lighter;
+    font-family: Helvetica;
+    text-align: left;
+    color: #333;
+    font-size: 14px;
+    margin: 0px 20px;
+    line-height: 1.3;
 	`;
