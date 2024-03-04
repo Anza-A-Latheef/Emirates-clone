@@ -11,7 +11,10 @@ import "./App.css";
 
 
 export const UserContext = React.createContext();
+export const PaymentContext = React.createContext();
+
 function App() {
+const [emiratesFlight,setEmiratesFlight]=useState([]);
 const [userData,setUserData]=useState({});
 const updateUserData=(action)=>{
   switch(action.type){
@@ -33,6 +36,7 @@ useEffect(()=>{
   return (
     <>
     <UserContext.Provider value={{userData, updateUserData}}>
+        <PaymentContext.Provider value={{emiratesFlight,setEmiratesFlight}}>
       <Helmet>
         <title>Emirates | A clone site</title>
       </Helmet>
@@ -43,6 +47,7 @@ useEffect(()=>{
           <Route path="Loyalty-page" element={<LoyaltyJoin/>}/>
           <Route path="/Search-page/:departure/:arrival/:totalPassenger/:classes/:departureDate/:returnDate" element={<SearchPage/>} />
         </Routes>
+      </PaymentContext.Provider>
           </UserContext.Provider>
     </>
   );

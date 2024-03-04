@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
 import FlightDetail from '../../assets/FlightDetail.json'
@@ -6,13 +6,16 @@ import { FaSuitcase } from "react-icons/fa";
 import { MdCalendarMonth } from "react-icons/md";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { TiTick } from "react-icons/ti";
+import { DetailContext } from './SearchPage';
 
 
 	const Payment = () => {
 			const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
 			const [emiratesFlight,setEmiratesFlight]=useState([]);
 			const [totalFare,setTotalFare]=useState();
-		
+			const {selectedFlight,setSelectedFlight} = useContext(DetailContext);
+			
+
 			useEffect(() => {
 				const filteredFlights = FlightDetail.filter(flight => {
 					return (
@@ -20,12 +23,15 @@ import { TiTick } from "react-icons/ti";
 						flight.arrival_place.includes(arrival.slice(0, -6))
 						);
 					});
-					const totalFare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
-		
+					const fare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0, -6)];
 					setEmiratesFlight(filteredFlights);
-					setTotalFare(totalFare); 
-			}, [departure, arrival, totalPassenger, classes]);
-
+					setTotalFare(fare);
+				}, [departure, arrival, totalPassenger, classes]);
+				useEffect(()=>{
+					console.log(selectedFlight);				
+  },[selectedFlight])
+			
+				
 	return (
 		<div>
 			<PaymentPage>
@@ -34,29 +40,28 @@ import { TiTick } from "react-icons/ti";
 				<ReviewSelectionHead>
 						<Flights>Flights</Flights>
 						<AllFlights>All Flight details</AllFlights>
-						<FlightDetailP>For 1 passenger (Including airfare, taxes, fees and carrier-imposed charges)</FlightDetailP>
-						<TotalInr>Total: INR 194,026</TotalInr>
+						<FlightDetailP>For {totalPassenger} passenger (Including airfare, taxes, fees and carrier-imposed charges)</FlightDetailP>
+						<TotalInr>Total: INR {totalFare}</TotalInr>
 				</ReviewSelectionHead>
-				{emiratesFlight.map((flight, index) => (
-				<ReviewFlights key={index}>
+				<ReviewFlights>
 					<ReviewFlight>
 						<ReviewDate>Sat 9 Mar 24</ReviewDate>
 						<FlightDataCont>
 							<FlightData>
 								<AirportTime>
-									<FlightTime>{flight.departure_time}</FlightTime>
-									<AirportCode>{flight.departure}</AirportCode>
+									<FlightTime>{selectedFlight.departure_time}</FlightTime>
+									<AirportCode>{selectedFlight.departure}</AirportCode>
 								</AirportTime>
 								<FlightDuration>
-									<TravelDetail>{flight.travel_time}</TravelDetail>
+									<TravelDetail>{selectedFlight.travel_time}</TravelDetail>
 									<FlightTrackImg>
 										<FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
 									</FlightTrackImg>
 									<TravelDetail><u>1 connection</u></TravelDetail>
 								</FlightDuration>
 								<AirportTime>
-									<FlightTime>{flight.arrival_time}</FlightTime>
-									<AirportCode>{flight.arrival}</AirportCode>
+									<FlightTime>{selectedFlight.arrival_time}</FlightTime>
+									<AirportCode>{selectedFlight.arrival}</AirportCode>
 								</AirportTime>
 							</FlightData>
 							<ClassFare>
@@ -89,19 +94,20 @@ import { TiTick } from "react-icons/ti";
 							<FlightDataCont>
 								<FlightData>
 									<AirportTime>
-										<FlightTime>{flight.departure_time}</FlightTime>
-										<AirportCode>{flight.departure}</AirportCode>
+										<FlightTime>{selectedFlight.arrival_time}</FlightTime>
+										<AirportCode>{selectedFlight.arrival}</AirportCode>
 									</AirportTime>
 									<FlightDuration>
-										<TravelDetail>{flight.travel_time}</TravelDetail>
+										<TravelDetail>{selectedFlight.travel_time}</TravelDetail>
 										<FlightTrackImg>
 											<FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
 										</FlightTrackImg>
 										<TravelDetail><u>1 connection</u></TravelDetail>
 									</FlightDuration>
 									<AirportTime>
-										<FlightTime>{flight.arrival_time}</FlightTime>
-										<AirportCode>{flight.arrival}</AirportCode>
+									<FlightTime>{selectedFlight.departure_time}</FlightTime>
+									<AirportCode>{selectedFlight.departure}</AirportCode>
+										
 									</AirportTime>
 									<ClassFare>
 										<ClassFareHead>Class/Fare</ClassFareHead>
@@ -129,7 +135,7 @@ import { TiTick } from "react-icons/ti";
 							</ReviewFlightul>
 						</ReviewFlightBottom>
 					</ReviewFlight>
-				</ReviewFlights>))}
+				</ReviewFlights>
 				<ReviewMid>
 					<ReviewMidUl>
 						<ReviewMidLi>Fare Breakdown</ReviewMidLi>
@@ -146,7 +152,7 @@ import { TiTick } from "react-icons/ti";
 							<ReviewPassengerName>Miss Anza Alatheef</ReviewPassengerName>
 							<ReviewPassengerBottom>
 								<TotalPaid>Total to be paid:</TotalPaid>
-								<TotalPaid>INR 159,568</TotalPaid>
+								<TotalPaid>INR {totalFare}</TotalPaid>
 							</ReviewPassengerBottom>
 						</ReviewPassengerContent>
 					</ReviewPassengers>
@@ -203,7 +209,7 @@ import { TiTick } from "react-icons/ti";
 						</PaymentDetailsLeft>
 						<PaymentDetailsRight>
 							<PayDetailTotal>Total to be paid:</PayDetailTotal>
-							<PayDetailTotal>INR 159,568</PayDetailTotal>
+							<PayDetailTotal>INR {totalFare}</PayDetailTotal>
 						</PaymentDetailsRight>
 					</PaymentDetailsContent>
 				</PaymentDetails>

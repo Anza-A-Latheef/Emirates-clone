@@ -1,25 +1,39 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate } from 'react-router-dom';
 import FlightDetail from '../../assets/FlightDetail.json'
+import { PaymentContext } from '../../App';
+import { DetailContext } from './SearchPage';
 
 export default function Flights() {
-    const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
-    const [emiratesFlight,setEmiratesFlight]=useState([]);
-    const [totalFare,setTotalFare]=useState();
+    const { departure, arrival, totalPassenger, classes, departureDate, returnDate } = useParams();
+    const { emiratesFlight, setEmiratesFlight } = useContext(PaymentContext);
+    const [totalFare, setTotalFare] = useState();
+    const {setSelectedFlight} = useContext(DetailContext);
+    const {setInboundSelectedFlight} = useContext(DetailContext);
 
     useEffect(() => {
         const filteredFlights = FlightDetail.filter(flight => {
             return (
                 flight.departure_place.includes(departure.slice(0, -6)) &&
                 flight.arrival_place.includes(arrival.slice(0, -6))
-                );
-            });
-            const totalFare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
+            );
+        });
+        const totalFare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
 
-            setEmiratesFlight(filteredFlights);
-            setTotalFare(totalFare); 
-    }, [departure, arrival, totalPassenger, classes]);
+        setEmiratesFlight(filteredFlights);
+        setTotalFare(totalFare); 
+        
+        
+    }, [departure, arrival, setEmiratesFlight]);
+    
+    const handleSelectFlight = (flight,bool) => {
+        if(bool){
+            setSelectedFlight(flight);
+        }else{
+            setInboundSelectedFlight(flight)
+        }
+    };
 
     return (
     <div>
@@ -39,7 +53,9 @@ export default function Flights() {
                 <Outbound>Outbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
                 <OutboundDate>{departureDate}</OutboundDate>
                 {emiratesFlight && emiratesFlight.map((flight, index) => (
-                <Flightbox key={index}>
+                <Flightbox key={index} onClick={() => {
+                console.log(flight)
+                handleSelectFlight(flight,true)}}>
                     <TravelData >
                         <FlightCode>
                             <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
@@ -79,7 +95,7 @@ export default function Flights() {
                 <Outbound>Inbound, {arrival.slice(0,-5)} to {departure.slice(0,-5)}</Outbound>
                 <OutboundDate>{returnDate}</OutboundDate>
                 {emiratesFlight && emiratesFlight.map((flight, index) => (
-                <Flightbox key={index}>
+                <Flightbox key={index} onClick={() => handleSelectFlight(flight,false)}>
                     <TravelData>
                         <FlightCode>
                             <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
