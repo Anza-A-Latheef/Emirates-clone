@@ -130,9 +130,7 @@ const Navbar = () => {
 					<Button onClick={()=>handleLogout()}><Login_a><FaRegUserCircle/> LOGOUT <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button> 
 					):(
 					<Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button>)}
-					{/* <Button><Link to="Login-page" style={{ textDecoration: 'none'}}><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Link></Button> */}
 				</LoginButtonContainer>
-				{/* <Button><Login_a><FaRegUserCircle/> LOGIN <Arrow_icon><VscTriangleDown /></Arrow_icon></Login_a></Button> */}
 			</RightBox>
 		</Wrapper>
 	</HeaderContainer>
@@ -245,7 +243,7 @@ const Button=styled.button`
 	}
 
 `;
-const Login_a=styled.a`
+const Login_a=styled.div`
 	cursor: pointer;
 	display: flex;
 	align-items: center;

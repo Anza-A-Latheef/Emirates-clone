@@ -93,11 +93,9 @@ export default function Tabsearch() {
   };
 
   useEffect(() => {
-    console.log(airportData);
     setTotalPassenger(adults+children+infants)
     if(infants>adults) setInfants(adults)
-    console.log(arrival,departure);
-    }, [adults,children,infants,arrival,departure]);
+    }, [adults,children,infants]);
 
 return (
     <TabsearchContainer>
@@ -106,11 +104,11 @@ return (
                 <SelectFieldset>
                     <SelectContainer role="tablist">
                         <RadioButton className={selectedOption === 'flight' ? 'switchButton--checkmark' : ''} onClick={() => handleRadioChange('flight')}>
-                            <SearchInput type="radio" className='radio-buttonInput' id="flight"  name="ToggleRadio" aria-checked={selectedOption === 'flight'} role="tab" aria-controls='search-flight' checked={selectedOption === 'flight'}/>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight"  name="ToggleRadio" aria-checked={selectedOption === 'flight'} role="tab" aria-controls='search-flight' checked={selectedOption === 'flight'} onChange={()=>{}}/>
                             <SearchLabel  className='radioButton-label' htmlFor="flight">Flight</SearchLabel>
                         </RadioButton>
                         <RadioButton className={selectedOption === 'flight+hotel' ? 'switchButton--checkmark' : ''} onClick={() => handleRadioChange('flight+hotel')}>
-                            <SearchInput type="radio" className='radio-buttonInput' id="flight+hotel"  name="ToggleRadio" aria-checked={selectedOption === 'flight+hotel'} role="tab" aria-controls='search-flight+hotel'  checked={selectedOption === 'flight+hotel'}/>
+                            <SearchInput type="radio" className='radio-buttonInput' id="flight+hotel"  name="ToggleRadio" aria-checked={selectedOption === 'flight+hotel'} role="tab" aria-controls='search-flight+hotel'  checked={selectedOption === 'flight+hotel'} onChange={()=>{}}/>
                             <SearchLabel  className='radioButton-label' htmlFor="flight+hotel" >Flight + Hotel</SearchLabel>
                         </RadioButton>
                     </SelectContainer> 
@@ -208,7 +206,7 @@ return (
                 <DepartureInputItem>
                     <DepartureLabel>Class</DepartureLabel>
                     <ClassInput type="select" value={classes} onChange={handleClassesChange} className={classes ? 'hasValue' : ''}>
-                        <DepartureOption value="">Economy Class</DepartureOption>
+                        <DepartureOption>Economy Class</DepartureOption>
                         <DepartureOption>Premium Class</DepartureOption>
                         <DepartureOption>Business Class</DepartureOption>
                         <DepartureOption>First Class</DepartureOption>

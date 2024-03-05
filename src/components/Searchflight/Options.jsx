@@ -1,7 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React ,{useContext} from 'react';
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { FullNameContext } from './SearchPage';
 
 const Options = () => {
+    const { departure, arrival,classes } = useParams();
+    const {fullName} =useContext(FullNameContext);
   return (
     <div>
         <Benefits>
@@ -41,36 +45,6 @@ const Options = () => {
                 </BenefitsCard>
             </BenefitsCards>
         </Benefits>
-        {/* <UpgradeFlight>
-            <UpgradeHead>Upgrade your flight to Business Saver</UpgradeHead>
-            <UpgradeTitle>Explore a higher level of comfort by adding more benefits to your flight fare.Fare rules may be different. View fare rules.</UpgradeTitle>
-            <UpgradeCards>
-                <UpgradeCard>
-                    <UpgradeImgCont>
-                        <UpgradeImg alt="" src="/media/J_upsell_7_tcm91-154641.jpg"/>
-                    </UpgradeImgCont>
-                    <UpgradeImgTitle>Chauffer-drive</UpgradeImgTitle>
-                </UpgradeCard>
-                <UpgradeCard>
-                    <UpgradeImgCont>
-                        <UpgradeImg alt="" src="/media/J_upsell_3_tcm91-154633.jpg"/>
-                    </UpgradeImgCont>
-                    <UpgradeImgTitle>Lounge access</UpgradeImgTitle>
-                </UpgradeCard>
-                <UpgradeCard>
-                    <UpgradeImgCont>
-                        <UpgradeImg alt="" src="/media/J_upsell_2_tcm91-154634.jpg"/>
-                    </UpgradeImgCont>
-                    <UpgradeImgTitle>Lie-flat beds</UpgradeImgTitle>
-                </UpgradeCard>
-                <UpgradeCard>
-                    <UpgradeImgCont>
-                        <UpgradeImg alt="" src="/media/baggage_1_tcm91-154635.png"/>
-                    </UpgradeImgCont>
-                    <UpgradeImgTitle>Extra baggage allowance</UpgradeImgTitle>
-                </UpgradeCard>
-            </UpgradeCards>
-        </UpgradeFlight> */}
         <Recommended>
             <RecommendedHead>Recommended for you</RecommendedHead>
             <RecommendedTitle>Enhance your travel experience with these options.</RecommendedTitle>
@@ -104,55 +78,55 @@ const Options = () => {
         <BaggageDetails>
             <BaggageBox>
                 <BaggageBoxHead>
-                    <BaggageAirport>Bengaluru (BLR) to Accra (ACC)</BaggageAirport>
-                    <BaggageClass>Economy Saver</BaggageClass>
+                    <BaggageAirport>{departure} to {arrival}</BaggageAirport>
+                    <BaggageClass>{classes.slice(0,-6)} Saver</BaggageClass>
                 </BaggageBoxHead>
                 <BaggageBoxContent>
                     <PassengerBaggage>
-                        <PassengerName>Anza AbdulLatheef</PassengerName>
+                        <PassengerName>{fullName}</PassengerName>
                         <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
                     </PassengerBaggage>
                     <AdditionalBaggage>
                         <AddBaggageLabel>Additional baggage</AddBaggageLabel>
                         <AddBaggageSelect>
-                            <option value=" No extra baggage">No extra baggage</option>
-                            <option value=" 1 additional bag">1 additional bag</option>
-                            <option value=" 2 additional bags">2 additional bags</option>
-                            <option value=" 3 additional bags">3 additional bags</option>
-                            <option value=" 4 additional bags">4 additional bags</option>
-                            <option value=" 5 additional bags">5 additional bags</option>
+                            <option value=" No extra baggage" onChange={()=>{}}>No extra baggage</option>
+                            <option value=" 1 additional bag" onChange={()=>{}}>1 additional bag</option>
+                            <option value=" 2 additional bags" onChange={()=>{}}>2 additional bags</option>
+                            <option value=" 3 additional bags" onChange={()=>{}}>3 additional bags</option>
+                            <option value=" 4 additional bags" onChange={()=>{}}>4 additional bags</option>
+                            <option value=" 5 additional bags" onChange={()=>{}}>5 additional bags</option>
                         </AddBaggageSelect>
                     </AdditionalBaggage>
                 </BaggageBoxContent>
             </BaggageBox>
             <BaggageBox>
                 <BaggageBoxHead>
-                    <BaggageAirport>Accra (ACC) to Bengaluru (BLR)</BaggageAirport>
-                    <BaggageClass>Economy Flex</BaggageClass>
+                    <BaggageAirport>{arrival} to {departure}</BaggageAirport>
+                    <BaggageClass>{classes.slice(0,-6)} Flex</BaggageClass>
                 </BaggageBoxHead>
                 <BaggageBoxContent>
                     <PassengerBaggage>
-                        <PassengerName>Anza AbdulLatheef</PassengerName>
+                        <PassengerName>{fullName}</PassengerName>
                         <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
                     </PassengerBaggage>
                     <AdditionalBaggage>
                         <AddBaggageLabel>Additional baggage</AddBaggageLabel>
                         <AddBaggageSelect>
-                            <option value=" No extra baggage">No extra baggage</option>
-                            <option value=" 1 additional bag">1 additional bag</option>
-                            <option value=" 2 additional bags">2 additional bags</option>
-                            <option value=" 3 additional bags">3 additional bags</option>
-                            <option value=" 4 additional bags">4 additional bags</option>
-                            <option value=" 5 additional bags">5 additional bags</option>
+                            <option value=" No extra baggage" onChange={()=>{}}>No extra baggage</option>
+                            <option value=" 1 additional bag" onChange={()=>{}}>1 additional bag</option>
+                            <option value=" 2 additional bags" onChange={()=>{}}>2 additional bags</option>
+                            <option value=" 3 additional bags" onChange={()=>{}}>3 additional bags</option>
+                            <option value=" 4 additional bags" onChange={()=>{}}>4 additional bags</option>
+                            <option value=" 5 additional bags" onChange={()=>{}}>5 additional bags</option>
                         </AddBaggageSelect>
                     </AdditionalBaggage>
                 </BaggageBoxContent>
             </BaggageBox>
         </BaggageDetails>
-        <TotalForBaggage>
+        {/* <TotalForBaggage>
             <ExcessBaggage>Total for excess baggage</ExcessBaggage>
             <INR>INR 0</INR>
-        </TotalForBaggage>
+        </TotalForBaggage> */}
     </div>
   )
 }

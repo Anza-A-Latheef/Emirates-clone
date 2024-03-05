@@ -6,14 +6,14 @@ import { FaSuitcase } from "react-icons/fa";
 import { MdCalendarMonth } from "react-icons/md";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { TiTick } from "react-icons/ti";
-import { DetailContext } from './SearchPage';
+import { DetailContext, InboundContext } from './SearchPage';
 
 
 	const Payment = () => {
 			const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
-			const [emiratesFlight,setEmiratesFlight]=useState([]);
 			const [totalFare,setTotalFare]=useState();
-			const {selectedFlight,setSelectedFlight} = useContext(DetailContext);
+			const {selectedFlight} = useContext(DetailContext);
+			const {inboundSelectedFlight}=useContext(InboundContext);
 			
 
 			useEffect(() => {
@@ -24,13 +24,8 @@ import { DetailContext } from './SearchPage';
 						);
 					});
 					const fare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0, -6)];
-					setEmiratesFlight(filteredFlights);
 					setTotalFare(fare);
-				}, [departure, arrival, totalPassenger, classes]);
-				useEffect(()=>{
-					console.log(selectedFlight);				
-  },[selectedFlight])
-			
+				}, [departure, arrival, totalPassenger, classes,departureDate,returnDate]);
 				
 	return (
 		<div>
@@ -45,7 +40,7 @@ import { DetailContext } from './SearchPage';
 				</ReviewSelectionHead>
 				<ReviewFlights>
 					<ReviewFlight>
-						<ReviewDate>Sat 9 Mar 24</ReviewDate>
+						<ReviewDate>{departureDate}</ReviewDate>
 						<FlightDataCont>
 							<FlightData>
 								<AirportTime>
@@ -90,23 +85,25 @@ import { DetailContext } from './SearchPage';
 						</ReviewFlightBottom>
 					</ReviewFlight>
 					<ReviewFlight>
-							<ReviewDate>Sat 9 Mar 24</ReviewDate>
+						{inboundSelectedFlight &&
+						<>
+							<ReviewDate>{returnDate}</ReviewDate>
 							<FlightDataCont>
 								<FlightData>
 									<AirportTime>
-										<FlightTime>{selectedFlight.arrival_time}</FlightTime>
-										<AirportCode>{selectedFlight.arrival}</AirportCode>
+										<FlightTime>{inboundSelectedFlight.arrival_time}</FlightTime>
+										<AirportCode>{inboundSelectedFlight.arrival}</AirportCode>
 									</AirportTime>
 									<FlightDuration>
-										<TravelDetail>{selectedFlight.travel_time}</TravelDetail>
+										<TravelDetail>{inboundSelectedFlight.travel_time}</TravelDetail>
 										<FlightTrackImg>
 											<FlightImage alt="" src="https://fly4.ekstatic.net/Images/farebrand_refresh/flight@2x.png"/>
 										</FlightTrackImg>
 										<TravelDetail><u>1 connection</u></TravelDetail>
 									</FlightDuration>
 									<AirportTime>
-									<FlightTime>{selectedFlight.departure_time}</FlightTime>
-									<AirportCode>{selectedFlight.departure}</AirportCode>
+									<FlightTime>{inboundSelectedFlight.departure_time}</FlightTime>
+									<AirportCode>{inboundSelectedFlight.departure}</AirportCode>
 										
 									</AirportTime>
 									<ClassFare>
@@ -115,6 +112,8 @@ import { DetailContext } from './SearchPage';
 									</ClassFare>
 								</FlightData>
 							</FlightDataCont>
+						</> 
+						}
 						<ReviewFlightBottom>
 							<ReviewFlightul>
 								<ReviewFlightLi>

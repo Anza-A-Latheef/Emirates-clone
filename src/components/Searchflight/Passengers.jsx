@@ -1,18 +1,70 @@
-import React,{useState} from 'react'
-import styled from 'styled-components'
+import React,{useState, useEffect ,useContext} from 'react'
+import styled from 'styled-components';
+import { FullNameContext } from './SearchPage';
+
 
 const Passengers = ({ totalPassengers }) => {
+    const [firstName,setFirstName]=useState('');
+    const [lastName,setLastName]=useState('');
     const [title, setTitle] = useState('');
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [showContent, setShowContent] = useState(Array(totalPassengers).fill(false));
+    const [passengerData, setPassengerData] = useState([]);
+    const {setFullName} = useContext(FullNameContext)
+
+    useEffect(() => {
+        setPassengerData(Array.from({ length: totalPassengers }, () => ({
+            firstName: '',
+            lastName: '',
+            title: '',
+            day: '',
+            month: '',
+            year: ''
+        })));
+    }, [totalPassengers]);
 
     const toggleContent = (index) => {
         const newShowContent = [...showContent];
         newShowContent[index] = !newShowContent[index];
         setShowContent(newShowContent);
     };
+
+    
+    // const handleFirstNameChange = (event) => {
+    //     setFirstName(event.target.value);
+    // };
+    
+    // const handleLastNameChange = (event) => {
+    //     setLastName(event.target.value);
+    // };
+
+    
+    const handleFirstNameChange = (index, value) => {
+        const newData = [...passengerData];
+        newData[index].firstName = value;
+        setPassengerData(newData);
+    };
+
+    const handleLastNameChange = (index, value) => {
+        const newData = [...passengerData];
+        newData[index].lastName = value;
+        setPassengerData(newData);
+    };
+    
+    // useEffect(()=>{
+    //     setFullName(`${firstName} ${lastName}`);
+    //     // updateFullName(fullName);
+    //     // console.log(fullName)
+    // })
+
+    useEffect(() => {
+        if (passengerData.length > 0) {
+            const { firstName, lastName } = passengerData[0];
+            setFullName(`${firstName} ${lastName}`);
+        }
+    }, [passengerData, setFullName]);
 
     const handleTitleChange = (event) => {
       setTitle(event.target.value);
@@ -32,87 +84,85 @@ const Passengers = ({ totalPassengers }) => {
 
     const generatePassengerInputs = () => {
         let inputs = [];
-        for (let i = 1; i <= totalPassengers; i++) {
-            inputs.push(
+        return passengerData.map((passenger, index) => (
+        // for (let i = 1; i <= totalPassengers; i++) {
+            // inputs.push(
                 <PassengerData key={i}>
                     <PassengerDataHead onClick={() => toggleContent(i)}>Passenger {i}</PassengerDataHead>
                     {showContent[i] && (
                         <>
-             <PassengerDataP>Make sure the names you enter exactly match your passport, and please use English characters only. Names can't be changed once you have completed your booking.</PassengerDataP>
-             <PassengerDataInputArea>
-             <TitleSelectItem>
-                     <TitleLabel>Title</TitleLabel>
-                     <TitleSelect value={title} onChange={handleTitleChange} className="">
-                         <TitleOption value="">Select Title</TitleOption>
-                         <TitleOption value="Mr">Mr</TitleOption>
-                         <TitleOption value="Mrs">Mrs</TitleOption>
-                         <TitleOption value="Miss">Miss</TitleOption>
-                         <TitleOption value="Ms">Ms</TitleOption>
-                         <TitleOption value="Undisclosed">Undisclosed</TitleOption>
-                     </TitleSelect>
-                 </TitleSelectItem>
-                 <NameInputItem>
-                     <FirstName placeholder='First Name'/>
-                     <LastName placeholder='Last Name'/>
-                 </NameInputItem>
-                 <DobInput>
-                     <TitleSelectItem>
-                     <DayLabel>Day</DayLabel>
-                     <DaySelect value={day} onChange={handleDayChange} className="">
-                         <TitleOption value="">2</TitleOption>
-                         {Array.from({ length: 31 }, (_, index) => (
-                             <TitleOption key={index + 1} value={index + 1}>
-                                 {index + 1}
-                             </TitleOption>
-                         ))}
-                 </DaySelect>
-                     </TitleSelectItem>
-                     <TitleSelectItem>
-                     <MonthLabel>Month</MonthLabel>
-                     <MonthSelect value={month} onChange={handleMonthChange} className="">
-                     <TitleOption value="">February</TitleOption>
-                     {Array.from({ length: 12 }, (_, index) => (
-                         <TitleOption key={index + 1} value={index + 1}>
-                             {new Date(0, index).toLocaleString('default', { month: 'long' })}
-                         </TitleOption>                   
-                         ))}               
-                         </MonthSelect>
-                    </TitleSelectItem>
-                    <TitleSelectItem>
-                        <YearLabel>Year</YearLabel>
-                        <YearSelect value={year} onChange={handleYearChange} className="">
-                    <TitleOption value="">2000</TitleOption>
-                    {Array.from({ length: 150}, (_, index) => (
-                        <TitleOption key={index + 1875} value={index + 1875}>
-                            {index + 1875}
-                        </TitleOption>
-                    ))}
-                </YearSelect>
-                    </TitleSelectItem>
-                </DobInput>
-            </PassengerDataInputArea>        
-            <FlyerBenefits>
-                <FlyerBenefitsHead>Your Frequent Flyer benefits</FlyerBenefitsHead>
-                <FlyerBenefitsP>Add your Emirates Skywards number to avail <FlyerBenefitSpan>exclusive Skywards benefits.</FlyerBenefitSpan> You can also add a partner airline membership number to earn Miles for this flight.</FlyerBenefitsP>
-                <FlyerBenefitsInput>
-                    <FlyerSelectItem>
-                        <FlyerLabel>Airline/Programme</FlyerLabel>
-                        <FlyerSelect type="select" value="" onChange="" className="">
-                            <TitleOption value="">None</TitleOption>
-                            <TitleOption>Emirates & flydubai / Skywards</TitleOption>
-                            <TitleOption>Qantas / Frequent Flyer</TitleOption>
-                        </FlyerSelect>
-                    </FlyerSelectItem>
-                    <FlyerNumber placeholder="Frequent flyer number"/>
-                </FlyerBenefitsInput>
-            </FlyerBenefits>
-                 </>
-                 )}
-             </PassengerData>
-         );
-     }
-     return inputs;
- };
+                            <PassengerDataP>Make sure the names you enter exactly match your passport, and please use English characters only. Names can't be changed once you have completed your booking.</PassengerDataP>
+                            <PassengerDataInputArea>
+                                <TitleSelectItem>
+                                    <TitleLabel>Title</TitleLabel>
+                                    <TitleSelect value={title} onChange={handleTitleChange} className="">
+                                        <TitleOption value="">Select Title</TitleOption>
+                                        <TitleOption value="Mr">Mr</TitleOption>
+                                        <TitleOption value="Mrs">Mrs</TitleOption>
+                                        <TitleOption value="Miss">Miss</TitleOption>
+                                        <TitleOption value="Ms">Ms</TitleOption>
+                                        <TitleOption value="Undisclosed">Undisclosed</TitleOption>
+                                    </TitleSelect>
+                                </TitleSelectItem>
+                                <NameInputItem>
+                                    {/* <FirstName placeholder='First Name' value={firstName} onChange={handleFirstNameChange}/>
+                                    <LastName placeholder='Last Name' value={lastName} onChange={handleLastNameChange}/> */}
+                                    <FirstName placeholder='First Name' value={passenger.firstName} onChange={(e) => handleFirstNameChange(index, e.target.value)}/>
+                                    <LastName placeholder='Last Name' value={passenger.lastName} onChange={(e) => handleLastNameChange(index, e.target.value)} />
+                                </NameInputItem>
+                                <DobInput>
+                                    <TitleSelectItem>
+                                        <DayLabel>Day</DayLabel>
+                                        <DaySelect value={day} onChange={handleDayChange} className="">
+                                            <TitleOption value="">2</TitleOption>
+                                            {Array.from({ length: 31 }, (_, index) => (
+                                            <TitleOption key={index + 1} value={index + 1}>{index + 1}</TitleOption>
+                                            ))}
+                                        </DaySelect>
+                                    </TitleSelectItem>
+                                    <TitleSelectItem>
+                                        <MonthLabel>Month</MonthLabel>
+                                        <MonthSelect value={month} onChange={handleMonthChange} className="">
+                                            <TitleOption value="">February</TitleOption>
+                                            {Array.from({ length: 12 }, (_, index) => (
+                                                <TitleOption key={index + 1} value={index + 1}> {new Date(0, index).toLocaleString('default', { month: 'long' })} </TitleOption>                   
+                                            ))}               
+                                        </MonthSelect>
+                                    </TitleSelectItem>
+                                    <TitleSelectItem>
+                                        <YearLabel>Year</YearLabel>
+                                        <YearSelect value={year} onChange={handleYearChange} className="">
+                                            <TitleOption value="">2000</TitleOption>
+                                            {Array.from({ length: 150}, (_, index) => (
+                                                <TitleOption key={index + 1875} value={index + 1875}> {index + 1875} </TitleOption>
+                                            ))}
+                                        </YearSelect>
+                                    </TitleSelectItem>
+                                </DobInput>
+                            </PassengerDataInputArea>        
+                            <FlyerBenefits>
+                                <FlyerBenefitsHead>Your Frequent Flyer benefits</FlyerBenefitsHead>
+                                <FlyerBenefitsP>Add your Emirates Skywards number to avail <FlyerBenefitSpan>exclusive Skywards benefits.</FlyerBenefitSpan> You can also add a partner airline membership number to earn Miles for this flight.</FlyerBenefitsP>
+                                <FlyerBenefitsInput>
+                                    <FlyerSelectItem>
+                                        <FlyerLabel>Airline/Programme</FlyerLabel>
+                                        <FlyerSelect type="select" value="" onChange="" className="">
+                                            <TitleOption value="">None</TitleOption>
+                                            <TitleOption>Emirates & flydubai / Skywards</TitleOption>
+                                            <TitleOption>Qantas / Frequent Flyer</TitleOption>
+                                        </FlyerSelect>
+                                    </FlyerSelectItem>
+                                    <FlyerNumber placeholder="Frequent flyer number"/>
+                                </FlyerBenefitsInput>
+                            </FlyerBenefits>
+                        </>
+                    )}
+                </PassengerData>
+            // );
+        // }
+        ));
+        // return inputs;
+    };
 
   return (
     <PassengerPage>
@@ -124,7 +174,7 @@ const Passengers = ({ totalPassengers }) => {
                 <ImpInfoPara><ImpInfoParaSpan>1. If you're travelling from India on flydubai:</ImpInfoParaSpan> An <ImpInfoParaSpan>Ok to board approval</ImpInfoParaSpan> from flydubai is mandatory for citizens of India travelling from Delhi. Please check the <u>flydubai website</u> for more information.</ImpInfoPara>
             </ImpInfoContent>
         </ImpInfo>
-        {generatePassengerInputs()}
+            {generatePassengerInputs()}
         
     </PassengerPage>
   )

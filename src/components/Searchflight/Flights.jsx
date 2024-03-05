@@ -1,16 +1,17 @@
 import React,{useState,useEffect, useContext} from 'react'
 import styled from 'styled-components'
-import { useParams ,useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import FlightDetail from '../../assets/FlightDetail.json'
 import { PaymentContext } from '../../App';
 import { DetailContext } from './SearchPage';
+import { InboundContext } from './SearchPage';
 
 export default function Flights() {
     const { departure, arrival, totalPassenger, classes, departureDate, returnDate } = useParams();
     const { emiratesFlight, setEmiratesFlight } = useContext(PaymentContext);
     const [totalFare, setTotalFare] = useState();
-    const {setSelectedFlight} = useContext(DetailContext);
-    const {setInboundSelectedFlight} = useContext(DetailContext);
+    const { selectedFlight, setSelectedFlight} = useContext(DetailContext);
+    const {inboundSelectedFlight, setInboundSelectedFlight }=useContext(InboundContext);
 
     useEffect(() => {
         const filteredFlights = FlightDetail.filter(flight => {
@@ -25,7 +26,7 @@ export default function Flights() {
         setTotalFare(totalFare); 
         
         
-    }, [departure, arrival, setEmiratesFlight]);
+    },  [departure, arrival, setEmiratesFlight, totalPassenger, classes]);
     
     const handleSelectFlight = (flight,bool) => {
         if(bool){
@@ -53,9 +54,7 @@ export default function Flights() {
                 <Outbound>Outbound, {departure.slice(0,-5)} to {arrival.slice(0,-5)}</Outbound>
                 <OutboundDate>{departureDate}</OutboundDate>
                 {emiratesFlight && emiratesFlight.map((flight, index) => (
-                <Flightbox key={index} onClick={() => {
-                console.log(flight)
-                handleSelectFlight(flight,true)}}>
+                <Flightbox key={index} flight={flight} selectedFlight={selectedFlight} onClick={() => {handleSelectFlight(flight,true)}}>
                     <TravelData >
                         <FlightCode>
                             <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
@@ -95,7 +94,7 @@ export default function Flights() {
                 <Outbound>Inbound, {arrival.slice(0,-5)} to {departure.slice(0,-5)}</Outbound>
                 <OutboundDate>{returnDate}</OutboundDate>
                 {emiratesFlight && emiratesFlight.map((flight, index) => (
-                <Flightbox key={index} onClick={() => handleSelectFlight(flight,false)}>
+                <Flightbox key={index} flight={flight} inboundSelectedFlight={inboundSelectedFlight} onClick={() => handleSelectFlight(flight,false)}>
                     <TravelData>
                         <FlightCode>
                             <EmiritesFlag alt="" src="https://fly4.ekstatic.net/media/icn_tail_EK_tcm223-154219.svg"/>
@@ -171,7 +170,7 @@ const ConverterInput=styled.input`
     box-sizing: border-box;
     color: #333 !important;
     cursor: pointer;
-    font: 400 20px/23px "HelveticaNeue-Medium","Helvetica Neue Medium","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font: 400 20px/23px Helvetica ;
     height: 60px;
     padding: 10px;
     width: 86%;
@@ -241,6 +240,23 @@ const OutboundDate=styled.h4`
 
 const Flightbox=styled.div`
     display: flex;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border: 2px solid transparent; 
+
+    &:hover {
+        border: 2px solid black;
+    }
+    ${({ flight, selectedFlight }) =>
+        selectedFlight && selectedFlight.flight_code === flight.flight_code &&
+        `
+            border: 2px solid black;
+        `}
+    ${({ flight, inboundSelectedFlight }) =>
+        inboundSelectedFlight && inboundSelectedFlight.flight_code === flight.flight_code &&
+        `
+            border: 2px solid black;
+        `}
 `;
 
 const TravelData=styled.div`
@@ -250,8 +266,8 @@ const TravelData=styled.div`
     border-radius: 3px;
     box-sizing: border-box;
     background: #f7f7f7;
-    margin-bottom: 30px;
     width: 40%;
+    
 `;
 
 const FlightCode=styled.div`
@@ -383,7 +399,7 @@ const FairData=styled.div`
     box-sizing: border-box;
     background: #ffffff;
     box-shadow: 0 0 4px 4px #f2f2f2 inset;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     width: 60%;
 `;
 
