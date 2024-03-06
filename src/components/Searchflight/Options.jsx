@@ -1,11 +1,66 @@
 import React ,{useContext} from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { FullNameContext } from './SearchPage';
+import { FullNameContext , PassengerNamesContext} from './SearchPage';
 
-const Options = () => {
+
+const Options = ({ totalPassengers}) => {
     const { departure, arrival,classes } = useParams();
-    const {fullName} =useContext(FullNameContext);
+    // const {fullName} =useContext(FullNameContext);
+    const {passengerNames} = useContext(PassengerNamesContext)
+
+    const generateDeparturePassenger= () =>{
+        let names =[];
+        for (let i=1; i<=totalPassengers;i++){
+            names.push(
+                <BaggageBoxContent key={i}>
+                        <PassengerBaggage>
+                            <PassengerName>{passengerNames[i-1]}</PassengerName>
+                            <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
+                        </PassengerBaggage>
+                        <AdditionalBaggage>
+                            <AddBaggageLabel>Additional baggage</AddBaggageLabel>
+                            <AddBaggageSelect>
+                                <option >No extra baggage</option>
+                                <option >1 additional bag</option>
+                                <option >2 additional bags</option>
+                                <option >3 additional bags</option>
+                                <option >4 additional bags</option>
+                                <option >5 additional bags</option>
+                            </AddBaggageSelect>
+                        </AdditionalBaggage>
+                    </BaggageBoxContent>
+            );
+        }
+        return names;
+    };
+    const generateArrivalPassenger= () =>{
+        let names =[];
+        for (let i=1; i<=totalPassengers;i++){
+            names.push(
+                <BaggageBoxContent key={i}>
+                        <PassengerBaggage>
+                            <PassengerName>{passengerNames[i-1]}</PassengerName>
+                            <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
+                        </PassengerBaggage>
+                        <AdditionalBaggage>
+                            <AddBaggageLabel>Additional baggage</AddBaggageLabel>
+                            <AddBaggageSelect>
+                                <option >No extra baggage</option>
+                                <option >1 additional bag</option>
+                                <option >2 additional bags</option>
+                                <option >3 additional bags</option>
+                                <option >4 additional bags</option>
+                                <option >5 additional bags</option>
+                            </AddBaggageSelect>
+                        </AdditionalBaggage>
+                    </BaggageBoxContent>
+            );
+        }
+        return names;
+    };
+    
+
   return (
     <div>
         <Benefits>
@@ -81,46 +136,15 @@ const Options = () => {
                     <BaggageAirport>{departure} to {arrival}</BaggageAirport>
                     <BaggageClass>{classes.slice(0,-6)} Saver</BaggageClass>
                 </BaggageBoxHead>
-                <BaggageBoxContent>
-                    <PassengerBaggage>
-                        <PassengerName>{fullName}</PassengerName>
-                        <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
-                    </PassengerBaggage>
-                    <AdditionalBaggage>
-                        <AddBaggageLabel>Additional baggage</AddBaggageLabel>
-                        <AddBaggageSelect>
-                            <option value=" No extra baggage" onChange={()=>{}}>No extra baggage</option>
-                            <option value=" 1 additional bag" onChange={()=>{}}>1 additional bag</option>
-                            <option value=" 2 additional bags" onChange={()=>{}}>2 additional bags</option>
-                            <option value=" 3 additional bags" onChange={()=>{}}>3 additional bags</option>
-                            <option value=" 4 additional bags" onChange={()=>{}}>4 additional bags</option>
-                            <option value=" 5 additional bags" onChange={()=>{}}>5 additional bags</option>
-                        </AddBaggageSelect>
-                    </AdditionalBaggage>
-                </BaggageBoxContent>
+                {generateDeparturePassenger()}
             </BaggageBox>
             <BaggageBox>
                 <BaggageBoxHead>
                     <BaggageAirport>{arrival} to {departure}</BaggageAirport>
                     <BaggageClass>{classes.slice(0,-6)} Flex</BaggageClass>
                 </BaggageBoxHead>
-                <BaggageBoxContent>
-                    <PassengerBaggage>
-                        <PassengerName>{fullName}</PassengerName>
-                        <BaggageAllowance>Complimentary baggage allowance: <b>2 x 23kg</b></BaggageAllowance>
-                    </PassengerBaggage>
-                    <AdditionalBaggage>
-                        <AddBaggageLabel>Additional baggage</AddBaggageLabel>
-                        <AddBaggageSelect>
-                            <option value=" No extra baggage" onChange={()=>{}}>No extra baggage</option>
-                            <option value=" 1 additional bag" onChange={()=>{}}>1 additional bag</option>
-                            <option value=" 2 additional bags" onChange={()=>{}}>2 additional bags</option>
-                            <option value=" 3 additional bags" onChange={()=>{}}>3 additional bags</option>
-                            <option value=" 4 additional bags" onChange={()=>{}}>4 additional bags</option>
-                            <option value=" 5 additional bags" onChange={()=>{}}>5 additional bags</option>
-                        </AddBaggageSelect>
-                    </AdditionalBaggage>
-                </BaggageBoxContent>
+                {generateArrivalPassenger()}
+                
             </BaggageBox>
         </BaggageDetails>
         {/* <TotalForBaggage>

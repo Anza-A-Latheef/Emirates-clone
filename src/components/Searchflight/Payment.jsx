@@ -7,25 +7,49 @@ import { MdCalendarMonth } from "react-icons/md";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { TiTick } from "react-icons/ti";
 import { DetailContext, InboundContext } from './SearchPage';
+import { PassengerNamesContext} from './SearchPage';
 
 
-	const Payment = () => {
+	const Payment = ({ totalPassengers}) => {
 			const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
 			const [totalFare,setTotalFare]=useState();
 			const {selectedFlight} = useContext(DetailContext);
 			const {inboundSelectedFlight}=useContext(InboundContext);
-			
+			const {passengerNames} = useContext(PassengerNamesContext)
 
-			useEffect(() => {
-				const filteredFlights = FlightDetail.filter(flight => {
-					return (
-						flight.departure_place.includes(departure.slice(0, -6)) &&
-						flight.arrival_place.includes(arrival.slice(0, -6))
-						);
-					});
-					const fare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0, -6)];
-					setTotalFare(fare);
-				}, [departure, arrival, totalPassenger, classes,departureDate,returnDate]);
+			const generatePassengerNames = ()=>{
+				let namelist=[];
+				for (let i=1; i<=totalPassengers;i++){
+					namelist.push(
+						<ReviewPassengerName key={i}>{passengerNames[i-1]}</ReviewPassengerName>
+			);};
+			return namelist;
+		};
+
+		useEffect(() => {
+			// const Outboundfare = totalPassengers * selectedFlight[0].SeatingClass[classes.slice(0, -6)];
+			// const Inboundfare = totalPassengers * inboundSelectedFlight[0].SeatingClass[classes.slice(0, -6)];
+			// // const Outboundfare = totalPassengers * selectedFlight?.SeatingClass?.[classes.slice(0, -6)] || 0;
+			// // const Inboundfare = totalPassengers * inboundSelectedFlight?.SeatingClass?.[classes.slice(0, -6)]||0;
+			// const fare = Outboundfare + Inboundfare;
+			// setTotalFare(fare);
+			const asdf = inboundSelectedFlight.SeatingClass
+			const wer = []
+			for (let i in inboundSelectedFlight.SeatingClass){
+				console.log(asdf["Economy"])
+			}
+			console.log(selectedFlight)
+		}, [selectedFlight,inboundSelectedFlight]);
+
+				// const filteredFlights = FlightDetail.filter(flight => {
+				// 	return (
+				// 		flight.departure_place.includes(departure.slice(0, -6)) &&
+				// 		flight.arrival_place.includes(arrival.slice(0, -6))
+				// 		);
+				// 	});
+				// 	const fare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0, -6)];
+				// 	setTotalFare(fare);
+				// }, [departure, arrival, totalPassenger, classes,departureDate,returnDate]);
 				
 	return (
 		<div>
@@ -61,7 +85,7 @@ import { DetailContext, InboundContext } from './SearchPage';
 							</FlightData>
 							<ClassFare>
 								<ClassFareHead>Class/Fare</ClassFareHead>
-								<ClassFareDetail>Economy/Flex</ClassFareDetail>
+								<ClassFareDetail>{classes.slice(0, -6)}/Flex</ClassFareDetail>
 							</ClassFare>
 						</FlightDataCont>
 						<ReviewFlightBottom>
@@ -104,13 +128,12 @@ import { DetailContext, InboundContext } from './SearchPage';
 									<AirportTime>
 									<FlightTime>{inboundSelectedFlight.departure_time}</FlightTime>
 									<AirportCode>{inboundSelectedFlight.departure}</AirportCode>
-										
 									</AirportTime>
+								</FlightData>
 									<ClassFare>
 										<ClassFareHead>Class/Fare</ClassFareHead>
-										<ClassFareDetail>Economy/Flex</ClassFareDetail>
+										<ClassFareDetail>{classes.slice(0, -6)}/Flex</ClassFareDetail>
 									</ClassFare>
-								</FlightData>
 							</FlightDataCont>
 						</> 
 						}
@@ -145,10 +168,12 @@ import { DetailContext, InboundContext } from './SearchPage';
 				</ReviewMid>
 					<ReviewPassengers>
 						<ReviewPassengersHead>
-							<PassengerTitle>Passengers<PassengersTitleSpan>(1 Adult)</PassengersTitleSpan></PassengerTitle>
+							<PassengerTitle>Passengers<PassengersTitleSpan>({totalPassengers} Person)</PassengersTitleSpan></PassengerTitle>
 						</ReviewPassengersHead>
 						<ReviewPassengerContent>
-							<ReviewPassengerName>Miss Anza Alatheef</ReviewPassengerName>
+							<PassengerNameDiv>
+						{generatePassengerNames()}
+							</PassengerNameDiv>
 							<ReviewPassengerBottom>
 								<TotalPaid>Total to be paid:</TotalPaid>
 								<TotalPaid>INR {totalFare}</TotalPaid>
@@ -521,7 +546,13 @@ const FlightImage=styled.img`
 		justify-content: space-between;
 		`;
 
+const PassengerNameDiv=styled.div`
+display: flex;
+		flex-direction: column;
+`;
+
 const ReviewPassengerName=styled.h4`
+		
 		margin: 20px;
 		font-family: Helvetica;
 	`;

@@ -1,29 +1,18 @@
 import React,{useState, useEffect ,useContext} from 'react'
 import styled from 'styled-components';
-import { FullNameContext } from './SearchPage';
-
+import { FullNameContext , PassengerNamesContext} from './SearchPage';
 
 const Passengers = ({ totalPassengers }) => {
     const [firstName,setFirstName]=useState('');
     const [lastName,setLastName]=useState('');
+    const [fullNames,setFullNames]=useState('');
     const [title, setTitle] = useState('');
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [showContent, setShowContent] = useState(Array(totalPassengers).fill(false));
-    const [passengerData, setPassengerData] = useState([]);
     const {setFullName} = useContext(FullNameContext)
-
-    useEffect(() => {
-        setPassengerData(Array.from({ length: totalPassengers }, () => ({
-            firstName: '',
-            lastName: '',
-            title: '',
-            day: '',
-            month: '',
-            year: ''
-        })));
-    }, [totalPassengers]);
+    const {passengerNames,setPassengerNames} = useContext(PassengerNamesContext)
 
     const toggleContent = (index) => {
         const newShowContent = [...showContent];
@@ -31,62 +20,21 @@ const Passengers = ({ totalPassengers }) => {
         setShowContent(newShowContent);
     };
 
-    
-    // const handleFirstNameChange = (event) => {
-    //     setFirstName(event.target.value);
-    // };
-    
-    // const handleLastNameChange = (event) => {
-    //     setLastName(event.target.value);
-    // };
 
-    
-    const handleFirstNameChange = (index, value) => {
-        const newData = [...passengerData];
-        newData[index].firstName = value;
-        setPassengerData(newData);
-    };
+    const handleSaveButtonClick = ()=>{
+        const fullName = `${firstName} ${lastName}`;
+        setPassengerNames(prevFullNames => [...prevFullNames, fullName]);
+        setFullName(fullName);
+    }
 
-    const handleLastNameChange = (index, value) => {
-        const newData = [...passengerData];
-        newData[index].lastName = value;
-        setPassengerData(newData);
-    };
-    
-    // useEffect(()=>{
-    //     setFullName(`${firstName} ${lastName}`);
-    //     // updateFullName(fullName);
-    //     // console.log(fullName)
-    // })
-
-    useEffect(() => {
-        if (passengerData.length > 0) {
-            const { firstName, lastName } = passengerData[0];
-            setFullName(`${firstName} ${lastName}`);
-        }
-    }, [passengerData, setFullName]);
-
-    const handleTitleChange = (event) => {
-      setTitle(event.target.value);
-    };
-  
-    const handleDayChange = (event) => {
-      setDay(event.target.value);
-    };
-  
-    const handleMonthChange = (event) => {
-      setMonth(event.target.value);
-    };
-  
-    const handleYearChange = (event) => {
-      setYear(event.target.value);
-    };
+     useEffect(()=>{
+        console.log(passengerNames);
+     })
 
     const generatePassengerInputs = () => {
         let inputs = [];
-        return passengerData.map((passenger, index) => (
-        // for (let i = 1; i <= totalPassengers; i++) {
-            // inputs.push(
+        for (let i = 1; i <= totalPassengers; i++) {
+            inputs.push(
                 <PassengerData key={i}>
                     <PassengerDataHead onClick={() => toggleContent(i)}>Passenger {i}</PassengerDataHead>
                     {showContent[i] && (
@@ -95,25 +43,22 @@ const Passengers = ({ totalPassengers }) => {
                             <PassengerDataInputArea>
                                 <TitleSelectItem>
                                     <TitleLabel>Title</TitleLabel>
-                                    <TitleSelect value={title} onChange={handleTitleChange} className="">
-                                        <TitleOption value="">Select Title</TitleOption>
-                                        <TitleOption value="Mr">Mr</TitleOption>
-                                        <TitleOption value="Mrs">Mrs</TitleOption>
-                                        <TitleOption value="Miss">Miss</TitleOption>
-                                        <TitleOption value="Ms">Ms</TitleOption>
-                                        <TitleOption value="Undisclosed">Undisclosed</TitleOption>
+                                    <TitleSelect onChange={(event)=>setTitle(event.target.value)} className="">
+                                        <TitleOption >Select Title</TitleOption>
+                                        <TitleOption >Mr</TitleOption>
+                                        <TitleOption >Mrs</TitleOption>
+                                        <TitleOption >Ms</TitleOption>
+                                        <TitleOption >Undisclosed</TitleOption>
                                     </TitleSelect>
                                 </TitleSelectItem>
                                 <NameInputItem>
-                                    {/* <FirstName placeholder='First Name' value={firstName} onChange={handleFirstNameChange}/>
-                                    <LastName placeholder='Last Name' value={lastName} onChange={handleLastNameChange}/> */}
-                                    <FirstName placeholder='First Name' value={passenger.firstName} onChange={(e) => handleFirstNameChange(index, e.target.value)}/>
-                                    <LastName placeholder='Last Name' value={passenger.lastName} onChange={(e) => handleLastNameChange(index, e.target.value)} />
+                                    <FirstName placeholder='First Name' onChange={(event)=>setFirstName(event.target.value)}/>
+                                    <LastName placeholder='Last Name'   onChange={(event)=>setLastName(event.target.value)}/>
                                 </NameInputItem>
                                 <DobInput>
                                     <TitleSelectItem>
                                         <DayLabel>Day</DayLabel>
-                                        <DaySelect value={day} onChange={handleDayChange} className="">
+                                        <DaySelect onChange={(event)=> setDay(event.target.value)} className="">
                                             <TitleOption value="">2</TitleOption>
                                             {Array.from({ length: 31 }, (_, index) => (
                                             <TitleOption key={index + 1} value={index + 1}>{index + 1}</TitleOption>
@@ -122,7 +67,7 @@ const Passengers = ({ totalPassengers }) => {
                                     </TitleSelectItem>
                                     <TitleSelectItem>
                                         <MonthLabel>Month</MonthLabel>
-                                        <MonthSelect value={month} onChange={handleMonthChange} className="">
+                                        <MonthSelect onChange={(event)=>setMonth(event.target.value)} className="">
                                             <TitleOption value="">February</TitleOption>
                                             {Array.from({ length: 12 }, (_, index) => (
                                                 <TitleOption key={index + 1} value={index + 1}> {new Date(0, index).toLocaleString('default', { month: 'long' })} </TitleOption>                   
@@ -131,7 +76,7 @@ const Passengers = ({ totalPassengers }) => {
                                     </TitleSelectItem>
                                     <TitleSelectItem>
                                         <YearLabel>Year</YearLabel>
-                                        <YearSelect value={year} onChange={handleYearChange} className="">
+                                        <YearSelect onChange={(event)=>setYear(event.target.value)} className="">
                                             <TitleOption value="">2000</TitleOption>
                                             {Array.from({ length: 150}, (_, index) => (
                                                 <TitleOption key={index + 1875} value={index + 1875}> {index + 1875} </TitleOption>
@@ -146,7 +91,7 @@ const Passengers = ({ totalPassengers }) => {
                                 <FlyerBenefitsInput>
                                     <FlyerSelectItem>
                                         <FlyerLabel>Airline/Programme</FlyerLabel>
-                                        <FlyerSelect type="select" value="" onChange="" className="">
+                                        <FlyerSelect type="select"  onChange={(event)=>setYear(event.target.value)} className="">
                                             <TitleOption value="">None</TitleOption>
                                             <TitleOption>Emirates & flydubai / Skywards</TitleOption>
                                             <TitleOption>Qantas / Frequent Flyer</TitleOption>
@@ -155,15 +100,17 @@ const Passengers = ({ totalPassengers }) => {
                                     <FlyerNumber placeholder="Frequent flyer number"/>
                                 </FlyerBenefitsInput>
                             </FlyerBenefits>
+                            <SaveButtonDiv>
+                                <SaveButton onClick={handleSaveButtonClick}>Save</SaveButton>
+                            </SaveButtonDiv>
                         </>
                     )}
                 </PassengerData>
-            // );
-        // }
-        ));
-        // return inputs;
+            );
+        }
+        return inputs;
     };
-
+   
   return (
     <PassengerPage>
         <ImpInfo>
@@ -561,5 +508,30 @@ const FlyerNumber=styled.input`
         color: #333;
         font-weight: lighter;
         font-size: 17px;
+    }
+`;
+
+const SaveButtonDiv=styled.div`
+    display: flex;
+    width: 94%;
+    justify-content: end;
+`;
+
+const SaveButton=styled.button`
+    margin-top: 24px;
+    margin-left: 20px;
+    font-family: Helvetica;
+    font-size: 15px;
+    font-weight: 700;
+    background: #fff;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 2px;
+    text-align: center;
+    padding: 10px 20px;
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
     }
 `;

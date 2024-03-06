@@ -16,14 +16,16 @@ import { PaymentContext } from '../../App';
 export const DetailContext=createContext();
 export const InboundContext=createContext();
 export const FullNameContext = createContext();
+export const PassengerNamesContext= createContext();
 
  
 const SearchPage = () => {
     const [selectedFlight,setSelectedFlight]=useState([]);
-    const [inboundSelectedFlight,setInboundSelectedFlight]=useState();
+    const [inboundSelectedFlight,setInboundSelectedFlight]=useState([]);
     const [sectionTitle,setSectionTitle]=useState(1);
     const {emiratesFlight}=useContext(PaymentContext);
-    const [fullName,setFullName] = useState("asfdgff");
+    const [fullName,setFullName] = useState("");
+    const [passengerNames,setPassengerNames] = useState("")
 
     useEffect(()=>{
         console.log(fullName)
@@ -77,6 +79,7 @@ const SearchPage = () => {
             <DetailContext.Provider value={{selectedFlight,setSelectedFlight}}>
                 <InboundContext.Provider value={{inboundSelectedFlight,setInboundSelectedFlight}}>
                     <FullNameContext.Provider value={{ fullName, setFullName }}>
+                        <PassengerNamesContext.Provider value={{ passengerNames,setPassengerNames }}>
                         <>
                         <SearchHead>
                             <LogoCont>
@@ -123,13 +126,13 @@ const SearchPage = () => {
                                 </ContinueButtonCont>
                             </SectionContent>
                             <SectionContent className={sectionTitle===3?'active':'content'}>
-                                <Options/>
+                                <Options totalPassengers={totalPassenger}/>
                                 <ContinueButtonCont>
                                     <ContinueButton onClick={handleContinue}>Continue to Payment</ContinueButton>
                                 </ContinueButtonCont>
                             </SectionContent>
                             <SectionContent className={sectionTitle===4?'active':'content'}>
-                                <Payment/>
+                                <Payment totalPassengers={totalPassenger}/>
                                 <ContinueButtonCont>
                                     <ContinueButton onClick={makePayment}>Continue to Confirm</ContinueButton>
                                 </ContinueButtonCont>
@@ -156,6 +159,7 @@ const SearchPage = () => {
                             </LogoEnd>
                         </SearchFooter>
                         </>
+                </PassengerNamesContext.Provider>
                 </FullNameContext.Provider>
                 </InboundContext.Provider>
             </DetailContext.Provider>
