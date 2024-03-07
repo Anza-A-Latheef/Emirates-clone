@@ -26,23 +26,25 @@ const SearchPage = () => {
     const {emiratesFlight}=useContext(PaymentContext);
     const [fullName,setFullName] = useState("");
     const [passengerNames,setPassengerNames] = useState("")
-
-    useEffect(()=>{
-        console.log(fullName)
-    },[fullName])
+	const [totalFare,setTotalFare]=useState();
 
     const makePayment = async () => {
         const stripe = await loadStripe("pk_test_51OqSjXSBi3XvzBVZgiW9IG0dHZACUaPtE2HhlIyaK84npbU1QbxzJEViuCL8Mh7l5mxjGciDIDmxfQ5OURuaYuHl00ZpwClxTY")
         const body = {
-          products:emiratesFlight
+          products:[selectedFlight],
+          fair:totalFare
         }
+        // const price = {
+        //   fares:totalFare
+        // }
         const headers = {
           "Content-Type":"application/json"
         }
         const response = await fetch("http://localhost:7000/api/create-checkout-session",{
             method:"POST",
             headers:headers,
-            body:JSON.stringify(body)
+            body:JSON.stringify(body),
+            // price:price
           });
     
         const session = await response.json();
@@ -54,6 +56,9 @@ const SearchPage = () => {
           console.log(result.error);
     }
     }
+
+
+
     const handleContinue = () => {
         if (sectionTitle < 5) {
           const nextSection = sectionTitle + 1;
@@ -62,10 +67,12 @@ const SearchPage = () => {
           console.log('Booking process completed');
         }
       };
+
     const {departure,arrival ,totalPassenger,classes} = useParams();
     const [loading,setLoading]= useState(false);
 
     useEffect(() => {
+       
         setLoading(true);
         setTimeout(() => {
                 setLoading(false)
@@ -132,9 +139,9 @@ const SearchPage = () => {
                                 </ContinueButtonCont>
                             </SectionContent>
                             <SectionContent className={sectionTitle===4?'active':'content'}>
-                                <Payment totalPassengers={totalPassenger}/>
+                                <Payment totalPassengers={totalPassenger} totalFare={totalFare} setTotalFare={setTotalFare}/>
                                 <ContinueButtonCont>
-                                    <ContinueButton onClick={makePayment}>Continue to Confirm</ContinueButton>
+                                    <ContinueButton onClick={makePayment}>Purchase Now</ContinueButton>
                                 </ContinueButtonCont>
                             </SectionContent>
                             <SectionContent className={sectionTitle===5?'active':'content'}>

@@ -1,7 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
-import FlightDetail from '../../assets/FlightDetail.json'
 import { FaSuitcase } from "react-icons/fa";
 import { MdCalendarMonth } from "react-icons/md";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
@@ -10,12 +9,12 @@ import { DetailContext, InboundContext } from './SearchPage';
 import { PassengerNamesContext} from './SearchPage';
 
 
-	const Payment = ({ totalPassengers}) => {
-			const {departure,arrival ,totalPassenger,classes,departureDate,returnDate} = useParams();
-			const [totalFare,setTotalFare]=useState();
+	const Payment = ({ totalPassengers,totalFare,setTotalFare}) => {
+			const {totalPassenger,classes,departureDate,returnDate} = useParams();
+			// const [totalFare,setTotalFare]=useState();
 			const {selectedFlight} = useContext(DetailContext);
 			const {inboundSelectedFlight}=useContext(InboundContext);
-			const {passengerNames} = useContext(PassengerNamesContext)
+			const {passengerNames} = useContext(PassengerNamesContext);
 
 			const generatePassengerNames = ()=>{
 				let namelist=[];
@@ -27,29 +26,14 @@ import { PassengerNamesContext} from './SearchPage';
 		};
 
 		useEffect(() => {
-			// const Outboundfare = totalPassengers * selectedFlight[0].SeatingClass[classes.slice(0, -6)];
-			// const Inboundfare = totalPassengers * inboundSelectedFlight[0].SeatingClass[classes.slice(0, -6)];
-			// // const Outboundfare = totalPassengers * selectedFlight?.SeatingClass?.[classes.slice(0, -6)] || 0;
-			// // const Inboundfare = totalPassengers * inboundSelectedFlight?.SeatingClass?.[classes.slice(0, -6)]||0;
-			// const fare = Outboundfare + Inboundfare;
-			// setTotalFare(fare);
-			const asdf = inboundSelectedFlight.SeatingClass
-			const wer = []
+		
 			for (let i in inboundSelectedFlight.SeatingClass){
-				console.log(asdf["Economy"])
+				const fare=((selectedFlight.SeatingClass[classes.slice(0, -6)]+inboundSelectedFlight.SeatingClass[classes.slice(0, -6)])*totalPassengers)
+				setTotalFare(fare)
+				break;
 			}
-			console.log(selectedFlight)
 		}, [selectedFlight,inboundSelectedFlight]);
-
-				// const filteredFlights = FlightDetail.filter(flight => {
-				// 	return (
-				// 		flight.departure_place.includes(departure.slice(0, -6)) &&
-				// 		flight.arrival_place.includes(arrival.slice(0, -6))
-				// 		);
-				// 	});
-				// 	const fare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0, -6)];
-				// 	setTotalFare(fare);
-				// }, [departure, arrival, totalPassenger, classes,departureDate,returnDate]);
+;
 				
 	return (
 		<div>

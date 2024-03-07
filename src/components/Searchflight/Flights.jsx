@@ -9,21 +9,23 @@ import { InboundContext } from './SearchPage';
 export default function Flights() {
     const { departure, arrival, totalPassenger, classes, departureDate, returnDate } = useParams();
     const { emiratesFlight, setEmiratesFlight } = useContext(PaymentContext);
-    const [totalFare, setTotalFare] = useState();
+    const [lowestPrice, setLowestPrice] = useState();
     const { selectedFlight, setSelectedFlight} = useContext(DetailContext);
     const {inboundSelectedFlight, setInboundSelectedFlight }=useContext(InboundContext);
 
     useEffect(() => {
+        console.log(emiratesFlight);
+        console.log(selectedFlight);
         const filteredFlights = FlightDetail.filter(flight => {
             return (
                 flight.departure_place.includes(departure.slice(0, -6)) &&
                 flight.arrival_place.includes(arrival.slice(0, -6))
             );
         });
-        const totalFare = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
+        const lowest = totalPassenger * filteredFlights[0]?.SeatingClass[classes.slice(0,-6)];
 
         setEmiratesFlight(filteredFlights);
-        setTotalFare(totalFare); 
+        setLowestPrice(lowest); 
         
         
     },  [departure, arrival, setEmiratesFlight, totalPassenger, classes]);
@@ -45,7 +47,7 @@ export default function Flights() {
         </CurencyConverter>
         <PriceSection>
             <LowPrice>Lowest price for all passengers</LowPrice>
-            <FlightFare>INR {totalFare}</FlightFare>
+            <FlightFare>INR {lowestPrice}</FlightFare>
             <FareDetails>This price is the lowest available price combination for your selected dates. Look for the lowest price indicator in the results below to get this price. All prices below include airfare, taxes, fees and carrier-imposed charges for {totalPassenger} passengers.</FareDetails>
         </PriceSection>
         <FairConditions>Please ensure you read the <u> fare conditions</u> at the bottom before selecting your flights.</FairConditions>

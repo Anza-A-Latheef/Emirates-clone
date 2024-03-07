@@ -6,7 +6,9 @@ import Login from './components/login/Login';
 import Book from './components/Bookplaces/Book';
 import LoyaltyJoin from './components/LoyaltyJoin';
 import SearchPage from '../src/components/Searchflight/SearchPage';
+
 import "./App.css";
+import Success from './components/success';
 
 
 
@@ -45,6 +47,7 @@ useEffect(()=>{
           <Route path="Login-page" element={<Login/>}/>
           <Route path='/singleitem' element={<Book/>}/>
           <Route path="Loyalty-page" element={<LoyaltyJoin/>}/>
+          <Route path="/success" element={<Success/>}/>
           <Route path="/Search-page/:departure/:arrival/:totalPassenger/:classes/:departureDate/:returnDate" element={<SearchPage/>} />
         </Routes>
       </PaymentContext.Provider>
